@@ -1,0 +1,146 @@
+name: 'dev-ops-pipeline'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  move-to-sandbox: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
+          ayx-server-client-secret: '1f675a0f8d2c572ddd02005a3396fe7e89706fe4a39e0d5f39cf9b6463aecec8'
+          ayx-user-mail: 'jupiter.bakakeu@alteryx.com'
+          folder-to-sync: './'
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+            path: |
+              *.tgz
+              server-sync-results.json
+  data-ingestion-test: # with the data configuration execute all alteryx tests
+    needs: move-to-sandbox
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Data
+        uses: actions/checkout@v2.4.2
+        with:
+          ref: 'main'
+      - name: Read Data Configuration
+        uses: juliangruber/read-file-action@v1.1.4
+        id: package
+        with:
+          path: '00_DATA INGESTION/data/Report.json'
+      - name: Execute Alteryx Tests
+        uses: jupiterbak/ayx-test-reporter@v1.0.2
+        with:
+          ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
+          ayx-server-client-secret: '1f675a0f8d2c572ddd02005a3396fe7e89706fe4a39e0d5f39cf9b6463aecec8'
+          collection-to-test: '00_Data_Ingestion'
+          args: "${{ steps.package.outputs.content }}"
+      - name: Upload the Test Results
+        uses: actions/upload-artifact@v2.2.3
+        with:
+            path: |
+              *.tgz
+              results.json
+      - name: Generate a Mocha Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    
+        with:
+          name: Data Ingestion Test Results            
+          path: results.json            
+          reporter: mocha-json
+  generate-features: # with the data configuration generate features
+    needs: data-ingestion-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Data
+        uses: actions/checkout@v2.4.2
+        with:
+          ref: 'main'
+      - name: Read Data Configuration for feature Generation
+        uses: juliangruber/read-file-action@v1.1.4
+        id: package
+        with:
+          path: '00_DATA INGESTION/data/Report.json'
+      - name: Generate Features by run workflows on the collection 02_Feature_Generation
+        uses: jupiterbak/ayx-test-reporter@v1.0.2
+        with:
+          ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
+          ayx-server-client-secret: '1f675a0f8d2c572ddd02005a3396fe7e89706fe4a39e0d5f39cf9b6463aecec8'
+          collection-to-test: 'W_01_Feature_Generation'
+          args: "${{ steps.package.outputs.content }}"
+      - name: Upload the Generation Results
+        uses: actions/upload-artifact@v2.2.3
+        with:
+            path: |
+              *.tgz
+              results.json
+      - name: Generate a Mocha Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    
+        with:
+          name: Feature Generation Results            
+          path: results.json            
+          reporter: mocha-json
+  test-features: # with the data configuration generate features
+    needs: generate-features
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Data
+        uses: actions/checkout@v2.4.2
+        with:
+          ref: 'main'
+      - name: Read Data Configuration of the feature data set
+        uses: juliangruber/read-file-action@v1.1.4
+        id: package
+        with:
+          path: '00_DATA INGESTION/data/Report.json'
+      - name: Tests the features qualities by running workflows of the collection 02_Feature_Engineering
+        uses: jupiterbak/ayx-test-reporter@v1.0.2
+        with:
+          ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
+          ayx-server-client-secret: '1f675a0f8d2c572ddd02005a3396fe7e89706fe4a39e0d5f39cf9b6463aecec8'
+          collection-to-test: '02_Feature_Engineering'
+          args: "${{ steps.package.outputs.content }}"
+      - name: Upload the feature test results
+        uses: actions/upload-artifact@v2.2.3
+        with:
+            path: |
+              *.tgz
+              results.json
+      - name: Generate a Mocha Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    
+        with:
+          name: Feature Test Results            
+          path: results.json            
+          reporter: mocha-json
+  move-to-server: # make sure the action works on a clean machine without building
+    needs: test-features
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
+          ayx-server-client-secret: '1f675a0f8d2c572ddd02005a3396fe7e89706fe4a39e0d5f39cf9b6463aecec8'
+          ayx-user-mail: 'jupiter.bakakeu@alteryx.com'
+          folder-to-sync: './'
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+            path: |
+              *.tgz
+              server-sync-results.json
