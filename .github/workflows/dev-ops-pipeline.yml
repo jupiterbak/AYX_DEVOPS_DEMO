@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - uses: jupiterbak/ayx-server-deploy@v1
         with:
           ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
           ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
@@ -36,7 +36,7 @@ jobs:
         uses: juliangruber/read-file-action@v1.1.4
         id: package
         with:
-          path: '00_DATA INGESTION/data/Report.json'
+          path: './Report.json'
       - name: Execute Alteryx Tests
         uses: jupiterbak/ayx-test-reporter@v1.0.2
         with:
@@ -70,7 +70,7 @@ jobs:
         uses: juliangruber/read-file-action@v1.1.4
         id: package
         with:
-          path: '00_DATA INGESTION/data/Report.json'
+          path: './Report.json'
       - name: Generate Features by run workflows on the collection 02_Feature_Generation
         uses: jupiterbak/ayx-test-reporter@v1.0.2
         with:
@@ -104,7 +104,7 @@ jobs:
         uses: juliangruber/read-file-action@v1.1.4
         id: package
         with:
-          path: '00_DATA INGESTION/data/Report.json'
+          path: './Report.json'
       - name: Tests the features qualities by running workflows of the collection 02_Feature_Engineering
         uses: jupiterbak/ayx-test-reporter@v1.0.2
         with:
@@ -131,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - uses: jupiterbak/ayx-server-deploy@v1
         with:
           ayx-server-api-url: 'http://ec2-3-66-136-169.eu-central-1.compute.amazonaws.com/webapi/'
           ayx-server-client-id: '8DA78CE09C0E5D1abf4927846637f9a02e196b8eff52b61f03246ad16ad2c81125ef4a80920db80'
