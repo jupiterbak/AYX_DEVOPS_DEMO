@@ -1,0 +1,1088 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="41">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="54" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Text Box (41)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="42">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="54" y="162" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="43">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="150" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Text Box (41)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="45">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="150" y="162" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="110">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="115">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="120">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="258" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Text Box (41)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="121">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="258" y="162" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="30">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="60" y="555" width="1169" height="291" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption><![CDATA[Authenticate and read ]]></Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="47">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="185" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="trim([base URL], &quot;/&quot;)" field="base URL" size="2147483647" type="V_String" />
+                <FormulaField expression="tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" field="BaseAuthEndpoint" size="1073741823" type="V_WString" />
+                <FormulaField expression="tostring(toString([user]) + &quot;:&quot;+ tostring([personal access token]))" field="Authorization" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>base URL = trim([base URL], "/")
+BaseAuthEndpoint = tostring([base URL]) + "/use...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="user" size="2147483647" source="TextInput:" type="V_String" />
+                <Field name="personal access token" size="2147483647" source="TextInput:" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="Authorization" size="1073741823" source="Formula: tostring(toString([user]) + &quot;:&quot;+ tostring([personal access token]))" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="49">
+          <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+            <Position x="378" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <URLField>BaseAuthEndpoint</URLField>
+              <OutputMode>String</OutputMode>
+              <CodePage>65001</CodePage>
+              <EncodeURLs value="True" />
+              <Headers>
+                <NameValues>
+                  <Item name="Content" value="application/vnd.github+json" />
+                  <Item name="User-Agent" value="AYX/2022.1 Jupiter Bakakeu" />
+                </NameValues>
+                <Fields orderChanged="False">
+                  <Field name="Authorization" />
+                  <Field name="base URL" selected="False" />
+                  <Field name="user" selected="False" />
+                  <Field name="BaseAuthEndpoint" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </Fields>
+              </Headers>
+              <Payload>
+                <HTTPAction>GET</HTTPAction>
+                <QueryStringBodyMode>Compose</QueryStringBodyMode>
+                <ComposeNameValues />
+                <ComposeFields orderChanged="False">
+                  <Field name="base URL" selected="False" />
+                  <Field name="user" selected="False" />
+                  <Field name="BaseAuthEndpoint" selected="False" />
+                  <Field name="Authorization" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </ComposeFields>
+              </Payload>
+              <numConnections>2</numConnections>
+              <Timeout>600</Timeout>
+              <EnableRPM value="False" />
+              <Password />
+              <UserName />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="user" size="2147483647" source="TextInput:" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="Authorization" size="1073741823" source="Formula: tostring(&quot;token : &quot;+ tostring([personal access token]))" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+        </Node>
+        <Node ToolID="50">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="474" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="user" selected="False" />
+                <SelectField field="Authorization" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="51">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Test.Test">
+            <Position x="570" y="762" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Tests>
+                <Test>
+                  <Name>A bearer token was not received from the Gallery API authentication attempt!</Name>
+                  <Connection>#1</Connection>
+                  <Type>ExpAll</Type>
+                  <Value>CONTAINS([DownloadHeaders]," 200 ")</Value>
+                </Test>
+              </Tests>
+              <DontReportSubsequent value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>A bearer token was not received from the Gallery API authentication attempt!</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTest" />
+        </Node>
+        <Node ToolID="52">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Message.Message">
+            <Position x="858" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <When>Last</When>
+              <Filter />
+              <Type>Message</Type>
+              <Priority>High</Priority>
+              <Transient>False</Transient>
+              <MessageExpression>"The response headers from "+tostring([BaseAuthEndpoint])+" were "+tostring(TRIM([DownloadHeaders]))</MessageExpression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="Formula: TRIM([DownloadHeaders])" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMessage" />
+        </Node>
+        <Node ToolID="53">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
+            <Position x="570" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>DownloadHeaders</Field>
+              <Delimeters value="\n" />
+              <NumFields value="1" />
+              <Flags value="0" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="TextToColumns: Parsed from DownloadHeaders" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+            <Position x="666" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>First</Mode>
+              <N>1</N>
+              <GroupFields orderChanged="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>First 1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="TextToColumns: Parsed from DownloadHeaders" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+        </Node>
+        <Node ToolID="55">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="762" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="TRIM([DownloadHeaders])" field="DownloadHeaders" size="2147483647" type="V_String" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[DownloadHeaders = TRIM([DownloadHeaders])
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="Formula: TRIM([DownloadHeaders])" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="58">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.JSONParse.JSONParse">
+            <Position x="570" y="690" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JSON_Field>DownloadData</JSON_Field>
+              <IncludeInOutput value="False" />
+              <SingleField value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+                <Field name="JSON_Name" size="1073741823" source="JSON_Parse" type="V_WString" />
+                <Field name="JSON_ValueString" size="1073741823" source="JSON_Parse" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJSONParse" />
+        </Node>
+        <Node ToolID="60">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+            <Position x="750" y="690" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <GroupFields>
+                <Field field="base URL" />
+                <Field field="Index" />
+              </GroupFields>
+              <HeaderField field="Columns" />
+              <DataField field="JSON_ValueString" />
+              <Methods>
+                <Method method="Concat" />
+                <Separator>,</Separator>
+                <FieldSize value="1024" />
+              </Methods>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="CrossTab:Group:Concat:" type="V_String" />
+                <Field description="RegEx: Parsed from JSON_Name" name="Index" source="CrossTab:Group:Concat:" type="Int32" />
+                <Field name="allow_forking" size="1024" source="CrossTab:Header:Columns:allow_forking:Concat:" type="V_WString" />
+                <Field name="archive_url" size="1024" source="CrossTab:Header:Columns:archive_url:Concat:" type="V_WString" />
+                <Field name="archived" size="1024" source="CrossTab:Header:Columns:archived:Concat:" type="V_WString" />
+                <Field name="assignees_url" size="1024" source="CrossTab:Header:Columns:assignees_url:Concat:" type="V_WString" />
+                <Field name="blobs_url" size="1024" source="CrossTab:Header:Columns:blobs_url:Concat:" type="V_WString" />
+                <Field name="branches_url" size="1024" source="CrossTab:Header:Columns:branches_url:Concat:" type="V_WString" />
+                <Field name="clone_url" size="1024" source="CrossTab:Header:Columns:clone_url:Concat:" type="V_WString" />
+                <Field name="collaborators_url" size="1024" source="CrossTab:Header:Columns:collaborators_url:Concat:" type="V_WString" />
+                <Field name="comments_url" size="1024" source="CrossTab:Header:Columns:comments_url:Concat:" type="V_WString" />
+                <Field name="commits_url" size="1024" source="CrossTab:Header:Columns:commits_url:Concat:" type="V_WString" />
+                <Field name="compare_url" size="1024" source="CrossTab:Header:Columns:compare_url:Concat:" type="V_WString" />
+                <Field name="contents_url" size="1024" source="CrossTab:Header:Columns:contents_url:Concat:" type="V_WString" />
+                <Field name="contributors_url" size="1024" source="CrossTab:Header:Columns:contributors_url:Concat:" type="V_WString" />
+                <Field name="created_at" size="1024" source="CrossTab:Header:Columns:created_at:Concat:" type="V_WString" />
+                <Field name="default_branch" size="1024" source="CrossTab:Header:Columns:default_branch:Concat:" type="V_WString" />
+                <Field name="deployments_url" size="1024" source="CrossTab:Header:Columns:deployments_url:Concat:" type="V_WString" />
+                <Field name="description" size="1024" source="CrossTab:Header:Columns:description:Concat:" type="V_WString" />
+                <Field name="disabled" size="1024" source="CrossTab:Header:Columns:disabled:Concat:" type="V_WString" />
+                <Field name="downloads_url" size="1024" source="CrossTab:Header:Columns:downloads_url:Concat:" type="V_WString" />
+                <Field name="events_url" size="1024" source="CrossTab:Header:Columns:events_url:Concat:" type="V_WString" />
+                <Field name="fork" size="1024" source="CrossTab:Header:Columns:fork:Concat:" type="V_WString" />
+                <Field name="forks" size="1024" source="CrossTab:Header:Columns:forks:Concat:" type="V_WString" />
+                <Field name="forks_count" size="1024" source="CrossTab:Header:Columns:forks_count:Concat:" type="V_WString" />
+                <Field name="forks_url" size="1024" source="CrossTab:Header:Columns:forks_url:Concat:" type="V_WString" />
+                <Field name="full_name" size="1024" source="CrossTab:Header:Columns:full_name:Concat:" type="V_WString" />
+                <Field name="git_commits_url" size="1024" source="CrossTab:Header:Columns:git_commits_url:Concat:" type="V_WString" />
+                <Field name="git_refs_url" size="1024" source="CrossTab:Header:Columns:git_refs_url:Concat:" type="V_WString" />
+                <Field name="git_tags_url" size="1024" source="CrossTab:Header:Columns:git_tags_url:Concat:" type="V_WString" />
+                <Field name="git_url" size="1024" source="CrossTab:Header:Columns:git_url:Concat:" type="V_WString" />
+                <Field name="has_downloads" size="1024" source="CrossTab:Header:Columns:has_downloads:Concat:" type="V_WString" />
+                <Field name="has_issues" size="1024" source="CrossTab:Header:Columns:has_issues:Concat:" type="V_WString" />
+                <Field name="has_pages" size="1024" source="CrossTab:Header:Columns:has_pages:Concat:" type="V_WString" />
+                <Field name="has_projects" size="1024" source="CrossTab:Header:Columns:has_projects:Concat:" type="V_WString" />
+                <Field name="has_wiki" size="1024" source="CrossTab:Header:Columns:has_wiki:Concat:" type="V_WString" />
+                <Field name="homepage" size="1024" source="CrossTab:Header:Columns:homepage:Concat:" type="V_WString" />
+                <Field name="hooks_url" size="1024" source="CrossTab:Header:Columns:hooks_url:Concat:" type="V_WString" />
+                <Field name="html_url" size="1024" source="CrossTab:Header:Columns:html_url:Concat:" type="V_WString" />
+                <Field name="id" size="1024" source="CrossTab:Header:Columns:id:Concat:" type="V_WString" />
+                <Field name="is_template" size="1024" source="CrossTab:Header:Columns:is_template:Concat:" type="V_WString" />
+                <Field name="issue_comment_url" size="1024" source="CrossTab:Header:Columns:issue_comment_url:Concat:" type="V_WString" />
+                <Field name="issue_events_url" size="1024" source="CrossTab:Header:Columns:issue_events_url:Concat:" type="V_WString" />
+                <Field name="issues_url" size="1024" source="CrossTab:Header:Columns:issues_url:Concat:" type="V_WString" />
+                <Field name="keys_url" size="1024" source="CrossTab:Header:Columns:keys_url:Concat:" type="V_WString" />
+                <Field name="labels_url" size="1024" source="CrossTab:Header:Columns:labels_url:Concat:" type="V_WString" />
+                <Field name="language" size="1024" source="CrossTab:Header:Columns:language:Concat:" type="V_WString" />
+                <Field name="languages_url" size="1024" source="CrossTab:Header:Columns:languages_url:Concat:" type="V_WString" />
+                <Field name="license" size="1024" source="CrossTab:Header:Columns:license:Concat:" type="V_WString" />
+                <Field name="merges_url" size="1024" source="CrossTab:Header:Columns:merges_url:Concat:" type="V_WString" />
+                <Field name="milestones_url" size="1024" source="CrossTab:Header:Columns:milestones_url:Concat:" type="V_WString" />
+                <Field name="mirror_url" size="1024" source="CrossTab:Header:Columns:mirror_url:Concat:" type="V_WString" />
+                <Field name="name" size="1024" source="CrossTab:Header:Columns:name:Concat:" type="V_WString" />
+                <Field name="node_id" size="1024" source="CrossTab:Header:Columns:node_id:Concat:" type="V_WString" />
+                <Field name="notifications_url" size="1024" source="CrossTab:Header:Columns:notifications_url:Concat:" type="V_WString" />
+                <Field name="open_issues" size="1024" source="CrossTab:Header:Columns:open_issues:Concat:" type="V_WString" />
+                <Field name="open_issues_count" size="1024" source="CrossTab:Header:Columns:open_issues_count:Concat:" type="V_WString" />
+                <Field name="owner" size="1024" source="CrossTab:Header:Columns:owner:Concat:" type="V_WString" />
+                <Field name="private" size="1024" source="CrossTab:Header:Columns:private:Concat:" type="V_WString" />
+                <Field name="pulls_url" size="1024" source="CrossTab:Header:Columns:pulls_url:Concat:" type="V_WString" />
+                <Field name="pushed_at" size="1024" source="CrossTab:Header:Columns:pushed_at:Concat:" type="V_WString" />
+                <Field name="releases_url" size="1024" source="CrossTab:Header:Columns:releases_url:Concat:" type="V_WString" />
+                <Field name="size" size="1024" source="CrossTab:Header:Columns:size:Concat:" type="V_WString" />
+                <Field name="ssh_url" size="1024" source="CrossTab:Header:Columns:ssh_url:Concat:" type="V_WString" />
+                <Field name="stargazers_count" size="1024" source="CrossTab:Header:Columns:stargazers_count:Concat:" type="V_WString" />
+                <Field name="stargazers_url" size="1024" source="CrossTab:Header:Columns:stargazers_url:Concat:" type="V_WString" />
+                <Field name="statuses_url" size="1024" source="CrossTab:Header:Columns:statuses_url:Concat:" type="V_WString" />
+                <Field name="subscribers_url" size="1024" source="CrossTab:Header:Columns:subscribers_url:Concat:" type="V_WString" />
+                <Field name="subscription_url" size="1024" source="CrossTab:Header:Columns:subscription_url:Concat:" type="V_WString" />
+                <Field name="svn_url" size="1024" source="CrossTab:Header:Columns:svn_url:Concat:" type="V_WString" />
+                <Field name="tags_url" size="1024" source="CrossTab:Header:Columns:tags_url:Concat:" type="V_WString" />
+                <Field name="teams_url" size="1024" source="CrossTab:Header:Columns:teams_url:Concat:" type="V_WString" />
+                <Field name="trees_url" size="1024" source="CrossTab:Header:Columns:trees_url:Concat:" type="V_WString" />
+                <Field name="updated_at" size="1024" source="CrossTab:Header:Columns:updated_at:Concat:" type="V_WString" />
+                <Field name="url" size="1024" source="CrossTab:Header:Columns:url:Concat:" type="V_WString" />
+                <Field name="visibility" size="1024" source="CrossTab:Header:Columns:visibility:Concat:" type="V_WString" />
+                <Field name="watchers" size="1024" source="CrossTab:Header:Columns:watchers:Concat:" type="V_WString" />
+                <Field name="watchers_count" size="1024" source="CrossTab:Header:Columns:watchers_count:Concat:" type="V_WString" />
+                <Field name="web_commit_signoff_required" size="1024" source="CrossTab:Header:Columns:web_commit_signoff_required:Concat:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+        </Node>
+        <Node ToolID="81">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="85" y="604" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="base URL" />
+                <Field name="user" />
+                <Field name="personal access token" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>https://api.github.com/</c>
+                  <c>jupiterbak</c>
+                  <c>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</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="TextInput:" type="V_String" />
+                <Field name="user" size="2147483647" source="TextInput:" type="V_String" />
+                <Field name="personal access token" size="2147483647" source="TextInput:" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="74">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+            <Position x="1146" y="690" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Name>API Response</Name>
+              <Abbrev>R</Abbrev>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+        </Node>
+        <Node ToolID="111">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="281" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="personal access token" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="user" size="2147483647" source="TextInput:" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="Authorization" size="1073741823" source="Formula: tostring(&quot;token :&quot;+ tostring([personal access token]))" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="122">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="654" y="690" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="(\d+).(\w+)" />
+              <CaseInsensitve value="True" />
+              <Method>ParseComplex</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="Index" type="Int32" size="4" />
+                <Field field="Columns" type="V_String" size="256" />
+              </ParseComplex>
+              <Match>
+                <Field>base URL_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="Formula: trim([base URL], &quot;/&quot;)" type="V_String" />
+                <Field name="BaseAuthEndpoint" size="1073741823" source="Formula: tostring([base URL]) + &quot;/users/&quot; + [user] + &quot;/repos&quot;" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+                <Field name="JSON_Name" size="1073741823" source="JSON_Parse" type="V_WString" />
+                <Field name="JSON_ValueString" size="1073741823" source="JSON_Parse" type="V_WString" />
+                <Field description="RegEx: Parsed from JSON_Name" name="Index" source="RegEx: Parsed from JSON_Name" type="Int32" />
+                <Field description="RegEx: Parsed from JSON_Name" name="Columns" size="256" source="RegEx: Parsed from JSON_Name" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="123">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="882" y="690" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="base URL" selected="True" />
+                <SelectField field="Index" selected="True" />
+                <SelectField field="id" selected="True" />
+                <SelectField field="full_name" selected="True" />
+                <SelectField field="description" selected="True" />
+                <SelectField field="url" selected="True" />
+                <SelectField field="created_at" selected="True" />
+                <SelectField field="private" selected="True" />
+                <SelectField field="visibility" selected="True" />
+                <SelectField field="allow_forking" selected="True" />
+                <SelectField field="disabled" selected="True" />
+                <SelectField field="archived" selected="True" />
+                <SelectField field="size" selected="True" />
+                <SelectField field="git_url" selected="True" />
+                <SelectField field="html_url" selected="True" />
+                <SelectField field="releases_url" selected="True" />
+                <SelectField field="archive_url" selected="True" />
+                <SelectField field="assignees_url" selected="True" />
+                <SelectField field="blobs_url" selected="False" />
+                <SelectField field="branches_url" selected="True" />
+                <SelectField field="clone_url" selected="True" />
+                <SelectField field="collaborators_url" selected="True" />
+                <SelectField field="comments_url" selected="True" />
+                <SelectField field="commits_url" selected="True" />
+                <SelectField field="compare_url" selected="True" />
+                <SelectField field="contents_url" selected="True" />
+                <SelectField field="contributors_url" selected="True" />
+                <SelectField field="default_branch" selected="True" />
+                <SelectField field="deployments_url" selected="True" />
+                <SelectField field="downloads_url" selected="True" />
+                <SelectField field="events_url" selected="True" />
+                <SelectField field="fork" selected="True" />
+                <SelectField field="forks" selected="True" />
+                <SelectField field="forks_count" selected="True" />
+                <SelectField field="forks_url" selected="True" />
+                <SelectField field="git_commits_url" selected="True" />
+                <SelectField field="git_refs_url" selected="True" />
+                <SelectField field="git_tags_url" selected="True" />
+                <SelectField field="has_downloads" selected="True" />
+                <SelectField field="has_issues" selected="True" />
+                <SelectField field="has_pages" selected="True" />
+                <SelectField field="has_projects" selected="True" />
+                <SelectField field="has_wiki" selected="True" />
+                <SelectField field="homepage" selected="True" />
+                <SelectField field="hooks_url" selected="True" />
+                <SelectField field="is_template" selected="True" />
+                <SelectField field="issue_comment_url" selected="True" />
+                <SelectField field="issue_events_url" selected="True" />
+                <SelectField field="issues_url" selected="True" />
+                <SelectField field="keys_url" selected="True" />
+                <SelectField field="labels_url" selected="True" />
+                <SelectField field="language" selected="True" />
+                <SelectField field="languages_url" selected="True" />
+                <SelectField field="license" selected="True" />
+                <SelectField field="merges_url" selected="True" />
+                <SelectField field="milestones_url" selected="True" />
+                <SelectField field="mirror_url" selected="True" />
+                <SelectField field="name" selected="True" />
+                <SelectField field="node_id" selected="True" />
+                <SelectField field="notifications_url" selected="True" />
+                <SelectField field="open_issues" selected="True" />
+                <SelectField field="open_issues_count" selected="True" />
+                <SelectField field="owner" selected="True" />
+                <SelectField field="pulls_url" selected="True" />
+                <SelectField field="pushed_at" selected="True" />
+                <SelectField field="ssh_url" selected="True" />
+                <SelectField field="stargazers_count" selected="True" />
+                <SelectField field="stargazers_url" selected="True" />
+                <SelectField field="statuses_url" selected="True" />
+                <SelectField field="subscribers_url" selected="True" />
+                <SelectField field="subscription_url" selected="True" />
+                <SelectField field="svn_url" selected="True" />
+                <SelectField field="tags_url" selected="True" />
+                <SelectField field="teams_url" selected="True" />
+                <SelectField field="trees_url" selected="True" />
+                <SelectField field="updated_at" selected="True" />
+                <SelectField field="watchers" selected="True" />
+                <SelectField field="watchers_count" selected="True" />
+                <SelectField field="web_commit_signoff_required" selected="True" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="base URL" size="2147483647" source="CrossTab:Group:Concat:" type="V_String" />
+                <Field description="RegEx: Parsed from JSON_Name" name="Index" source="CrossTab:Group:Concat:" type="Int32" />
+                <Field name="id" size="1024" source="CrossTab:Header:Columns:id:Concat:" type="V_WString" />
+                <Field name="full_name" size="1024" source="CrossTab:Header:Columns:full_name:Concat:" type="V_WString" />
+                <Field name="description" size="1024" source="CrossTab:Header:Columns:description:Concat:" type="V_WString" />
+                <Field name="url" size="1024" source="CrossTab:Header:Columns:url:Concat:" type="V_WString" />
+                <Field name="created_at" size="1024" source="CrossTab:Header:Columns:created_at:Concat:" type="V_WString" />
+                <Field name="private" size="1024" source="CrossTab:Header:Columns:private:Concat:" type="V_WString" />
+                <Field name="visibility" size="1024" source="CrossTab:Header:Columns:visibility:Concat:" type="V_WString" />
+                <Field name="allow_forking" size="1024" source="CrossTab:Header:Columns:allow_forking:Concat:" type="V_WString" />
+                <Field name="disabled" size="1024" source="CrossTab:Header:Columns:disabled:Concat:" type="V_WString" />
+                <Field name="archived" size="1024" source="CrossTab:Header:Columns:archived:Concat:" type="V_WString" />
+                <Field name="size" size="1024" source="CrossTab:Header:Columns:size:Concat:" type="V_WString" />
+                <Field name="git_url" size="1024" source="CrossTab:Header:Columns:git_url:Concat:" type="V_WString" />
+                <Field name="html_url" size="1024" source="CrossTab:Header:Columns:html_url:Concat:" type="V_WString" />
+                <Field name="releases_url" size="1024" source="CrossTab:Header:Columns:releases_url:Concat:" type="V_WString" />
+                <Field name="archive_url" size="1024" source="CrossTab:Header:Columns:archive_url:Concat:" type="V_WString" />
+                <Field name="assignees_url" size="1024" source="CrossTab:Header:Columns:assignees_url:Concat:" type="V_WString" />
+                <Field name="branches_url" size="1024" source="CrossTab:Header:Columns:branches_url:Concat:" type="V_WString" />
+                <Field name="clone_url" size="1024" source="CrossTab:Header:Columns:clone_url:Concat:" type="V_WString" />
+                <Field name="collaborators_url" size="1024" source="CrossTab:Header:Columns:collaborators_url:Concat:" type="V_WString" />
+                <Field name="comments_url" size="1024" source="CrossTab:Header:Columns:comments_url:Concat:" type="V_WString" />
+                <Field name="commits_url" size="1024" source="CrossTab:Header:Columns:commits_url:Concat:" type="V_WString" />
+                <Field name="compare_url" size="1024" source="CrossTab:Header:Columns:compare_url:Concat:" type="V_WString" />
+                <Field name="contents_url" size="1024" source="CrossTab:Header:Columns:contents_url:Concat:" type="V_WString" />
+                <Field name="contributors_url" size="1024" source="CrossTab:Header:Columns:contributors_url:Concat:" type="V_WString" />
+                <Field name="default_branch" size="1024" source="CrossTab:Header:Columns:default_branch:Concat:" type="V_WString" />
+                <Field name="deployments_url" size="1024" source="CrossTab:Header:Columns:deployments_url:Concat:" type="V_WString" />
+                <Field name="downloads_url" size="1024" source="CrossTab:Header:Columns:downloads_url:Concat:" type="V_WString" />
+                <Field name="events_url" size="1024" source="CrossTab:Header:Columns:events_url:Concat:" type="V_WString" />
+                <Field name="fork" size="1024" source="CrossTab:Header:Columns:fork:Concat:" type="V_WString" />
+                <Field name="forks" size="1024" source="CrossTab:Header:Columns:forks:Concat:" type="V_WString" />
+                <Field name="forks_count" size="1024" source="CrossTab:Header:Columns:forks_count:Concat:" type="V_WString" />
+                <Field name="forks_url" size="1024" source="CrossTab:Header:Columns:forks_url:Concat:" type="V_WString" />
+                <Field name="git_commits_url" size="1024" source="CrossTab:Header:Columns:git_commits_url:Concat:" type="V_WString" />
+                <Field name="git_refs_url" size="1024" source="CrossTab:Header:Columns:git_refs_url:Concat:" type="V_WString" />
+                <Field name="git_tags_url" size="1024" source="CrossTab:Header:Columns:git_tags_url:Concat:" type="V_WString" />
+                <Field name="has_downloads" size="1024" source="CrossTab:Header:Columns:has_downloads:Concat:" type="V_WString" />
+                <Field name="has_issues" size="1024" source="CrossTab:Header:Columns:has_issues:Concat:" type="V_WString" />
+                <Field name="has_pages" size="1024" source="CrossTab:Header:Columns:has_pages:Concat:" type="V_WString" />
+                <Field name="has_projects" size="1024" source="CrossTab:Header:Columns:has_projects:Concat:" type="V_WString" />
+                <Field name="has_wiki" size="1024" source="CrossTab:Header:Columns:has_wiki:Concat:" type="V_WString" />
+                <Field name="homepage" size="1024" source="CrossTab:Header:Columns:homepage:Concat:" type="V_WString" />
+                <Field name="hooks_url" size="1024" source="CrossTab:Header:Columns:hooks_url:Concat:" type="V_WString" />
+                <Field name="is_template" size="1024" source="CrossTab:Header:Columns:is_template:Concat:" type="V_WString" />
+                <Field name="issue_comment_url" size="1024" source="CrossTab:Header:Columns:issue_comment_url:Concat:" type="V_WString" />
+                <Field name="issue_events_url" size="1024" source="CrossTab:Header:Columns:issue_events_url:Concat:" type="V_WString" />
+                <Field name="issues_url" size="1024" source="CrossTab:Header:Columns:issues_url:Concat:" type="V_WString" />
+                <Field name="keys_url" size="1024" source="CrossTab:Header:Columns:keys_url:Concat:" type="V_WString" />
+                <Field name="labels_url" size="1024" source="CrossTab:Header:Columns:labels_url:Concat:" type="V_WString" />
+                <Field name="language" size="1024" source="CrossTab:Header:Columns:language:Concat:" type="V_WString" />
+                <Field name="languages_url" size="1024" source="CrossTab:Header:Columns:languages_url:Concat:" type="V_WString" />
+                <Field name="license" size="1024" source="CrossTab:Header:Columns:license:Concat:" type="V_WString" />
+                <Field name="merges_url" size="1024" source="CrossTab:Header:Columns:merges_url:Concat:" type="V_WString" />
+                <Field name="milestones_url" size="1024" source="CrossTab:Header:Columns:milestones_url:Concat:" type="V_WString" />
+                <Field name="mirror_url" size="1024" source="CrossTab:Header:Columns:mirror_url:Concat:" type="V_WString" />
+                <Field name="name" size="1024" source="CrossTab:Header:Columns:name:Concat:" type="V_WString" />
+                <Field name="node_id" size="1024" source="CrossTab:Header:Columns:node_id:Concat:" type="V_WString" />
+                <Field name="notifications_url" size="1024" source="CrossTab:Header:Columns:notifications_url:Concat:" type="V_WString" />
+                <Field name="open_issues" size="1024" source="CrossTab:Header:Columns:open_issues:Concat:" type="V_WString" />
+                <Field name="open_issues_count" size="1024" source="CrossTab:Header:Columns:open_issues_count:Concat:" type="V_WString" />
+                <Field name="owner" size="1024" source="CrossTab:Header:Columns:owner:Concat:" type="V_WString" />
+                <Field name="pulls_url" size="1024" source="CrossTab:Header:Columns:pulls_url:Concat:" type="V_WString" />
+                <Field name="pushed_at" size="1024" source="CrossTab:Header:Columns:pushed_at:Concat:" type="V_WString" />
+                <Field name="ssh_url" size="1024" source="CrossTab:Header:Columns:ssh_url:Concat:" type="V_WString" />
+                <Field name="stargazers_count" size="1024" source="CrossTab:Header:Columns:stargazers_count:Concat:" type="V_WString" />
+                <Field name="stargazers_url" size="1024" source="CrossTab:Header:Columns:stargazers_url:Concat:" type="V_WString" />
+                <Field name="statuses_url" size="1024" source="CrossTab:Header:Columns:statuses_url:Concat:" type="V_WString" />
+                <Field name="subscribers_url" size="1024" source="CrossTab:Header:Columns:subscribers_url:Concat:" type="V_WString" />
+                <Field name="subscription_url" size="1024" source="CrossTab:Header:Columns:subscription_url:Concat:" type="V_WString" />
+                <Field name="svn_url" size="1024" source="CrossTab:Header:Columns:svn_url:Concat:" type="V_WString" />
+                <Field name="tags_url" size="1024" source="CrossTab:Header:Columns:tags_url:Concat:" type="V_WString" />
+                <Field name="teams_url" size="1024" source="CrossTab:Header:Columns:teams_url:Concat:" type="V_WString" />
+                <Field name="trees_url" size="1024" source="CrossTab:Header:Columns:trees_url:Concat:" type="V_WString" />
+                <Field name="updated_at" size="1024" source="CrossTab:Header:Columns:updated_at:Concat:" type="V_WString" />
+                <Field name="watchers" size="1024" source="CrossTab:Header:Columns:watchers:Concat:" type="V_WString" />
+                <Field name="watchers_count" size="1024" source="CrossTab:Header:Columns:watchers_count:Concat:" type="V_WString" />
+                <Field name="web_commit_signoff_required" size="1024" source="CrossTab:Header:Columns:web_commit_signoff_required:Concat:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection name="#1">
+      <Origin ToolID="41" Connection="Question" />
+      <Destination ToolID="42" Connection="Question" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="42" Connection="Action" />
+      <Destination ToolID="81" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="45" Connection="Action" />
+      <Destination ToolID="81" Connection="Action" />
+    </Connection>
+    <Connection name="#6">
+      <Origin ToolID="121" Connection="Action" />
+      <Destination ToolID="81" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="43" Connection="Question" />
+      <Destination ToolID="45" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="120" Connection="Question" />
+      <Destination ToolID="121" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="47" Connection="Output" />
+      <Destination ToolID="111" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="49" Connection="Output" />
+      <Destination ToolID="50" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="50" Connection="Output" />
+      <Destination ToolID="51" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="50" Connection="Output" />
+      <Destination ToolID="53" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="50" Connection="Output" />
+      <Destination ToolID="58" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="53" Connection="Output" />
+      <Destination ToolID="54" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="Output" />
+      <Destination ToolID="55" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="55" Connection="Output" />
+      <Destination ToolID="52" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="58" Connection="Output" />
+      <Destination ToolID="122" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="60" Connection="Output" />
+      <Destination ToolID="123" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="81" Connection="Output" />
+      <Destination ToolID="47" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="111" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="122" Connection="Output" />
+      <Destination ToolID="60" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="123" Connection="Output" />
+      <Destination ToolID="74" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="False" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <SortedGrouping value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="-2" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (120)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (41)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (43)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>ListRepositories</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName>GitHub API</CategoryName>
+      <SearchTags />
+      <Author>Jupiter Bakakeu</Author>
+      <Company>Alteryx Inc</Company>
+      <Copyright>2022</Copyright>
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="357e46b7-4046-4ef0-8209-3c42b2aba77d" />
+      <Telemetry>
+        <PreviousWorkflowId value="fb07e998-4ad5-4058-a8ed-174ac1225d3b" />
+        <OriginWorkflowId value="66c93d32-4686-4dea-9cfa-5a0cb92b8247" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="42" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>81/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="45" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>81/Data/r[1]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="121" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>81/Data/r[1]/c[3]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	3</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>About this Macro</Description>
+          <Name>Tab (115)</Name>
+          <ToolId value="115" />
+          <Questions />
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Configure</Description>
+          <Name>Tab (110)</Name>
+          <ToolId value="110" />
+          <Questions>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>Github API base Address</Description>
+              <Name>Text Box (41)</Name>
+              <ToolId value="41" />
+              <Default>https://api.github.com/</Default>
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>Github User</Description>
+              <Name>Text Box (43)</Name>
+              <ToolId value="43" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description />
+              <Name>Macro Output (74)</Name>
+              <ToolId value="74" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>Personal Access Token</Description>
+              <Name>Text Box (120)</Name>
+              <ToolId value="120" />
+              <Default />
+              <Password value="True" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="74" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

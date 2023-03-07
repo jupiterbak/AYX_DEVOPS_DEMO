@@ -1,0 +1,910 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1014" y="66" width="624" height="216" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text />
+          <Font name="Arial" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="366" y="198" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="534" y="198" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="678" y="198" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="822" y="198" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1026" y="162" width="624" height="96" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text><![CDATA[The AWS Price List Query API is a centralized and convenient way to programmatically query AWS for services, products, and pricing information. The query API uses standardized product attributes such as Location, Storage Class, and Operating System, and provides prices at the SKU level. You can use the query API to build cost control and scenario planning tools, reconcile billing data, forecast future spend for budgeting purposes, and provide cost benefit analyses that compare your internal workloads with AWS. The query API does not support Savings Plans prices. 
+
+Ref: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html ]]></Text>
+          <Font name="Arial" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="3" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1026" y="138" width="100" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>AWS</Text>
+          <Font name="Arial Rounded MT Bold" size="14.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="3" />
+          <Justification Justification="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1026" y="78" width="624" height="40" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Load Balancers Price Lists</Text>
+          <Font name="Arial Rounded MT Bold" size="26.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="3" />
+          <Justification Justification="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="390" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Input16</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="Load Balancer Hostname" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>a2638bc64c8d6428ba02a143c68a60d6-451450116.eu-central-1.elb.amazonaws.com</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="JupyterCode">
+        <Position x="1038" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <WorkflowName>c:\users\jupiter.bakakeu\onedrive - alteryx.com\documents\05_workspace\macros\[unnamed module]</WorkflowName>
+          <JupyterProduction>false</JupyterProduction>
+          <vEnvName>designerbasetools_venv</vEnvName>
+          <DefaultVenv>1</DefaultVenv>
+          <productionModeScript />
+          <Port>62034</Port>
+          <JupyterGuidDir>adb6899865a952762b1bd4353ca92af8</JupyterGuidDir>
+          <JupyterGuidCopy />
+          <LastExecutedByEngineVersion>2022.1.1.25127</LastExecutedByEngineVersion>
+          <Notebook><![CDATA[{"cells":[{"cell_type":"code","execution_count":1,"metadata":{},"outputs":[],"source":["# List all non-standard packages to be imported by your \n","# script here (only missing packages will be installed)\n","from ayx import Package\n","if not Package.isPackageInstalled('boto3'):\n","    Package.installPackages(['boto3'])"]},{"cell_type":"code","execution_count":2,"metadata":{},"outputs":[],"source":["from ayx import Alteryx\n","import boto3\n","from botocore.config import Config\n","import json\n","from pkg_resources import resource_filename"]},{"cell_type":"code","execution_count":3,"metadata":{},"outputs":[],"source":["def get_region_name(_region_code):\n","    endpoint_file = resource_filename('botocore', 'data/endpoints.json')\n","\n","    with open(endpoint_file, 'r') as f:\n","        endpoint_data = json.load(f)\n","    _region_name = endpoint_data['partitions'][0]['regions'][_region_code]['description']\n","    _region_name = _region_name.replace('Europe', 'EU')\n","    return _region_name\n","\n","\n","def get_load_balancer_price(\n","    pricing_client,\n","    service_code,\n","    region_code, \n","    lb_product_family=\"Load Balancer\", \n","    is_outposts=False):\n","    price_details = {}\n","\n","    region_name = get_region_name(region_code)\n","\n","    if is_outposts:\n","        location_type = 'AWS Outposts'\n","    else:\n","        location_type = 'AWS Region'\n","\n","    filters = [\n","        # {'Type': 'TERM_MATCH', 'Field': 'locationType', 'Value': location_type},\n","        {'Type': 'TERM_MATCH', 'Field': 'location', 'Value': region_name},\n","        {'Type': 'TERM_MATCH', 'Field': 'productFamily', 'Value': lb_product_family},\n","    ]\n","\n","    response = pricing_client.get_products(ServiceCode=service_code, Filters=filters)\n","\n","    if len(response['PriceList']) == 0:\n","        return None\n","\n","    for price in response['PriceList']:\n","        price = json.loads(price)\n","\n","        usage_type = price['product']['attributes']['usagetype']\n","\n","        for on_demand in price['terms']['OnDemand'].values():\n","            for price_dimensions in on_demand['priceDimensions'].values():\n","                price_value = float(price_dimensions['pricePerUnit']['USD'])\n","\n","                if 'LoadBalancerUsage' in usage_type:\n","                    price_details['LoadBalancerUsage'] = price_value\n","                elif 'DataProcessing-Bytes' in usage_type:\n","                    price_details['DataProcessing-Bytes'] = price_value\n","                elif 'LCUUsage' in usage_type:\n","                    price_details['LCUUsage'] = price_value\n","\n","    return [price_details['LoadBalancerUsage'], price_details['DataProcessing-Bytes']]"]},{"cell_type":"code","execution_count":4,"metadata":{},"outputs":[],"source":["# Extract Configuration\n","_credentials = Alteryx.read(\"#Credentials\")\n","aws_access_key_id=_credentials.iloc[0]['ClientID']\n","aws_secret_access_key=_credentials.iloc[0]['ClientSecret']\n","\n","# Instantiate Client\n","config = Config(\n","    retries={\n","        'max_attempts': 3,\n","        'mode': 'standard'\n","    }\n",")\n","\n","pricing_client = boto3.client(\n","    'pricing',\n","    region_name=\"us-east-1\",\n","    aws_access_key_id=aws_access_key_id,\n","    aws_secret_access_key=aws_secret_access_key,\n","    config=config\n",")"]},{"cell_type":"code","execution_count":5,"metadata":{},"outputs":[],"source":["# Extract Data\n","_data_df = Alteryx.read(\"#Data\")\n","\n","_data_df[['LoadBalancerUsage', 'DataProcessing-Bytes']] = _data_df.apply(lambda row: get_load_balancer_price(\n","    pricing_client=pricing_client,\n","    region_code=row['Region'],\n","    service_code=row['ServiceCode']), axis=1, result_type ='expand')\n","\n","_data_df.head()"]},{"cell_type":"code","execution_count":6,"metadata":{},"outputs":[],"source":["Alteryx.write(\n","    _data_df,\n","    1,\n","    {\"Load Balancer Hostname\": {\"type\": \"V_String\", \"length\": 255},\n","     \"Load Balancer ID\": {\"type\": \"V_String\", \"length\": 255},\n","     \"Region\": {\"type\": \"V_String\", \"length\": 255},\n","     \"ServiceCode\": {\"type\": \"V_String\", \"length\": 255},\n","     \"LoadBalancerUsage\": {\"type\": \"Double\", \"length\": 8},\n","     \"DataProcessing-Bytes\": {\"type\": \"Double\", \"length\": 8},\n","    },\n",")"]}],"metadata":{"language_info":{"codemirror_mode":{"name":"ipython","version":3},"file_extension":".py","mimetype":"text/x-python","name":"python","nbconvert_exporter":"python","pygments_lexer":"ipython3","version":"3.8.5"}},"nbformat":4,"nbformat_minor":1}]]></Notebook>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output1">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="255" source="PythonTool:" type="V_String" />
+            <Field name="Load Balancer ID" size="255" source="PythonTool:" type="V_String" />
+            <Field name="Region" size="255" source="PythonTool:" type="V_String" />
+            <Field name="ServiceCode" size="255" source="PythonTool:" type="V_String" />
+            <Field name="LoadBalancerUsage" source="PythonTool:" type="Double" />
+            <Field name="DataProcessing-Bytes" source="PythonTool:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxJupyterPluginEngine.dll" EngineDllEntryPoint="AlteryxJupyter" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="666" y="102" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Text Box (18)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="822" y="90" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Text Box (19)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="534" y="78" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Text Box (20)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+        <Position x="366" y="90" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Drop Down (21)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1710" y="786" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Out</Name>
+          <Abbrev>O</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>O Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="366" y="474" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="Platform" />
+            <Field name="URL" />
+            <Field name="ClientID" />
+            <Field name="ClientSecret" />
+          </Fields>
+          <Data>
+            <r>
+              <c>AWS</c>
+              <c>https://api.pricing.us-east-1.amazonaws.com</c>
+              <c>AKIAQKREKV36OE6I2RCS</c>
+              <c>3fsML/9JdlDjeDMroICoBPvltcX4oZJ/8mmbpT6q</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Platform" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="URL" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="ClientID" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="ClientSecret" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="822" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Load Balancer Hostname" action="GroupBy" rename="Load Balancer Hostname" />
+            <SummarizeField field="Load Balancer ID" action="GroupBy" rename="Load Balancer ID" />
+            <SummarizeField field="Region" action="GroupBy" rename="Region" />
+            <SummarizeField field="ServiceCode" action="GroupBy" rename="ServiceCode" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="TextInput:" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Region" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field name="ServiceCode" size="1073741823" source="Formula: &quot;AWSELB&quot;" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="678" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="&quot;AWSELB&quot;" field="ServiceCode" size="1073741823" type="V_WString" />
+            <FormulaField expression="[Load Balancer Hostname] + [ServiceCode]" field="KeyJoin" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[ServiceCode = "AWSELB"
+KeyJoin = [Load Balancer Hostname] + [ServiceCode]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="TextInput:" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID 2" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Region" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field name="ServiceCode" size="1073741823" source="Formula: &quot;AWSELB&quot;" type="V_WString" />
+            <Field name="KeyJoin" size="1073741823" source="Formula: [Load Balancer Hostname] + [ServiceCode]" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.FindReplace.FindReplace">
+        <Position x="1386" y="858" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldFind>KeyJoin</FieldFind>
+          <FieldSearch>KeyJoin</FieldSearch>
+          <ReplaceFoundField>Region</ReplaceFoundField>
+          <FindMode>FindWhole</FindMode>
+          <NoCase value="False" />
+          <MatchWholeWord value="False" />
+          <ReplaceMode>Append</ReplaceMode>
+          <ReplaceMultipleFound value="True" />
+          <ReplaceAppendFields>
+            <Field field="LoadBalancerUsage" />
+            <Field field="DataProcessing-Bytes" />
+          </ReplaceAppendFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID 2" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Region" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="ServiceCode" size="1073741823" source="Formula: &quot;AWSELB&quot;" type="V_WString" />
+            <Field name="KeyJoin" size="1073741823" source="Formula: [Load Balancer Hostname] + [ServiceCode]" type="V_WString" />
+            <Field name="LoadBalancerUsage" source="PythonTool:" type="Double" />
+            <Field name="DataProcessing-Bytes" source="PythonTool:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFindReplace" />
+    </Node>
+    <Node ToolID="23">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1158" y="774" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[Load Balancer Hostname] + [ServiceCode]" field="KeyJoin" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[KeyJoin = [Load Balancer Hostname] + [ServiceCode]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="255" source="PythonTool:" type="V_String" />
+            <Field name="Load Balancer ID" size="255" source="PythonTool:" type="V_String" />
+            <Field name="Region" size="255" source="PythonTool:" type="V_String" />
+            <Field name="ServiceCode" size="255" source="PythonTool:" type="V_String" />
+            <Field name="LoadBalancerUsage" source="PythonTool:" type="Double" />
+            <Field name="DataProcessing-Bytes" source="PythonTool:" type="Double" />
+            <Field name="KeyJoin" size="1073741823" source="Formula: [Load Balancer Hostname] + [ServiceCode]" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="24">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1518" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Load Balancer ID 2" selected="False" />
+            <SelectField field="KeyJoin" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Region" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="ServiceCode" size="1073741823" source="Formula: &quot;AWSELB&quot;" type="V_WString" />
+            <Field name="LoadBalancerUsage" source="PythonTool:" type="Double" />
+            <Field name="DataProcessing-Bytes" source="PythonTool:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="26">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+        <Position x="510" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>Load Balancer Hostname</Field>
+          <RegExExpression value="(\w*)-(\w*).(\w*.*-\w*.*-\d{1}).elb.amazonaws.com" />
+          <CaseInsensitve value="True" />
+          <Method>ParseComplex</Method>
+          <Replace expression="">
+            <CopyUnmatched value="True" />
+          </Replace>
+          <ParseSimple>
+            <SplitToRows value="False" />
+            <RootName>Load Balancer Hostname</RootName>
+            <NumFields value="3" />
+            <ErrorHandling>Warn</ErrorHandling>
+          </ParseSimple>
+          <ParseComplex>
+            <Field field="Load Balancer ID" type="V_String" size="2147483647" />
+            <Field field="Load Balancer ID 2" type="V_String" size="2147483647" />
+            <Field field="Region" type="V_String" size="2147483647" />
+          </ParseComplex>
+          <Match>
+            <Field>Load Balancer Hostname_Matched</Field>
+            <ErrorUnmatched value="False" />
+          </Match>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="TextInput:" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID 2" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Region" size="2147483647" source="RegEx: Parsed from Load Balancer Hostname" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings>
+        <Position x="594" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Check Box (135)">False</Value>
+          <Value name="Check Box (136)">False</Value>
+          <Value name="List Box (11)">"Load Balancer Hostname","Load Balancer ID","Load Balancer ID 2","Region"</Value>
+          <Value name="Check Box (84)">True</Value>
+          <Value name="Check Box (117)">True</Value>
+          <Value name="Check Box (15)">True</Value>
+          <Value name="Check Box (109)">False</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">False</Value>
+          <Value name="Drop Down (81)">upper</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output26">
+          <RecordInfo>
+            <Field name="Load Balancer Hostname" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Load Balancer ID 2" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field description="RegEx: Parsed from Load Balancer Hostname" name="Region" size="2147483647" source="Formula: [_CurrentField_]" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection name="#2">
+      <Origin ToolID="5" Connection="Action" />
+      <Destination ToolID="19" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="6" Connection="Action" />
+      <Destination ToolID="19" Connection="Action" />
+    </Connection>
+    <Connection name="#4">
+      <Origin ToolID="7" Connection="Action" />
+      <Destination ToolID="19" Connection="Action" />
+    </Connection>
+    <Connection name="#5">
+      <Origin ToolID="8" Connection="Action" />
+      <Destination ToolID="19" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output1" />
+      <Destination ToolID="23" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="14" Connection="Question" />
+      <Destination ToolID="7" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="15" Connection="Question" />
+      <Destination ToolID="8" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="16" Connection="Question" />
+      <Destination ToolID="6" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="17" Connection="Question" />
+      <Destination ToolID="5" Connection="Question" />
+    </Connection>
+    <Connection name="#Credentials">
+      <Origin ToolID="19" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection name="#Data">
+      <Origin ToolID="20" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="21" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="21" Connection="Output" />
+      <Destination ToolID="22" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="23" Connection="Output" />
+      <Destination ToolID="22" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Output" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="24" Connection="Output" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output" />
+      <Destination ToolID="27" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="27" Connection="Output26" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (17)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (16)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (14)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (15)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>LBPriceList</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName>Kubernetes API</CategoryName>
+      <SearchTags>Kubernetes, API, K8s, GET</SearchTags>
+      <Author>Jupiter Bakakeu</Author>
+      <Company>Alteryx Inc</Company>
+      <Copyright>2022</Copyright>
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="32a36ea8-c975-4a07-b51f-cdb8eb0dc2a9" />
+      <Telemetry>
+        <PreviousWorkflowId value="" />
+        <OriginWorkflowId value="32a36ea8-c975-4a07-b51f-cdb8eb0dc2a9" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="5" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>19/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="6" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>19/Data/r[1]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="7" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>19/Data/r[1]/c[3]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	3</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="8" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>19/Data/r[1]/c[4]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	4</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (1)</Name>
+          <ToolId value="1" />
+          <Questions />
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Credentials</Description>
+          <Name>Tab (2)</Name>
+          <ToolId value="2" />
+          <Questions>
+            <Question>
+              <Type>ListBox</Type>
+              <Description>Plattform</Description>
+              <Name>Drop Down (17)</Name>
+              <ToolId value="17" />
+              <Multiple value="False" />
+              <Default />
+              <Mode>Manual</Mode>
+              <Manual_Values><![CDATA[AWS
+AZURE5419541n5148905f1n0941f5809AZUE
+GCP
+]]></Manual_Values>
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>URL</Description>
+              <Name>Text Box (16)</Name>
+              <ToolId value="16" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>ClientID</Description>
+              <Name>Text Box (14)</Name>
+              <ToolId value="14" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>ClientSecret</Description>
+              <Name>Text Box (15)</Name>
+              <ToolId value="15" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+          </Questions>
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (3)</Name>
+          <ToolId value="3" />
+          <Questions>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (35)</Description>
+              <Name>Macro Output (18)</Name>
+              <ToolId value="18" />
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name />
+              <ToolId value="19" />
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (12)</Name>
+              <ToolId value="12" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="12" Selected="True" />
+        <Tool ToolId="18" Selected="True" />
+        <Tool ToolId="27" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

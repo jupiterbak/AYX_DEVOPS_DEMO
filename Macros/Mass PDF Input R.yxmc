@@ -1,0 +1,442 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2020.4">
+  <Nodes>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="54" y="54" width="912" height="48" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Mass PDF Input_R Macro</Text>
+          <Font name="Calibri" size="36" style="1" />
+          <TextColor r="0" g="64" b="128" />
+          <FillColor name="White" />
+          <Shape shape="3" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Label.Label">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Label.Label">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="529" y="161" width="660" height="205" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>PDF files reader based on R</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="1">
+          <GuiSettings Plugin="AlteryxRPluginGui.R">
+            <Position x="798" y="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <RScript>data &lt;- read.Alteryx("#1",mode="data.frame")
+
+df_txt &lt;- data.frame(file = 'Top', txt = 'Top')
+
+for (fullpath in data$FullPath) {
+	txt &lt;- pdftools::pdf_text(file.path(fullpath))
+	df_new &lt;- data.frame(file = fullpath, txt = txt)
+	df_txt &lt;- rbind(df_txt, df_new)
+}
+df_txt &lt;- df_txt[-1,]
+
+write.Alteryx(df_txt, 1)</RScript>
+              <UseFullUpdate value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output1">
+              <RecordInfo>
+                <Field name="file" size="1073741823" source="R-DATA:" type="V_WString" />
+                <Field name="txt" size="1073741823" source="R-DATA:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxRPluginEngine.dll" EngineDllEntryPoint="AlteryxR" />
+        </Node>
+        <Node ToolID="5">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+            <Position x="1050" y="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Name>Output</Name>
+              <Abbrev>O</Abbrev>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>O Output</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+        </Node>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+            <Position x="594" y="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <UseFileInput value="False" />
+              <Name>FullPath</Name>
+              <Abbrev>I</Abbrev>
+              <ShowFieldMap value="True" />
+              <Optional value="False" />
+              <TextInput>
+                <Configuration>
+                  <NumRows value="1" />
+                  <Fields>
+                    <Field name="FullPath" />
+                  </Fields>
+                  <Data>
+                    <r>
+                      <c>dummy</c>
+                    </r>
+                  </Data>
+                </Configuration>
+              </TextInput>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>I Input</DefaultAnnotationText>
+              <Left value="True" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="FullPath" size="5" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+        </Node>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="894" y="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="txt" selected="True" rename="Data" />
+                <SelectField field="file" selected="True" rename="File" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Data" size="1073741823" source="R-DATA:" type="V_WString" />
+                <Field name="File" size="1073741823" source="R-DATA:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="8">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="954" y="282" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="File" action="CountDistinct" rename="CountDistinct_File" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="CountDistinct_File" source="Summarize: CountDistinct - File" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="9">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Message.Message">
+            <Position x="1050" y="282" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <When>All</When>
+              <Filter />
+              <Type>Message</Type>
+              <Priority>High</Priority>
+              <Transient>False</Transient>
+              <MessageExpression>ToString([CountDistinct_File]) + " PDF files were processed"</MessageExpression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="CountDistinct_File" source="Summarize: CountDistinct - File" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMessage" />
+        </Node>
+        <Node ToolID="10">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="690" y="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>IsNull([FullPath]) OR IsEmpty([FullPath])</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>IsNull([FullPath]) OR IsEmpty([FullPath])</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="FullPath" size="5" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="FullPath" size="5" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="65" y="161" width="422" height="158" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Workflow Information</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="19">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="90" y="210" width="372" height="84" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>AUTHOR: Alberto Hernandez
+
+About author: www.linkedin.com/in/alberto-hernandez</Text>
+              <Font name="Calibri" size="11.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="3" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output1" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="10" Connection="False" />
+      <Destination ToolID="1" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="1" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Mass PDF Input R</Name>
+      <Description><![CDATA[This tool will help you to input PDF files into plain text. You will get one cell per PDF page. 
+Use with Directory tool passing FullPath field.
+
+This version of the 'PDF Input' macro by Ollie Clark has been optimized for processing big volumes of PDFs.
+
+* To use this tool is required to have installed the following R library on your computer: pdftools
+]]></Description>
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags>PDF, reader, text mining, pdf input</SearchTags>
+      <Author>Alberto Hernandez</Author>
+      <Company>IQVIA Inc.</Company>
+      <Copyright>IQVIA Inc.</Copyright>
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (4)</Name>
+          <ToolId value="4" />
+          <Questions>
+            <Question>
+              <Type>Label</Type>
+              <Description>Input field with Full Paths to the PDF files</Description>
+              <Name>Label (18)</Name>
+              <ToolId value="18" />
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (6)</Description>
+              <Name>Macro Input (6)</Name>
+              <ToolId value="6" />
+            </Question>
+            <Question>
+              <Type>Label</Type>
+              <Description>* To use this tool is required to have installed the following R library on your computer: pdftools</Description>
+              <Name>Label (16)</Name>
+              <ToolId value="16" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (5)</Description>
+              <Name>Macro Output (5)</Name>
+              <ToolId value="5" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="5" Selected="True" />
+        <Tool ToolId="6" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
