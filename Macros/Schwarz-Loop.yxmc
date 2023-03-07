@@ -1,0 +1,950 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="True" />
+          <Name>Input1</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <FileInput>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`</File>
+              <FormatSpecificOptions>
+                <FirstRowData>False</FirstRowData>
+                <ImportLine>1</ImportLine>
+              </FormatSpecificOptions>
+            </Configuration>
+          </FileInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Macro_Inputs.xlsx
+Query=`Sheet1$`</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Bilansumme inkl Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Mittelbare Quote" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1698" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[Formel] = "X"</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Formel] = "X"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="True">
+          <RecordInfo>
+            <Field name="Land" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Ges.-Nr." size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Firma" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Formel" size="255" source="Formula: IIF([Formel] == &quot;X&quot;, [Formel], [Formel_new])" type="V_String" />
+            <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Ges.-Nr.2" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+            <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+            <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+            <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="False">
+          <RecordInfo>
+            <Field name="Land" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Ges.-Nr." size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Firma" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Formel" size="255" source="Formula: IIF([Formel] == &quot;X&quot;, [Formel], [Formel_new])" type="V_String" />
+            <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Ges.-Nr.2" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+            <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+            <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+            <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+            <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="23">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1902" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Output</Name>
+          <Abbrev>O</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>O Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="24">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1794" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Loop</Name>
+          <Abbrev>L</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>L Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="25">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="162" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" field="Mittelbare Quote" size="8" type="Double" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Mittelbare
+ Quote</AnnotationText>
+          <DefaultAnnotationText>Mittelbare Quote = IIF([Formel]=="0",[Hilfsspalte Grundstücke inkl. Töchter]/[Hi...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+            <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Bilansumme inkl Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+            <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="269" y="53" width="253" height="164" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Step 02: Hilfsspalte Grundstück</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="5">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="294" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" field="Hilfsspalte Grundstück" size="8" type="Double" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Hilfsspalte Grundstück</AnnotationText>
+              <DefaultAnnotationText>Hilfsspalte Grundstück = IIF([Formel] != "X" and ToNumber([Formel]) ==0,[%-Antei...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="557" y="53" width="371" height="209" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Step 03: Hilfsspalte Bilanzsumme</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="582" y="162" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>=</Operator>
+                <Field>Formel</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2023-02-28 10:16:43</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>0</Operand>
+                  <StartDate>2023-02-28 10:16:43</StartDate>
+                  <EndDate>2023-02-28 10:16:43</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[Formel] = 0</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="8">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="666" y="150" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Gesellschafter (ggf. Treugeber)" action="GroupBy" rename="Gesellschafter (ggf. Treugeber)" />
+                <SummarizeField field="Hilfsspalte Grundstück" action="Sum" rename="Hilfsspalte Grundstück Total" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="9">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.FindReplace.FindReplace">
+            <Position x="738" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FieldFind>Firma</FieldFind>
+              <FieldSearch>Gesellschafter (ggf. Treugeber)</FieldSearch>
+              <ReplaceFoundField>Gesellschafter (ggf. Treugeber)</ReplaceFoundField>
+              <FindMode>FindAny</FindMode>
+              <NoCase value="False" />
+              <MatchWholeWord value="False" />
+              <ReplaceMode>Append</ReplaceMode>
+              <ReplaceMultipleFound value="True" />
+              <ReplaceAppendFields>
+                <Field field="Hilfsspalte Grundstück Total" />
+              </ReplaceAppendFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFindReplace" />
+        </Node>
+        <Node ToolID="10">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="822" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0 and !IsNull([Hilfsspalte Grundstück Total]), [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" field="Hilfsspalte Bilansumme inkl Töchter" size="8" type="Double" />
+                <FormulaField expression="IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0 and !IsNull([Hilfsspalte Grundstück Total]),[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" field="Hilfsspalte Grundstücke inkl. Töchter" size="8" type="Double" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Hilfsspalte
+Bilanzsumme</AnnotationText>
+              <DefaultAnnotationText>Hilfsspalte Bilansumme inkl Töchter = IIF( [Formel]!= "X" and ToNumber([Formel])...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0 and !IsNull([Hilfsspalte Grundstück Total]), [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0 and !IsNull([Hilfsspalte Grundstück Total]),[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1001" y="53" width="685" height="207" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Step 04: build new Formel</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="12">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1026" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IIF([Formel]==&quot;0&quot;, &quot;X&quot;, toString([Formel]))" field="Formel" size="255" type="V_String" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[Formel = IIF([Formel]=="0", "X", toString([Formel]))
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: IIF([Formel]==&quot;0&quot;, &quot;X&quot;, toString([Formel]))" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="13">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1122" y="138" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>!=</Operator>
+                <Field>Formel</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2023-02-28 11:50:27</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>X</Operand>
+                  <StartDate>2023-02-28 11:50:27</StartDate>
+                  <EndDate>2023-02-28 11:50:27</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[Formel] != "X"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: IIF([Formel]==&quot;0&quot;, &quot;X&quot;, toString([Formel]))" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: IIF([Formel]==&quot;0&quot;, &quot;X&quot;, toString([Formel]))" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="1218" y="138" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Gesellschafter (ggf. Treugeber)" action="GroupBy" rename="Gesellschafter (ggf. Treugeber)" />
+                <SummarizeField field="Gesellschafter (ggf. Treugeber)" action="Count" rename="Formel_new" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel_new" source="Summarize: Count - Gesellschafter (ggf. Treugeber)" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="15">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="1254" y="186" width="100" height="40" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Change the logic to compute new Formel.</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="Red" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="16">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.FindReplace.FindReplace">
+            <Position x="1314" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FieldFind>Firma</FieldFind>
+              <FieldSearch>Gesellschafter (ggf. Treugeber)</FieldSearch>
+              <ReplaceFoundField>Gesellschafter (ggf. Treugeber)</ReplaceFoundField>
+              <FindMode>FindAny</FindMode>
+              <NoCase value="False" />
+              <MatchWholeWord value="False" />
+              <ReplaceMode>Append</ReplaceMode>
+              <ReplaceMultipleFound value="True" />
+              <ReplaceAppendFields>
+                <Field field="Formel_new" />
+              </ReplaceAppendFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Firma" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: IIF([Formel]==&quot;0&quot;, &quot;X&quot;, toString([Formel]))" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+                <Field name="Formel_new" source="Summarize: Count - Gesellschafter (ggf. Treugeber)" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFindReplace" />
+        </Node>
+        <Node ToolID="17">
+          <GuiSettings>
+            <Position x="1410" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="Check Box (135)">False</Value>
+              <Value name="Check Box (136)">False</Value>
+              <Value name="List Box (11)">"Formel_new"</Value>
+              <Value name="Check Box (84)">True</Value>
+              <Value name="Check Box (117)">True</Value>
+              <Value name="Check Box (15)">True</Value>
+              <Value name="Check Box (109)">False</Value>
+              <Value name="Check Box (122)">False</Value>
+              <Value name="Check Box (53)">False</Value>
+              <Value name="Check Box (58)">False</Value>
+              <Value name="Check Box (70)">False</Value>
+              <Value name="Check Box (77)">False</Value>
+              <Value name="Drop Down (81)">upper</Value>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output26">
+              <RecordInfo>
+                <Field name="Land" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Firma" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+                <Field name="Formel_new" source="Summarize: Count - Gesellschafter (ggf. Treugeber)" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings Macro="Cleanse.yxmc" />
+        </Node>
+        <Node ToolID="18">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1506" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IIF([Formel] == &quot;X&quot;, [Formel], [Formel_new])" field="Formel" size="255" type="V_String" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[Formel = IIF([Formel] == "X", [Formel], [Formel_new])
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Firma" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: IIF([Formel] == &quot;X&quot;, [Formel], [Formel_new])" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+                <Field name="Hilfsspalte Grundstück Total" source="Summarize: Sum - Hilfsspalte Grundstück" type="Double" />
+                <Field name="Formel_new" source="Summarize: Count - Gesellschafter (ggf. Treugeber)" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="19">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1602" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Hilfsspalte Grundstück Total" selected="False" />
+                <SelectField field="Formel_new" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Land" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Ges.-Nr." size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Firma" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Formel" size="255" source="Formula: IIF([Formel] == &quot;X&quot;, [Formel], [Formel_new])" type="V_String" />
+                <Field name="Bilanzsumme (gesamt)" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="davon Grundstück" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Ges.-Nr.2" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="Gesellschafter (ggf. Treugeber)" size="255" source="Formula: [_CurrentField_]" type="V_String" />
+                <Field name="%-Anteil" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Schwarz-Gruppe\2023-02-28-Use-Cases\Macro_Inputs.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="Hilfsspalte Grundstück" source="Formula: IIF([Formel] != &quot;X&quot; and ToNumber([Formel]) ==0,[%-Anteil]*[Hilfsspalte Grundstücke inkl. Töchter],[Hilfsspalte Grundstück])" type="Double" />
+                <Field name="Hilfsspalte Bilansumme inkl Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0, [Hilfsspalte Bilansumme inkl Töchter]+[Hilfsspalte Grundstück Total], [Hilfsspalte Bilansumme inkl Töchter])" type="Double" />
+                <Field name="Hilfsspalte Grundstücke inkl. Töchter" source="Formula: IIF( [Formel]!= &quot;X&quot; and ToNumber([Formel]) &gt; 0,[Hilfsspalte Grundstücke inkl. Töchter]+[Hilfsspalte Grundstück Total],[Hilfsspalte Grundstücke inkl. Töchter])" type="Double" />
+                <Field name="Mittelbare Quote" source="Formula: IIF([Formel]==&quot;0&quot;,[Hilfsspalte Grundstücke inkl. Töchter]/[Hilfsspalte Bilansumme inkl Töchter], [Mittelbare Quote])" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="25" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="False" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="True" />
+      <Destination ToolID="23" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="25" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="9" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="9" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="True" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="16" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="16" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="True" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="17" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="17" Connection="Output26" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="18" Connection="Output" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="19" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Schwarz-Loop</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="8266b4ef-be17-4108-a9fb-8178cc47c780" />
+      <Telemetry>
+        <PreviousWorkflowId value="a5c1740a-6b58-4cf7-a9e4-de4b8e2e19b2" />
+        <OriginWorkflowId value="a5c1740a-6b58-4cf7-a9e4-de4b8e2e19b2" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="False" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (2)</Name>
+          <ToolId value="2" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (1)</Name>
+              <ToolId value="1" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (23)</Description>
+              <Name>Macro Output (23)</Name>
+              <ToolId value="23" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (24)</Description>
+              <Name>Macro Output (24)</Name>
+              <ToolId value="24" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <IterativeMacro>
+        <Input>Input1</Input>
+        <Output>Loop</Output>
+        <IterationLimit value="1000" />
+        <LimitBehavior>Error</LimitBehavior>
+        <OutputMode>AllSame</OutputMode>
+      </IterativeMacro>
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="1" Selected="True" />
+        <Tool ToolId="17" Selected="True" />
+        <Tool ToolId="23" Selected="True" />
+        <Tool ToolId="24" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

@@ -1,0 +1,1322 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="270" y="378" width="804" height="132" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Generate Query Parameters</Text>
+          <Font name="Segoe UI" size="12" style="1" />
+          <TextColor name="Black" />
+          <FillColor r="185" g="220" b="255" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="738" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="BaseURL" selected="True" />
+            <SelectField field="Authorization" selected="True" />
+            <SelectField field="RecordID" selected="True" />
+            <SelectField field="userid" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="354" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="trim([BaseURL], &quot;/&quot;)" field="BaseURL" size="2147483647" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[BaseURL = trim([BaseURL], "/")
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: trim([BaseURL], &quot;/&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="base64KeySecret" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1434" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="BaseURL" selected="False" />
+            <SelectField field="QuerryParams" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1242" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[BaseURL] + [QuerryParams]" field="QuerryEndpoint" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[QuerryEndpoint = [BaseURL] + [QuerryParams]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryParams" size="1073741823" source="Summarize: Concat - queryParams" type="V_WString" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1722" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="TRIM([DownloadHeaders])" field="DownloadHeaders" size="2147483647" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText><![CDATA[trim header
+]]></AnnotationText>
+          <DefaultAnnotationText><![CDATA[DownloadHeaders = TRIM([DownloadHeaders])
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="Formula: TRIM([DownloadHeaders])" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+        <Position x="1626" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>First</Mode>
+          <N>1</N>
+          <GroupFields orderChanged="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>First 1</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="TextToColumns: Parsed from DownloadHeaders" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
+        <Position x="1530" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>DownloadHeaders</Field>
+          <Delimeters value="\n" />
+          <NumFields value="1" />
+          <Flags value="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="TextToColumns: Parsed from DownloadHeaders" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Message.Message">
+        <Position x="1818" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <When>Last</When>
+          <Filter />
+          <Type>Message</Type>
+          <Priority>High</Priority>
+          <Transient>False</Transient>
+          <MessageExpression>"The response headers from "+tostring([QuerryEndpoint])+" were "+tostring(TRIM([DownloadHeaders]))</MessageExpression>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field description="TextToColumns: Parsed from DownloadHeaders" name="DownloadHeaders" size="2147483647" source="Formula: TRIM([DownloadHeaders])" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMessage" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Test.Test">
+        <Position x="1530" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Tests>
+            <Test>
+              <Name>An error occured while querring tweets timeline via Twitter API!</Name>
+              <Connection>#1</Connection>
+              <Type>ExpAll</Type>
+              <Value>CONTAINS([DownloadHeaders]," 200 ") or CONTAINS([DownloadHeaders]," 201 ")</Value>
+            </Test>
+          </Tests>
+          <DontReportSubsequent value="True" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>An error occured while querring tweets timeline via Twitter API!</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTest" />
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+        <Position x="1338" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <URLField>QuerryEndpoint</URLField>
+          <OutputMode>String</OutputMode>
+          <CodePage>65001</CodePage>
+          <EncodeURLs value="True" />
+          <Headers>
+            <NameValues>
+              <Item name="Content" value="application/vnd.github+json" />
+              <Item name="User-Agent" value="AYX/2022.1 Jupiter Bakakeu" />
+            </NameValues>
+            <Fields orderChanged="False">
+              <Field name="Authorization" />
+              <Field name="BaseURL" selected="False" />
+              <Field name="RecordID" selected="False" />
+              <Field name="userid" selected="False" />
+              <Field name="QuerryParams" selected="False" />
+              <Field name="QuerryEndpoint" selected="False" />
+              <Field name="*Unknown" selected="False" />
+            </Fields>
+          </Headers>
+          <Payload>
+            <HTTPAction>GET</HTTPAction>
+            <QueryStringBodyMode>Compose</QueryStringBodyMode>
+            <ComposeNameValues />
+            <ComposeFields orderChanged="False">
+              <Field name="BaseURL" selected="False" />
+              <Field name="Authorization" selected="False" />
+              <Field name="RecordID" selected="False" />
+              <Field name="userid" selected="False" />
+              <Field name="QuerryParams" selected="False" />
+              <Field name="QuerryEndpoint" selected="False" />
+              <Field name="*Unknown" selected="False" />
+            </ComposeFields>
+          </Payload>
+          <numConnections>3</numConnections>
+          <Timeout>600</Timeout>
+          <EnableRPM value="False" />
+          <Password />
+          <UserName />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryParams" size="1073741823" source="Summarize: Concat - queryParams" type="V_WString" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="426" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="'attachments,author_id,conversation_id,created_at,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld'" field="tweet.fields" size="1073741823" type="V_WString" />
+            <FormulaField expression="100" field="max_results" size="2" type="Int16" />
+            <FormulaField expression="&quot;country,country_code,full_name,geo,id,name,place_type&quot;" field="place.fields" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>add fixed parrameters</AnnotationText>
+          <DefaultAnnotationText>tweet.fields = 'attachments,author_id,conversation_id,created_at,geo,id,in_reply...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="tweet.fields" size="1073741823" source="Formula: 'attachments,author_id,conversation_id,created_at,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld'" type="V_WString" />
+            <Field name="max_results" source="Formula: 100" type="Int16" />
+            <Field name="place.fields" size="1073741823" source="Formula: &quot;country,country_code,full_name,geo,id,name,place_type&quot;" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="24">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Transpose.Transpose">
+        <Position x="714" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ErrorWarn>Warn</ErrorWarn>
+          <KeyFields>
+            <Field field="RecordID" />
+          </KeyFields>
+          <DataFields>
+            <Field field="RecordID" selected="False" />
+            <Field field="tweet.fields" selected="True" />
+            <Field field="max_results" selected="True" />
+            <Field field="place.fields" selected="True" />
+            <Field field="*Unknown" selected="True" />
+          </DataFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="12" source="Transpose:" type="String" />
+            <Field name="Value" size="1073741823" source="Formula: (Multiple Sources)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTranspose" />
+    </Node>
+    <Node ToolID="25">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="906" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="([Name])+&quot;=&quot;+tostring([Value])" field="queryParams" size="1073741823" type="V_WString" />
+            <FormulaField expression="Replace([queryParams], &quot;pagination_token=,&quot;, &quot;,&quot;)" field="queryParams" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>filter query</AnnotationText>
+          <DefaultAnnotationText>queryParams = ([Name])+"="+tostring([Value])
+queryParams = Replace([queryParams]...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="12" source="Transpose:" type="String" />
+            <Field name="Value" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+            <Field name="queryParams" size="1073741823" source="Formula: Replace([queryParams], &quot;pagination_token=,&quot;, &quot;,&quot;)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="26">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="1002" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="RecordID" action="GroupBy" rename="RecordID" />
+            <SummarizeField field="queryParams" action="Concat" rename="QuerryParams">
+              <Concat_Start>?</Concat_Start>
+              <Separator>&amp;</Separator>
+              <Concat_End />
+            </SummarizeField>
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="QuerryParams" size="1073741823" source="Summarize: Concat - queryParams" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="810" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>IsNotEmpty</Operator>
+            <Field>Value</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2021-10-08 15:58:32</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>
+              </Operand>
+              <StartDate>2021-10-08 15:58:32</StartDate>
+              <EndDate>2021-10-08 15:58:32</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>!IsEmpty([Value])</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="True">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="12" source="Transpose:" type="String" />
+            <Field name="Value" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="False">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="12" source="Transpose:" type="String" />
+            <Field name="Value" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="28">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="618" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="userid" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="tweet.fields" size="1073741823" source="Formula: 'attachments,author_id,context_annotations,conversation_id,created_at,geo,id,in_reply_to_user_id,lang,non_public_metrics,organic_metrics,possibly_sensitive,promoted_metrics,public_metrics,referenced_tweets,reply_settings,source,text,withheld'" type="V_WString" />
+            <Field name="max_results" source="Formula: 100" type="Int16" />
+            <Field name="place.fields" size="1073741823" source="Formula: &quot;country,country_code,full_name,geo,id,name,place_type&quot;" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="29">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="30">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>User Id</Name>
+          <Abbrev />
+          <ShowFieldMap value="True" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="2" />
+              <Fields>
+                <Field name="userid" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>2244994945</c>
+                </r>
+                <r>
+                  <c>1555158438505844738</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="31">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="138" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="BaseURL" />
+            <Field name="Authorization" />
+            <Field name="base64KeySecret" />
+          </Fields>
+          <Data>
+            <r>
+              <c>https://api.twitter.com/2/users</c>
+              <c>Bearer AAAAAAAAAAAAAAAAAAAAAHC%2BgQEAAAAAVxphv8tEqq7x6tPK6SlxfDNIbWk%3DZCI0tZJqD9W4KS97hOJgtYwQmSeCNWMExUDTF8o7g68knkcO2L</c>
+              <c>base64KeySecret</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Orig Control Parameter</AnnotationText>
+          <DefaultAnnotationText>Orig Control Parameter</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="base64KeySecret" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="32">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+        <Position x="510" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <CartesianMode>Allow</CartesianMode>
+          <SelectConfiguration>
+            <Configuration outputConnection="Output">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Target_BaseURL" selected="True" input="Target_" />
+                <SelectField field="Target_Authorization" selected="True" input="Target_" />
+                <SelectField field="Target_base64KeySecret" selected="True" input="Target_" />
+                <SelectField field="Source_RecordID" selected="True" input="Source_" />
+                <SelectField field="Source_userid" selected="True" input="Source_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: trim([BaseURL], &quot;/&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="base64KeySecret" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+    </Node>
+    <Node ToolID="33">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="606" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" field="BaseURL" size="2147483647" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[BaseURL = ToString([BaseURL] + "/" + toString([userid]) + "/tweets")
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="base64KeySecret" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="54">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.ControlParam.ControlParam">
+        <Position x="90" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Control Parameter (54)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="55">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="102" y="150" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="56">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="58">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.JSONParse.JSONParse">
+        <Position x="1530" y="354" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <JSON_Field>DownloadData</JSON_Field>
+          <IncludeInOutput value="False" />
+          <SingleField value="True" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="JSON_Name" size="1073741823" source="JSON_Parse" type="V_WString" />
+            <Field name="JSON_ValueString" size="1073741823" source="JSON_Parse" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJSONParse" />
+    </Node>
+    <Node ToolID="66">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="2106" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Details</Name>
+          <Abbrev>D</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>D Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="67">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1626" y="354" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>Contains([JSON_Name],"data") and !Contains([JSON_Name], 'attachments.media_keys') and !Contains([JSON_Name], 'referenced_tweets')</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>filter data</AnnotationText>
+          <DefaultAnnotationText>Contains([JSON_Name],"data") and !Contains([JSON_Name], 'attachments.media_keys'...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="True">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="JSON_Name" size="1073741823" source="JSON_Parse" type="V_WString" />
+            <Field name="JSON_ValueString" size="1073741823" source="JSON_Parse" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="False">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="JSON_Name" size="1073741823" source="JSON_Parse" type="V_WString" />
+            <Field name="JSON_ValueString" size="1073741823" source="JSON_Parse" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="68">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+        <Position x="1818" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <GroupFields>
+            <Field field="userid" />
+            <Field field="Index" />
+          </GroupFields>
+          <HeaderField field="Columns" />
+          <DataField field="JSON_ValueString" />
+          <Methods>
+            <Method method="Concat" />
+            <Separator>,</Separator>
+            <FieldSize value="2048" />
+          </Methods>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="userid" size="2147483647" source="CrossTab:Group:Concat:" type="V_String" />
+            <Field description="RegEx: Parsed from JSON_Name" name="Index" source="CrossTab:Group:Concat:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+    </Node>
+    <Node ToolID="69">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="2010" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="userid" selected="True" />
+            <SelectField field="author_id" selected="True" />
+            <SelectField field="created_at" selected="True" />
+            <SelectField field="id" selected="True" rename="tweetid" />
+            <SelectField field="in_reply_to_user_id" selected="True" />
+            <SelectField field="lang" selected="True" />
+            <SelectField field="possibly_sensitive" selected="True" />
+            <SelectField field="public_metrics_like_count" selected="True" />
+            <SelectField field="public_metrics_quote_count" selected="True" />
+            <SelectField field="public_metrics_reply_count" selected="True" />
+            <SelectField field="public_metrics_retweet_count" selected="True" />
+            <SelectField field="reply_settings" selected="True" />
+            <SelectField field="source" selected="True" />
+            <SelectField field="text" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="userid" size="2147483647" source="CrossTab:Group:Concat:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="72">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+        <Position x="1722" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>JSON_Name</Field>
+          <RegExExpression value="data.(\d+).([a-zA-Z_0-9\.]+)$" />
+          <CaseInsensitve value="True" />
+          <Method>ParseComplex</Method>
+          <Replace expression="">
+            <CopyUnmatched value="True" />
+          </Replace>
+          <ParseSimple>
+            <SplitToRows value="False" />
+            <RootName>JSON_Name</RootName>
+            <NumFields value="3" />
+            <ErrorHandling>Warn</ErrorHandling>
+          </ParseSimple>
+          <ParseComplex>
+            <Field field="Index" type="Int16" size="2" />
+            <Field field="Columns" type="V_WString" size="512" />
+          </ParseComplex>
+          <Match>
+            <Field>BaseURL_Matched</Field>
+            <ErrorUnmatched value="False" />
+          </Match>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryEndpoint" size="1073741823" source="Formula: [BaseURL] + [QuerryParams]" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="JSON_Name" size="1073741823" source="JSON_Parse" type="V_WString" />
+            <Field name="JSON_ValueString" size="1073741823" source="JSON_Parse" type="V_WString" />
+            <Field description="RegEx: Parsed from JSON_Name" name="Index" source="RegEx: Parsed from JSON_Name" type="Int16" />
+            <Field description="RegEx: Parsed from JSON_Name" name="Columns" size="512" source="RegEx: Parsed from JSON_Name" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+    </Node>
+    <Node ToolID="73">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="138" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldName>RecordID</FieldName>
+          <StartValue>1</StartValue>
+          <FieldType>Int32</FieldType>
+          <FieldSize>6</FieldSize>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="74">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="1134" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="RecordID" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="RecordID" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Right_RecordID" selected="False" rename="Right_RecordID" input="Right_" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Left">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Join">
+          <RecordInfo>
+            <Field name="BaseURL" size="2147483647" source="Formula: ToString([BaseURL] + &quot;/&quot; + toString([userid]) + &quot;/tweets&quot;)" type="V_String" />
+            <Field name="Authorization" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="userid" size="2147483647" source="TextInput:" type="V_String" />
+            <Field name="QuerryParams" size="1073741823" source="Summarize: Concat - queryParams" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Right">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="QuerryParams" size="1073741823" source="Summarize: Concat - queryParams" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="75">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="1914" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Index" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Index - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="userid" size="2147483647" source="CrossTab:Group:Concat:" type="V_String" />
+            <Field description="RegEx: Parsed from JSON_Name" name="Index" source="CrossTab:Group:Concat:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="74" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output" />
+      <Destination ToolID="74" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="32" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="73" Connection="Output" />
+      <Destination ToolID="32" Connection="Source" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="58" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="11" Connection="Output" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="18" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Output" />
+      <Destination ToolID="28" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="24" Connection="Output" />
+      <Destination ToolID="27" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="25" Connection="Output" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="27" Connection="True" />
+      <Destination ToolID="25" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="28" Connection="Output" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Output" />
+      <Destination ToolID="73" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="32" Connection="Output" />
+      <Destination ToolID="33" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="33" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="54" Connection="Question" />
+      <Destination ToolID="55" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="55" Connection="Action" />
+      <Destination ToolID="31" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="58" Connection="Output" />
+      <Destination ToolID="67" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="67" Connection="True" />
+      <Destination ToolID="72" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="68" Connection="Output" />
+      <Destination ToolID="75" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="Output" />
+      <Destination ToolID="66" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="72" Connection="Output" />
+      <Destination ToolID="68" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="73" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="74" Connection="Join" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="75" Connection="Output" />
+      <Destination ToolID="69" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>ControlParam.Control Parameter (54)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (66)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Twitter API Get Twitter Timeline</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName>Twitter API</CategoryName>
+      <SearchTags />
+      <Author>Jupiter Bakakeu</Author>
+      <Company>Alteryx Inc</Company>
+      <Copyright>2022</Copyright>
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="df129dce-cc72-4b9d-9a6b-7643eed1bd78" />
+      <Telemetry>
+        <PreviousWorkflowId value="75f868e0-5ce9-4dc9-a3ad-8eb979ba00e5" />
+        <OriginWorkflowId value="b059c7c4-3ab7-4d09-87d5-ef090aa4cd21" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="False" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="55" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>31/Data/r[1]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (29)</Name>
+          <ToolId value="29" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (30)</Description>
+              <Name>Macro Input (30)</Name>
+              <ToolId value="30" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (43)</Description>
+              <Name>Macro Output (66)</Name>
+              <ToolId value="66" />
+            </Question>
+          </Questions>
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Authorization</Description>
+          <Name>Tab (56)</Name>
+          <ToolId value="56" />
+          <Questions>
+            <Question>
+              <Type>ControlParam</Type>
+              <Description>Authorisation</Description>
+              <Name>Control Parameter (54)</Name>
+              <ToolId value="54" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <BatchMacro>
+        <OutputMode>AllSame</OutputMode>
+        <ControlParams>
+          <ControlParam>
+            <Name>Control Parameter (54)</Name>
+            <Description>Authorisation</Description>
+          </ControlParam>
+        </ControlParams>
+      </BatchMacro>
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="30" Selected="True" />
+        <Tool ToolId="66" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

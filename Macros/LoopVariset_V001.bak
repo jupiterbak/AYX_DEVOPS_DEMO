@@ -1,0 +1,461 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.4">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="210" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="True" />
+          <Name>Input1</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <FileInput>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Mercedes\Training\Batch_01\Alex\Varisets\_out_01.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+          </FileInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>_out_01.yxdb</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: Null()" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: Null()" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1062" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Iteration</Name>
+          <Abbrev>I</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>I Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="846" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[Engine.IterationNumber] + 1" field="Iteration" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[Iteration = [Engine.IterationNumber] + 1
+
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" type="Int16" />
+            <Field name="Iteration" size="1073741823" source="Formula: [Engine.IterationNumber] + 1" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="942" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>=</Operator>
+            <Field>Iteration</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2022-04-21 12:17:24</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>3000</Operand>
+              <StartDate>2022-04-21 12:17:24</StartDate>
+              <EndDate>2022-04-21 12:17:24</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Iteration] = "3000"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="True">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" type="Int16" />
+            <Field name="Iteration" size="1073741823" source="Formula: [Engine.IterationNumber] + 1" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="False">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" type="Int16" />
+            <Field name="Iteration" size="1073741823" source="Formula: [Engine.IterationNumber] + 1" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="462" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="True" />
+          <UpdateField_Name>Variset Group</UpdateField_Name>
+          <CreateField_Name>Variset Group</CreateField_Name>
+          <CreateField_Type>String</CreateField_Type>
+          <CreateField_Size>256</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF (NOT (IsNull([Row-1:Variset Group]) or IsNull([Row-1:Variset Group Level]))) AND ([Lev] &gt;= [Row-1:Variset Group Level])  THEN [Row-1:Variset Group] ELSE [Variset Group] ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF (NOT (IsNull([Row-1:Variset Group]) or IsNull([Row-1:Varis...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="582" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="True" />
+          <UpdateField_Name>Variset Group Level</UpdateField_Name>
+          <CreateField_Name>Variset Group Level</CreateField_Name>
+          <CreateField_Type>Int32</CreateField_Type>
+          <CreateField_Size>4</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF IsNull([Row-1:Variset Group Level]) THEN [Variset Group Level] ELSE [Row-1:Variset Group Level] ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF IsNull([Row-1:Variset Group Level]) THEN [Variset Group Le...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="342" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" field="Variset Group" size="1073741823" type="V_WString" />
+            <FormulaField expression="if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" field="Variset Group Level" size="2" type="Int16" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Variset Group = if Contains([Variset], "Variset") then [Object ID] else [Variset...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Ict" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Lev" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object ID" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="F5" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Object description" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Bin" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="SortStrng" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Quantity" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="Double" />
+            <Field name="Item" size="255" source="File: C:\Users\aslater\Desktop\ZCS12 - Download.xlsx|||`ZCS12 - Download$`" type="V_String" />
+            <Field name="Variset" size="1073741823" source="Formula: IIF(Substring([Object ID],2,1)==&quot;V&quot;, &quot;Variset&quot;, Null())" type="V_WString" />
+            <Field name="Variset Group" size="1073741823" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Object ID] else [Variset Group] endif" type="V_WString" />
+            <Field name="Variset Group Level" source="Formula: if Contains([Variset], &quot;Variset&quot;) then [Lev] else Null() endif" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1050" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Output18</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="False" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="True" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (2)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (3)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (11)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>LoopVariset_V001</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="e155d081-1736-411e-be54-eda576e78c51" />
+      <Telemetry>
+        <PreviousWorkflowId value="" />
+        <OriginWorkflowId value="e155d081-1736-411e-be54-eda576e78c51" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (1)</Name>
+          <ToolId value="1" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (2)</Name>
+              <ToolId value="2" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (7)</Description>
+              <Name>Macro Output (3)</Name>
+              <ToolId value="3" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (18)</Description>
+              <Name>Macro Output (11)</Name>
+              <ToolId value="11" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="2" Selected="True" />
+        <Tool ToolId="3" Selected="True" />
+        <Tool ToolId="11" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

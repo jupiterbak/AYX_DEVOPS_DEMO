@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.4">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="678" y="150" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="True" />
+          <Name>Input2</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <FileInput>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Mercedes\Training\Batch_01\William\Jupiter_Data.xlsx|||`BoM 1$`</File>
+              <FormatSpecificOptions>
+                <FirstRowData>False</FirstRowData>
+                <ImportLine>1</ImportLine>
+              </FormatSpecificOptions>
+            </Configuration>
+          </FileInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Jupiter_Data.xlsx
+Query=`BoM 1$`</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="PositionID" size="255" source="File: C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Mercedes\Training\Batch_01\William\Jupiter_Data.xlsx|||`BoM 1$`" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="870" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="property" />
+          </Fields>
+          <Data>
+            <r>
+              <c>PositionID</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="property" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="990" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="generateGraph" />
+          </Fields>
+          <Data>
+            <r>
+              <c>True</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="generateGraph" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="JupyterCode">
+        <Position x="1158" y="150" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <WorkflowName>c:\program files\alteryx\bin\[unnamed module]</WorkflowName>
+          <JupyterProduction>false</JupyterProduction>
+          <vEnvName>designerbasetools_venv</vEnvName>
+          <DefaultVenv>1</DefaultVenv>
+          <productionModeScript />
+          <Port>64098</Port>
+          <JupyterGuidDir>555fb004b5e78dbe4cf63fb32f7992ba</JupyterGuidDir>
+          <JupyterGuidCopy />
+          <LastExecutedByEngineVersion>2021.4.2.02731</LastExecutedByEngineVersion>
+          <Notebook><![CDATA[{"cells":[{"cell_type":"markdown","metadata":{"ayx":{"cell_class":"text_cell","cell_css":"border: 3px solid #357; margin: 4px; background: #fbffff","cell_type":"markdown","contents_keyword":"Alteryx.help()","first_line":"Run `Alteryx.help()` for info about useful functions.","label":"info"}},"source":["Run `Alteryx.help()` for info about useful functions.  \n","i.e., `Alteryx.read(\"#1\")`, `Alteryx.write(df,1)`, `Alteryx.getWorkflowConstant(\"Engine.WorkflowDirectory\")`"]},{"cell_type":"code","execution_count":1,"metadata":{"ayx":{"cell_class":"code_cell","cell_css":"border: 1px solid #58a; margin: 2px;","cell_type":"code","contents_keyword":"installPackages","first_line":"# List all non-standard packages to be imported by your","label":"deps"}},"outputs":[],"source":["# List all non-standard packages to be imported by your \n","# script here (only missing packages will be installed)\n","from ayx import Package\n","if not Package.isPackageInstalled('pandas'):\n","    Package.installPackages(['pandas'])\n","if not Package.isPackageInstalled('numpy'):\n","    Package.installPackages(['numpy'])\n","if not Package.isPackageInstalled('openpyxl'):\n","    Package.installPackages(['openpyxl'])\n","if not Package.isPackageInstalled('scikit-learn'):\n","    Package.installPackages(['scikit-learn'])\n","if not Package.isPackageInstalled('networkx'):\n","    Package.installPackages(['networkx'], \"uninstall\")\n","    Package.installPackages(['networkx==2.6.3'])\n","if not Package.isPackageInstalled('graphviz'):\n","    Package.installPackages(['graphviz'], \"uninstall\")\n","    Package.installPackages(['graphviz==0.20'])\n","if not Package.isPackageInstalled('pydot'):\n","    Package.installPackages(['pydot'])\n","if not Package.isPackageInstalled('matplotlib'):\n","    Package.installPackages(['matplotlib'])"]},{"cell_type":"code","execution_count":2,"metadata":{},"outputs":[],"source":["from ayx import Alteryx\n","import networkx as nx\n","import pandas as pd\n","import matplotlib.pyplot as plt\n","from networkx.drawing.nx_pydot import graphviz_layout\n","import warnings\n","\n","def parseBOM(df, _property=\"PositionID\"):\n","    graph = nx.DiGraph()\n","    for _, v in df[_property].items():\n","        _list = v.split(\".\")\n","        if len(_list) > 1:\n","            for i in range(len(_list) -1):\n","                x = _list[i]\n","                y = _list[i+1]\n","                if x == y:\n","                    warnings.warn(\"Self referencing node: {0} --> will ne excluded.\".format(x))\n","                    continue\n","                if not graph.has_node(x):\n","                    graph.add_node(x)\n","                if not graph.has_node(y):\n","                    graph.add_node(y)\n","                if not graph.has_edge(x,y):\n","                    graph.add_edge(x, y)\n","        else:\n","            graph.add_node(_list[0])\n","\n","    return graph"]},{"cell_type":"code","execution_count":3,"metadata":{},"outputs":[],"source":["print(\"PARSING GRAPH: \")\n","print(\"===========================\")\n","Bom_1 = Alteryx.read(\"#1\")\n","_properties = Alteryx.read(\"#2\")\n","graph_1 = parseBOM(Bom_1, _properties.iloc[0]['property'])\n","print(nx.info(graph_1))\n","print(\"Is Tree: {0}\".format(nx.is_tree(graph_1)))\n","print(\"Is Forest: {0}\".format(nx.is_forest(graph_1)))\n","print(\"Is DAG: {0}\".format(nx.is_directed_acyclic_graph(graph_1)))\n","print(\"Find cycles: {0}\".format(list(nx.selfloop_edges(graph_1))))\n","sub_graph_1 = list(nx.topological_sort(graph_1))\n","print(\"Root Node: {0}\".format(sub_graph_1[0]))"]},{"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],"source":[]},{"cell_type":"code","execution_count":4,"metadata":{},"outputs":[],"source":["import matplotlib.image as mpimg\n","from os.path import abspath\n","from re import findall\n","from functools import reduce\n","from IPython.display import set_matplotlib_close\n","from IPython import get_ipython\n","\n","def saveModelToFile(G, filepath):\n","    abs_filepath = abspath(filepath)\n","    success = False\n","    try:\n","        nx.write_gpickle(G, abs_filepath)\n","        success = True\n","    except Exception as err:\n","        error = err\n","    # turn back on printing\n","    finally:\n","        # sys.stdout = oldstdout\n","        pass\n","\n","    # if success, return filepath\n","    if success:\n","        return abs_filepath\n","    # otherwise, throw error\n","    # (this control flow is a little funky to ensure printing is turned back on\n","    #  prior to throwing error)\n","    else:\n","        raise error\n","\n","def savePlotToFile(matplotlib_figure, filepath):\n","    abs_filepath = abspath(filepath)\n","    success = False\n","    try:\n","        matplotlib_figure.savefig(\n","            abs_filepath, format=\"png\", bbox_inches=\"tight\", pad_inches=0\n","        )\n","\n","        # display image\n","        img = mpimg.imread(abs_filepath)\n","        imgplot = plt.imshow(img)\n","        plt.axis(\"off\")\n","        plt.title(None)\n","        set_matplotlib_close(False)\n","        plt.show()\n","        # plt.draw()\n","\n","        # matplotlib_pyplot.show();\n","        # matplotlib_pyplot.close()\n","        success = True\n","    except Exception as err:\n","        error = err\n","    # turn back on printing\n","    finally:\n","        # sys.stdout = oldstdout\n","        pass\n","\n","    # if success, return filepath\n","    if success:\n","        return abs_filepath\n","    # otherwise, throw error\n","    # (this control flow is a little funky to ensure printing is turned back on\n","    #  prior to throwing error)\n","    else:\n","        raise error\n","        \n","def writePlot(matplotlib_figure, outgoing_connection_number):\n","    filename = \"plot_{}\".format(outgoing_connection_number)\n","    saved_plot_filepath = savePlotToFile(\n","        matplotlib_figure, \"plot_{}.png\".format(outgoing_connection_number)\n","    )\n","    return saved_plot_filepath\n","\n","def writeModel(G, outgoing_connection_number):\n","    filename = \"model_{}\".format(outgoing_connection_number)\n","    saved_plot_filepath = saveModelToFile(\n","        G, \"model_{}.gpickle\".format(outgoing_connection_number)\n","    )\n","    return saved_plot_filepath"]},{"cell_type":"code","execution_count":5,"metadata":{},"outputs":[],"source":["print(\"\\nEXPORTING GRAPH DATA\")\n","print(\"===========================\")\n","outgoing_connection_number = 1\n","model_path = writeModel(graph_1, outgoing_connection_number)\n","\n","# create html for img tag\n","model_df = pd.DataFrame({\"Model\": [model_path],\n","                         \"Is Tree\": [nx.is_tree(graph_1)],\n","                         \"Is Forest\": [nx.is_forest(graph_1)],\n","                         \"Is DAG\": [nx.is_directed_acyclic_graph(graph_1)],\n","                         \"Root Node\": [sub_graph_1[0]]\n","                        })\n","Alteryx.write(\n","    model_df,\n","    outgoing_connection_number,\n","    {\"Model\": {\"type\": \"V_String\", \"length\": 2147483647},\n","     \"Is Tree\": {\"type\": \"V_String\", \"length\": 2147483647},\n","     \"Is Forest\": {\"type\": \"V_String\", \"length\": 2147483647},\n","     \"Is DAG\": {\"type\": \"V_String\", \"length\": 2147483647},\n","     \"Root Node\": {\"type\": \"V_String\", \"length\": 2147483647}\n","    },\n",")\n","    \n","# plt.show()"]},{"cell_type":"code","execution_count":6,"metadata":{},"outputs":[],"source":["_export_graph = Alteryx.read(\"#3\")\n","_export = _export_graph.iloc[0]['generateGraph']\n","print(_export)\n","if _export == 1:\n","    outgoing_connection_number = 2\n","    print(\"\\nEXPORTING GRAPH PLOT\")\n","    print(\"===========================\")\n","    # pos = graphviz_layout(graph_1, prog=\"dot\")\n","    nx.draw(graph_1, node_color='r', edge_color='b', node_size=2, width=0.1, arrowsize=5, with_labels=False)\n","    #nx.draw(graph_1)\n","    plot_path = writePlot(plt,outgoing_connection_number)\n","    model_plot_df = pd.DataFrame({\"Plot\": [plot_path]})\n","    Alteryx.write(\n","        model_plot_df,\n","        outgoing_connection_number,\n","        {\"Plot\": {\"type\": \"V_String\", \"length\": 2147483647}},\n","    )"]},{"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],"source":[]}],"metadata":{"kernelspec":{"display_name":"designerbasetools_venv","language":"python","name":"designerbasetools_venv"},"language_info":{"codemirror_mode":{"name":"ipython","version":3},"file_extension":".py","mimetype":"text/x-python","name":"python","nbconvert_exporter":"python","pygments_lexer":"ipython3","version":"3.8.5"}},"nbformat":4,"nbformat_minor":2}]]></Notebook>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxJupyterPluginEngine.dll" EngineDllEntryPoint="AlteryxJupyter" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1350" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Graph</Name>
+          <Abbrev>G</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>G Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1350" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Plot</Name>
+          <Abbrev>P</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>P Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection name="#1">
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output1" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output2" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (2)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (6)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (7)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>ParseGraph</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="9f13760f-f26e-4689-8e1e-459fb5b595e4" />
+      <Telemetry>
+        <PreviousWorkflowId value="7871f948-0586-47f5-83c8-a59890279b1e" />
+        <OriginWorkflowId value="7871f948-0586-47f5-83c8-a59890279b1e" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (1)</Name>
+          <ToolId value="1" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (2)</Name>
+              <ToolId value="2" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description />
+              <Name>Macro Output (6)</Name>
+              <ToolId value="6" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description />
+              <Name>Macro Output (7)</Name>
+              <ToolId value="7" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="2" Selected="True" />
+        <Tool ToolId="6" Selected="True" />
+        <Tool ToolId="7" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

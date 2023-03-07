@@ -1,0 +1,1609 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="391" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>SortedInput</Name>
+          <Abbrev>S</Abbrev>
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="143" />
+              <Fields>
+                <Field name="____Month____" />
+                <Field name="____count____" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>2006-01</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>2006-03</c>
+                  <c>4</c>
+                </r>
+                <r>
+                  <c>2006-04</c>
+                  <c>3</c>
+                </r>
+                <r>
+                  <c>2006-05</c>
+                  <c>2</c>
+                </r>
+                <r>
+                  <c>2006-06</c>
+                  <c>78</c>
+                </r>
+                <r>
+                  <c>2006-07</c>
+                  <c>59</c>
+                </r>
+                <r>
+                  <c>2006-08</c>
+                  <c>85</c>
+                </r>
+                <r>
+                  <c>2006-09</c>
+                  <c>84</c>
+                </r>
+                <r>
+                  <c>2006-10</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2006-11</c>
+                  <c>90</c>
+                </r>
+                <r>
+                  <c>2006-12</c>
+                  <c>90</c>
+                </r>
+                <r>
+                  <c>2007-01</c>
+                  <c>13</c>
+                </r>
+                <r>
+                  <c>2007-02</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2007-03</c>
+                  <c>130</c>
+                </r>
+                <r>
+                  <c>2007-04</c>
+                  <c>60</c>
+                </r>
+                <r>
+                  <c>2007-05</c>
+                  <c>70</c>
+                </r>
+                <r>
+                  <c>2007-06</c>
+                  <c>80</c>
+                </r>
+                <r>
+                  <c>2007-07</c>
+                  <c>80</c>
+                </r>
+                <r>
+                  <c>2007-08</c>
+                  <c>80</c>
+                </r>
+                <r>
+                  <c>2007-09</c>
+                  <c>11</c>
+                </r>
+                <r>
+                  <c>2007-10</c>
+                  <c>12</c>
+                </r>
+                <r>
+                  <c>2007-11</c>
+                  <c>95</c>
+                </r>
+                <r>
+                  <c>2007-12</c>
+                  <c>87</c>
+                </r>
+                <r>
+                  <c>2008-01</c>
+                  <c>138</c>
+                </r>
+                <r>
+                  <c>2008-02</c>
+                  <c>110</c>
+                </r>
+                <r>
+                  <c>2008-03</c>
+                  <c>116</c>
+                </r>
+                <r>
+                  <c>2008-04</c>
+                  <c>92</c>
+                </r>
+                <r>
+                  <c>2008-05</c>
+                  <c>69</c>
+                </r>
+                <r>
+                  <c>2008-06</c>
+                  <c>90</c>
+                </r>
+                <r>
+                  <c>2008-07</c>
+                  <c>95</c>
+                </r>
+                <r>
+                  <c>2008-08</c>
+                  <c>87</c>
+                </r>
+                <r>
+                  <c>2008-09</c>
+                  <c>131</c>
+                </r>
+                <r>
+                  <c>2008-10</c>
+                  <c>130</c>
+                </r>
+                <r>
+                  <c>2008-11</c>
+                  <c>95</c>
+                </r>
+                <r>
+                  <c>2008-12</c>
+                  <c>137</c>
+                </r>
+                <r>
+                  <c>2009-01</c>
+                  <c>142</c>
+                </r>
+                <r>
+                  <c>2009-02</c>
+                  <c>113</c>
+                </r>
+                <r>
+                  <c>2009-03</c>
+                  <c>138</c>
+                </r>
+                <r>
+                  <c>2009-04</c>
+                  <c>91</c>
+                </r>
+                <r>
+                  <c>2009-05</c>
+                  <c>99</c>
+                </r>
+                <r>
+                  <c>2009-06</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2009-07</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2009-08</c>
+                  <c>82</c>
+                </r>
+                <r>
+                  <c>2009-09</c>
+                  <c>123</c>
+                </r>
+                <r>
+                  <c>2009-10</c>
+                  <c>123</c>
+                </r>
+                <r>
+                  <c>2009-11</c>
+                  <c>110</c>
+                </r>
+                <r>
+                  <c>2009-12</c>
+                  <c>136</c>
+                </r>
+                <r>
+                  <c>2010-01</c>
+                  <c>131</c>
+                </r>
+                <r>
+                  <c>2010-02</c>
+                  <c>113</c>
+                </r>
+                <r>
+                  <c>2010-03</c>
+                  <c>147</c>
+                </r>
+                <r>
+                  <c>2010-04</c>
+                  <c>830</c>
+                </r>
+                <r>
+                  <c>2010-05</c>
+                  <c>897</c>
+                </r>
+                <r>
+                  <c>2010-06</c>
+                  <c>101</c>
+                </r>
+                <r>
+                  <c>2010-07</c>
+                  <c>781</c>
+                </r>
+                <r>
+                  <c>2010-08</c>
+                  <c>98</c>
+                </r>
+                <r>
+                  <c>2010-09</c>
+                  <c>134</c>
+                </r>
+                <r>
+                  <c>2010-10</c>
+                  <c>100</c>
+                </r>
+                <r>
+                  <c>2010-11</c>
+                  <c>137</c>
+                </r>
+                <r>
+                  <c>2010-12</c>
+                  <c>160</c>
+                </r>
+                <r>
+                  <c>2011-01</c>
+                  <c>132</c>
+                </r>
+                <r>
+                  <c>2011-02</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2011-03</c>
+                  <c>123</c>
+                </r>
+                <r>
+                  <c>2011-04</c>
+                  <c>77</c>
+                </r>
+                <r>
+                  <c>2011-05</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2011-06</c>
+                  <c>85</c>
+                </r>
+                <r>
+                  <c>2011-07</c>
+                  <c>92</c>
+                </r>
+                <r>
+                  <c>2011-08</c>
+                  <c>97</c>
+                </r>
+                <r>
+                  <c>2011-09</c>
+                  <c>131</c>
+                </r>
+                <r>
+                  <c>2011-10</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2011-11</c>
+                  <c>93</c>
+                </r>
+                <r>
+                  <c>2011-12</c>
+                  <c>141</c>
+                </r>
+                <r>
+                  <c>2012-01</c>
+                  <c>150</c>
+                </r>
+                <r>
+                  <c>2012-02</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2012-03</c>
+                  <c>133</c>
+                </r>
+                <r>
+                  <c>2012-04</c>
+                  <c>99</c>
+                </r>
+                <r>
+                  <c>2012-05</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2012-06</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2012-07</c>
+                  <c>66</c>
+                </r>
+                <r>
+                  <c>2012-08</c>
+                  <c>99</c>
+                </r>
+                <r>
+                  <c>2012-09</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2012-10</c>
+                  <c>122</c>
+                </r>
+                <r>
+                  <c>2012-11</c>
+                  <c>144</c>
+                </r>
+                <r>
+                  <c>2012-12</c>
+                  <c>166</c>
+                </r>
+                <r>
+                  <c>2013-01</c>
+                  <c>177</c>
+                </r>
+                <r>
+                  <c>2013-02</c>
+                  <c>133</c>
+                </r>
+                <r>
+                  <c>2013-03</c>
+                  <c>155</c>
+                </r>
+                <r>
+                  <c>2013-04</c>
+                  <c>99</c>
+                </r>
+                <r>
+                  <c>2013-05</c>
+                  <c>100</c>
+                </r>
+                <r>
+                  <c>2013-06</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2013-07</c>
+                  <c>77</c>
+                </r>
+                <r>
+                  <c>2013-08</c>
+                  <c>80</c>
+                </r>
+                <r>
+                  <c>2013-09</c>
+                  <c>142</c>
+                </r>
+                <r>
+                  <c>2013-10</c>
+                  <c>122</c>
+                </r>
+                <r>
+                  <c>2013-11</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2013-12</c>
+                  <c>99</c>
+                </r>
+                <r>
+                  <c>2014-01</c>
+                  <c>144</c>
+                </r>
+                <r>
+                  <c>2014-02</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2014-03</c>
+                  <c>77</c>
+                </r>
+                <r>
+                  <c>2014-04</c>
+                  <c>72</c>
+                </r>
+                <r>
+                  <c>2014-05</c>
+                  <c>66</c>
+                </r>
+                <r>
+                  <c>2014-06</c>
+                  <c>66</c>
+                </r>
+                <r>
+                  <c>2014-07</c>
+                  <c>66</c>
+                </r>
+                <r>
+                  <c>2014-08</c>
+                  <c>55</c>
+                </r>
+                <r>
+                  <c>2014-09</c>
+                  <c>99</c>
+                </r>
+                <r>
+                  <c>2014-10</c>
+                  <c>88</c>
+                </r>
+                <r>
+                  <c>2014-11</c>
+                  <c>77</c>
+                </r>
+                <r>
+                  <c>2014-12</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2015-01</c>
+                  <c>111</c>
+                </r>
+                <r>
+                  <c>2015-02</c>
+                  <c>80</c>
+                </r>
+                <r>
+                  <c>2015-03</c>
+                  <c>83</c>
+                </r>
+                <r>
+                  <c>2015-04</c>
+                  <c>68</c>
+                </r>
+                <r>
+                  <c>2015-05</c>
+                  <c>62</c>
+                </r>
+                <r>
+                  <c>2015-06</c>
+                  <c>79</c>
+                </r>
+                <r>
+                  <c>2015-07</c>
+                  <c>64</c>
+                </r>
+                <r>
+                  <c>2015-08</c>
+                  <c>64</c>
+                </r>
+                <r>
+                  <c>2015-09</c>
+                  <c>75</c>
+                </r>
+                <r>
+                  <c>2015-10</c>
+                  <c>75</c>
+                </r>
+                <r>
+                  <c>2015-11</c>
+                  <c>75</c>
+                </r>
+                <r>
+                  <c>2015-12</c>
+                  <c>98</c>
+                </r>
+                <r>
+                  <c>2016-01</c>
+                  <c>95</c>
+                </r>
+                <r>
+                  <c>2016-02</c>
+                  <c>84</c>
+                </r>
+                <r>
+                  <c>2016-03</c>
+                  <c>91</c>
+                </r>
+                <r>
+                  <c>2016-04</c>
+                  <c>61</c>
+                </r>
+                <r>
+                  <c>2016-05</c>
+                  <c>51</c>
+                </r>
+                <r>
+                  <c>2016-06</c>
+                  <c>58</c>
+                </r>
+                <r>
+                  <c>2016-07</c>
+                  <c>48</c>
+                </r>
+                <r>
+                  <c>2016-08</c>
+                  <c>54</c>
+                </r>
+                <r>
+                  <c>2016-09</c>
+                  <c>72</c>
+                </r>
+                <r>
+                  <c>2016-10</c>
+                  <c>67</c>
+                </r>
+                <r>
+                  <c>2016-11</c>
+                  <c>71</c>
+                </r>
+                <r>
+                  <c>2016-12</c>
+                  <c>91</c>
+                </r>
+                <r>
+                  <c>2017-01</c>
+                  <c>96</c>
+                </r>
+                <r>
+                  <c>2017-02</c>
+                  <c>73</c>
+                </r>
+                <r>
+                  <c>2017-03</c>
+                  <c>73</c>
+                </r>
+                <r>
+                  <c>2017-04</c>
+                  <c>52</c>
+                </r>
+                <r>
+                  <c>2017-05</c>
+                  <c>50</c>
+                </r>
+                <r>
+                  <c>2017-06</c>
+                  <c>77</c>
+                </r>
+                <r>
+                  <c>2017-07</c>
+                  <c>49</c>
+                </r>
+                <r>
+                  <c>2017-08</c>
+                  <c>55</c>
+                </r>
+                <r>
+                  <c>2017-09</c>
+                  <c>60</c>
+                </r>
+                <r>
+                  <c>2017-10</c>
+                  <c>55</c>
+                </r>
+                <r>
+                  <c>2017-11</c>
+                  <c>55</c>
+                </r>
+                <r>
+                  <c>2017-12</c>
+                  <c>72</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>S Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="161" y="391" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldName>TS_SPLIT_RecordID</FieldName>
+          <StartValue>1</StartValue>
+          <FieldType>Int32</FieldType>
+          <FieldSize>6</FieldSize>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="TS_SPLIT_RecordID" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1308" y="427" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>PriorPeriod</Name>
+          <Abbrev>P</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>P Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1308" y="511" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>ForecastPeriod</Name>
+          <Abbrev>F</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>F Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1164" y="427" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TS_RecordID" selected="False" />
+            <SelectField field="Max_TS_SPLIT_RecordID" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1224" y="511" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TS_RecordID" selected="False" />
+            <SelectField field="Max_TS_SPLIT_RecordID" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="960" y="427" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TS_SPLIT_RecordID" selected="True" rename="TS_RecordID" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TS_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1020" y="511" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TS_SPLIT_RecordID" selected="True" rename="TS_RecordID" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TS_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Detour.Detour">
+        <Position x="412" y="403" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <DetourRight value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Left">
+          <RecordInfo>
+            <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Right">
+          <RecordInfo>
+            <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetour" />
+    </Node>
+    <Node ToolID="25">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+        <Position x="876" y="427" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+    </Node>
+    <Node ToolID="26">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+        <Position x="876" y="511" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+    </Node>
+    <Node ToolID="35">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="240" y="439" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="TS_SPLIT_RecordID" action="Max" rename="Max_TS_SPLIT_RecordID" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Max_RecordID</AnnotationText>
+          <DefaultAnnotationText>Max_RecordID</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="36">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+        <Position x="324" y="403" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <CartesianMode>Error</CartesianMode>
+          <SelectConfiguration>
+            <Configuration outputConnection="Output">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="____Month____" size="7" source="TextInput:" type="String" />
+            <Field name="____count____" source="TextInput:" type="Int16" />
+            <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="923" y="54" width="462" height="265" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>What output should be returned?</Caption>
+          <Style TextColor="#314c4a" FillColor="#ffffff" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="1152" y="103" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Output Time Series RecordID?</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="15">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="1164" y="211" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="18">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="1224" y="235" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="19">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="960" y="211" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="20">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="1020" y="235" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="21">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="948" y="103" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Enter Field Name for the Time Series RecordID</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="33">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="97" y="54" width="703" height="265" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>How to split the time series?</Caption>
+          <Style TextColor="#314c4a" FillColor="#ffffff" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+            <Position x="540" y="103" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>What percentage of records (0-100) should form the time series split?</DefaultAnnotationText>
+              <Left value="True" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="23">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="196" y="103" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Split on a percentage</DefaultAnnotationText>
+              <Left value="True" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="24">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="207" y="235" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Detour Direction from Question</DefaultAnnotationText>
+              <Left value="True" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="29">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="264" y="103" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Split on a number of records</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="30">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="276" y="235" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Detour Direction from Question</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+            <Position x="624" y="103" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>How many records in forecast period?</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="38">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="611" y="546" width="168" height="180" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Split on records</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="37">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="636" y="595" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>[TS_SPLIT_RecordID] &lt;= [Max_TS_SPLIT_RecordID] - [#1]</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>RecordID &lt;= Max_RecordID - Input</AnnotationText>
+              <DefaultAnnotationText>[TS_SPLIT_RecordID] &lt;= [Max_TS_SPLIT_RecordID] - [#1]</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="28">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="527" y="342" width="188" height="180" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Split on percentage</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="5">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="552" y="391" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>[TS_SPLIT_RecordID]/[Max_TS_SPLIT_RecordID] &lt;= ([#1]/100) //sixtysix % for training</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>RecordID / Max_RecordID &lt;= Percentage</AnnotationText>
+              <DefaultAnnotationText>[TS_SPLIT_RecordID]/[Max_TS_SPLIT_RecordID] &lt;= ([#1]/100) //sixtysix % for train...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+                <Field name="____Month____" size="7" source="TextInput:" type="String" />
+                <Field name="____count____" source="TextInput:" type="Int16" />
+                <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+                <Field name="____Month____" size="7" source="TextInput:" type="String" />
+                <Field name="____count____" source="TextInput:" type="Int16" />
+                <Field name="Max_TS_SPLIT_RecordID" source="RecordID: Starting Value=1" type="Int32" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="35" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="36" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="35" Connection="Output" />
+      <Destination ToolID="36" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="15" Connection="Action" />
+      <Destination ToolID="12" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="17" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="18" Connection="Action" />
+      <Destination ToolID="13" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Left" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="7" Connection="Question" />
+      <Destination ToolID="5" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Right" />
+      <Destination ToolID="37" Connection="Input" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="31" Connection="Question" />
+      <Destination ToolID="37" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="25" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="19" Connection="Action" />
+      <Destination ToolID="16" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output" />
+      <Destination ToolID="17" Connection="Input" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="20" Connection="Action" />
+      <Destination ToolID="17" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="36" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="24" Connection="Action" />
+      <Destination ToolID="22" Connection="Action" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="30" Connection="Action" />
+      <Destination ToolID="22" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="14" Connection="Question" />
+      <Destination ToolID="15" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="14" Connection="Question" />
+      <Destination ToolID="18" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="21" Connection="Question" />
+      <Destination ToolID="19" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="21" Connection="Question" />
+      <Destination ToolID="20" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="23" Connection="Question" />
+      <Destination ToolID="24" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="30" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="37" Connection="True" />
+      <Destination ToolID="25" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="True" />
+      <Destination ToolID="25" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="37" Connection="False" />
+      <Destination ToolID="26" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="False" />
+      <Destination ToolID="26" Connection="Left" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="False" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Numeric Up Down (7)</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (21)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (14)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Radio Button (23)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Radio Button (29)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Numeric Up Down (31)</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>TS Split Periods</Name>
+      <Description>Split a chronologically sorted data set (S input) in a percentage of records used for training (P output), while leaving out future records (F output) for out-of-sample error metrics or concurrent visualisation</Description>
+      <RootToolName>Time Series Split Records</RootToolName>
+      <ToolVersion>RWvL-20200205</ToolVersion>
+      <ToolInDb value="False" />
+      <CategoryName>Time Series</CategoryName>
+      <SearchTags>Time Series Split Records</SearchTags>
+      <Author>Roland van Leeuwen</Author>
+      <Company>Infotopics</Company>
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="94cf2b88-c549-4603-8abd-7ce56047996f" />
+      <Telemetry>
+        <PreviousWorkflowId value="5845e7be-b02f-432e-9d10-ba54a19d5562" />
+        <OriginWorkflowId value="5845e7be-b02f-432e-9d10-ba54a19d5562" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="15" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>12/SelectFields/SelectField[@field='TS_RecordID']/@selected</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="18" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>13/SelectFields/SelectField[@field='TS_RecordID']/@selected</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="19" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>16/SelectFields/SelectField[@field='TS_SPLIT_RecordID']/@rename</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="20" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>17/SelectFields/SelectField[@field='TS_SPLIT_RecordID']/@rename</Destination>
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="24" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>22/DetourRight/@value</Destination>
+              <Mapping>Update Detour Direction from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="30" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>22/DetourRight/@value</Destination>
+              <Mapping>Update Detour Direction from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (6)</Name>
+          <ToolId value="6" />
+          <Questions>
+            <Question>
+              <Type>RadioGroup</Type>
+              <Description>Split on a percentage</Description>
+              <Name>Radio Button (23)</Name>
+              <ToolId value="23" />
+              <Questions>
+                <Question>
+                  <Type>NumericUpDown</Type>
+                  <Description>What percentage of records (0-100) should form the time series split?</Description>
+                  <Name>Numeric Up Down (7)</Name>
+                  <ToolId value="7" />
+                  <Minimum value="0" />
+                  <Maximum value="100" />
+                  <Increment value="0.1" />
+                  <Default value="66.6" />
+                  <Decimals value="1" />
+                </Question>
+              </Questions>
+              <Default value="True" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (9)</Description>
+              <Name>Macro Output (9)</Name>
+              <ToolId value="9" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (10)</Description>
+              <Name>Macro Output (10)</Name>
+              <ToolId value="10" />
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (1)</Name>
+              <ToolId value="1" />
+            </Question>
+            <Question>
+              <Type>RadioGroup</Type>
+              <Description>Split on a number of records</Description>
+              <Name>Radio Button (29)</Name>
+              <ToolId value="29" />
+              <Questions>
+                <Question>
+                  <Type>NumericUpDown</Type>
+                  <Description>How many records in forecast period?</Description>
+                  <Name>Numeric Up Down (31)</Name>
+                  <ToolId value="31" />
+                  <Minimum value="0" />
+                  <Maximum value="100" />
+                  <Increment value="1" />
+                  <Default value="12" />
+                  <Decimals value="0" />
+                </Question>
+              </Questions>
+              <Default value="False" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>BooleanGroup</Type>
+              <Description>Output Time Series RecordID?</Description>
+              <Name>Check Box (14)</Name>
+              <ToolId value="14" />
+              <Questions>
+                <Question>
+                  <Type>TextBox</Type>
+                  <Description>Enter Field Name for the Time Series RecordID</Description>
+                  <Name>Text Box (21)</Name>
+                  <ToolId value="21" />
+                  <Default>TS_RecordID</Default>
+                  <Password value="False" />
+                  <Multiline value="False" />
+                  <Hidden value="False" />
+                </Question>
+              </Questions>
+              <Default value="False" />
+              <Collapsable value="True" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="1" Selected="True" />
+        <Tool ToolId="9" Selected="True" />
+        <Tool ToolId="10" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

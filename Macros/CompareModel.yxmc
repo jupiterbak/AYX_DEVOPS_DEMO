@@ -1,0 +1,543 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.4">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="JupyterCode">
+        <Position x="594" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <WorkflowName>c:\users\jupiter.bakakeu\onedrive - alteryx.com\documents\05_workspace\macros\[unnamed module]</WorkflowName>
+          <JupyterProduction>false</JupyterProduction>
+          <vEnvName>designerbasetools_venv</vEnvName>
+          <DefaultVenv>1</DefaultVenv>
+          <productionModeScript />
+          <Port>59459</Port>
+          <JupyterGuidDir>f71128fd5aa1a4bc551f8eab722ec763</JupyterGuidDir>
+          <JupyterGuidCopy />
+          <LastExecutedByEngineVersion>2021.4.2.02731</LastExecutedByEngineVersion>
+          <Notebook><![CDATA[{"cells":[{"cell_type":"markdown","metadata":{"ayx":{"cell_class":"text_cell","cell_css":"border: 3px solid #357; margin: 4px; background: #fbffff","cell_type":"markdown","contents_keyword":"Alteryx.help()","first_line":"Run `Alteryx.help()` for info about useful functions.","label":"info"}},"source":["Run `Alteryx.help()` for info about useful functions.  \n","i.e., `Alteryx.read(\"#1\")`, `Alteryx.write(df,1)`, `Alteryx.getWorkflowConstant(\"Engine.WorkflowDirectory\")`"]},{"cell_type":"code","execution_count":1,"metadata":{"ayx":{"cell_class":"code_cell","cell_css":"border: 1px solid #58a; margin: 2px;","cell_type":"code","contents_keyword":"installPackages","first_line":"# List all non-standard packages to be imported by your","label":"deps"}},"outputs":[],"source":["# List all non-standard packages to be imported by your \n","# script here (only missing packages will be installed)\n","from ayx import Package\n","if not Package.isPackageInstalled('pandas'):\n","    Package.installPackages(['pandas'])\n","if not Package.isPackageInstalled('numpy'):\n","    Package.installPackages(['numpy'])\n","if not Package.isPackageInstalled('openpyxl'):\n","    Package.installPackages(['openpyxl'])\n","if not Package.isPackageInstalled('scikit-learn'):\n","    Package.installPackages(['scikit-learn'])\n","if not Package.isPackageInstalled('networkx'):\n","    Package.installPackages(['networkx'], \"uninstall\")\n","    Package.installPackages(['networkx==2.6.3'])\n","if not Package.isPackageInstalled('graphviz'):\n","    Package.installPackages(['graphviz'], \"uninstall\")\n","    Package.installPackages(['graphviz==0.20'])\n","if not Package.isPackageInstalled('pydot'):\n","    Package.installPackages(['pydot'])\n","if not Package.isPackageInstalled('matplotlib'):\n","    Package.installPackages(['matplotlib'])"]},{"cell_type":"code","execution_count":2,"metadata":{},"outputs":[],"source":["from ayx import Alteryx\n","import networkx as nx\n","import pandas as pd\n","import matplotlib.pyplot as plt\n","from networkx.drawing.nx_pydot import graphviz_layout\n","import warnings"]},{"cell_type":"code","execution_count":3,"metadata":{},"outputs":[],"source":["print(\"Importing Left Model: \")\n","print(\"===========================\")\n","df_model_left = Alteryx.read(\"#1\")\n","_properties = Alteryx.read(\"#LeftModelField\")\n","graph_1 = nx.read_gpickle(df_model_left.iloc[0][_properties.iloc[0]['property']])\n","print(nx.info(graph_1))\n","print(\"Is Tree: {0}\".format(nx.is_tree(graph_1)))\n","print(\"Is Forest: {0}\".format(nx.is_forest(graph_1)))\n","print(\"Is DAG: {0}\".format(nx.is_directed_acyclic_graph(graph_1)))\n","print(\"Find cycles: {0}\".format(list(nx.selfloop_edges(graph_1))))\n","sub_graph_1 = list(nx.topological_sort(graph_1))\n","print(\"Root Node: {0}\".format(sub_graph_1[0]))"]},{"cell_type":"code","execution_count":4,"metadata":{},"outputs":[],"source":["print(\"\\nImporting Right Model: \")\n","print(\"===========================\")\n","df_model_right = Alteryx.read(\"#2\")\n","_properties_2 = Alteryx.read(\"#RightModelField\")\n","graph_2 = nx.read_gpickle(df_model_right.iloc[0][_properties_2.iloc[0]['property']])\n","\n","print(nx.info(graph_2))\n","print(\"Is Tree: {0}\".format(nx.is_tree(graph_2)))\n","print(\"Is Forest: {0}\".format(nx.is_forest(graph_2)))\n","print(\"Is DAG: {0}\".format(nx.is_directed_acyclic_graph(graph_2)))\n","print(\"Find cycles: {0}\".format(list(nx.selfloop_edges(graph_2))))\n","sub_graph_2 = list(nx.topological_sort(graph_2))\n","print(\"Root Node: {0}\".format(sub_graph_2[0]))"]},{"cell_type":"code","execution_count":12,"metadata":{},"outputs":[],"source":["def intersection(G, H):\n","    if not G.is_multigraph() == H.is_multigraph():\n","        raise nx.NetworkXError(\"G and H must both be graphs or multigraphs.\")\n","\n","    # create new graph\n","    R = nx.Graph()\n","\n","    if G.number_of_edges() <= H.number_of_edges():\n","        if G.is_multigraph():\n","            edges = G.edges(keys=True)\n","        else:\n","            edges = G.edges()\n","        for e in edges:\n","            if H.has_edge(*e):\n","                R.add_edge(*e)\n","    else:\n","        if H.is_multigraph():\n","            edges = H.edges(keys=True)\n","        else:\n","            edges = H.edges()\n","        for e in edges:\n","            if G.has_edge(*e):\n","                R.add_edge(*e)\n","    return R\n","\n","def difference(G, H):\n","    R = nx.Graph()\n","    if G.is_multigraph():\n","        nodes = G.nodes(keys=True)\n","    else:\n","        nodes = G.nodes()\n","        \n","    for n in nodes:\n","        if not H.has_node(n):\n","            R.add_node(n)\n","    return R"]},{"cell_type":"code","execution_count":13,"metadata":{},"outputs":[],"source":["print(\"\\nCompute Left Compare: \")\n","print(\"===========================\")\n","df_compare_left_graph = difference(graph_1, graph_2)\n","print(nx.info(df_compare_left_graph))\n","print(\"Is Tree: {0}\".format(nx.is_tree(df_compare_left_graph)))\n","print(\"Is Forest: {0}\".format(nx.is_forest(df_compare_left_graph)))\n","print(\"Is DAG: {0}\".format(nx.is_directed_acyclic_graph(df_compare_left_graph)))\n","model_left_nodes_df = pd.DataFrame({\n","        \"Nodes\": list(df_compare_left_graph.nodes)\n","    })\n","Alteryx.write(\n","    model_left_nodes_df,\n","    1,\n","    {\"Nodes\": {\"type\": \"V_String\", \"length\": 2147483647}}\n",")\n"]},{"cell_type":"code","execution_count":7,"metadata":{},"outputs":[],"source":["print(\"\\nCompute Intersection: \")\n","print(\"===========================\")\n","df_compare_joint_graph = intersection(graph_1, graph_2)\n","print(nx.info(df_compare_joint_graph))\n","print(\"Is Tree: {0}\".format(nx.is_tree(df_compare_joint_graph)))\n","print(\"Is Forest: {0}\".format(nx.is_forest(df_compare_joint_graph)))\n","print(\"Is DAG: {0}\".format(nx.is_directed_acyclic_graph(df_compare_joint_graph)))\n","model_join_nodes_df = pd.DataFrame({\n","        \"Nodes\": list(df_compare_joint_graph.nodes)\n","    })\n","Alteryx.write(\n","    model_join_nodes_df,\n","    2,\n","    {\"Nodes\": {\"type\": \"V_String\", \"length\": 2147483647}}\n",")\n"]},{"cell_type":"code","execution_count":8,"metadata":{},"outputs":[],"source":["print(\"\\nCompute Right Compare: \")\n","print(\"===========================\")\n","df_compare_right_graph = difference(graph_2, graph_1)\n","print(nx.info(df_compare_right_graph))\n","print(\"Is Tree: {0}\".format(nx.is_tree(df_compare_right_graph)))\n","print(\"Is Forest: {0}\".format(nx.is_forest(df_compare_right_graph)))\n","print(\"Is DAG: {0}\".format(nx.is_directed_acyclic_graph(df_compare_right_graph)))\n","model_right_nodes_df = pd.DataFrame({\n","        \"Nodes\": list(df_compare_right_graph.nodes)\n","    })\n","Alteryx.write(\n","    model_right_nodes_df,\n","    3,\n","    {\"Nodes\": {\"type\": \"V_String\", \"length\": 2147483647}}\n",")\n"]},{"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],"source":[]}],"metadata":{"kernelspec":{"display_name":"designerbasetools_venv","language":"python","name":"designerbasetools_venv"},"language_info":{"codemirror_mode":{"name":"ipython","version":3},"file_extension":".py","mimetype":"text/x-python","name":"python","nbconvert_exporter":"python","pygments_lexer":"ipython3","version":"3.8.5"}},"nbformat":4,"nbformat_minor":2}]]></Notebook>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxJupyterPluginEngine.dll" EngineDllEntryPoint="AlteryxJupyter" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="258" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="True" />
+          <Name>Left</Name>
+          <Abbrev>L</Abbrev>
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <FileInput>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Mercedes\Training\Batch_01\William\ModelOut01.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+          </FileInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>ModelOut01.yxdb</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Model" size="2147483647" source="PythonTool:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="366" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="True" />
+          <Name>Right</Name>
+          <Abbrev>R</Abbrev>
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <FileInput>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\05_Sales\Mercedes\Training\Batch_01\William\ModelOut02.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+          </FileInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>ModelOut02.yxdb</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Model" size="2147483647" source="PythonTool:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="738" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Left</Name>
+          <Abbrev>L</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>L Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="750" y="330" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Join</Name>
+          <Abbrev>J</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>J Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="762" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Right</Name>
+          <Abbrev>R</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>R Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="282" y="222" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="2" />
+          <Fields>
+            <Field name="property" />
+          </Fields>
+          <Data>
+            <r>
+              <c>Model</c>
+            </r>
+            <r>
+              <c />
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="property" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+        <Position x="282" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Drop Down (8)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="270" y="138" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="474" y="210" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="property" />
+          </Fields>
+          <Data>
+            <r>
+              <c>Model</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="property" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+        <Position x="486" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Drop Down (8)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="486" y="126" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output1" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output2" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output3" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="10" Connection="Question Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="1" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="1" Connection="Input" />
+    </Connection>
+    <Connection name="#LeftModelField">
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="1" Connection="Input" />
+    </Connection>
+    <Connection name="#RightModelField">
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="1" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="13" Connection="Question Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="10" Connection="Question" />
+      <Destination ToolID="11" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="11" Connection="Action" />
+      <Destination ToolID="9" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="13" Connection="Question" />
+      <Destination ToolID="14" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="14" Connection="Action" />
+      <Destination ToolID="12" Connection="Action" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (4)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (6)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (7)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (8)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (10)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (13)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (3)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>CompareModel</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="9096c112-dd64-4eda-ba84-db71d34dba7b" />
+      <Telemetry>
+        <PreviousWorkflowId value="9f4cc329-f391-4607-b7e9-e76093b0428d" />
+        <OriginWorkflowId value="9f4cc329-f391-4607-b7e9-e76093b0428d" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="11" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>9/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="14" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>12/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (2)</Name>
+          <ToolId value="2" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (3)</Description>
+              <Name>Macro Input (3)</Name>
+              <ToolId value="3" />
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (4)</Description>
+              <Name>Macro Input (4)</Name>
+              <ToolId value="4" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (6)</Description>
+              <Name>Macro Output (6)</Name>
+              <ToolId value="6" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (7)</Description>
+              <Name>Macro Output (7)</Name>
+              <ToolId value="7" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (8)</Description>
+              <Name>Macro Output (8)</Name>
+              <ToolId value="8" />
+            </Question>
+            <Question>
+              <Type>ListBox</Type>
+              <Description>Left Model Path</Description>
+              <Name>Drop Down (10)</Name>
+              <ToolId value="10" />
+              <Multiple value="False" />
+              <Default />
+              <Mode>Field</Mode>
+              <Field_ToolId value="3" />
+              <Field_ConnectionName />
+              <Field_Connection>Output</Field_Connection>
+              <Field_IsOutput value="True" />
+              <Field_IncludeNone value="False" />
+              <Field_FilterTypes>String,WString,V_String,V_WString</Field_FilterTypes>
+            </Question>
+            <Question>
+              <Type>ListBox</Type>
+              <Description>Right Model Path</Description>
+              <Name>Drop Down (13)</Name>
+              <ToolId value="13" />
+              <Multiple value="False" />
+              <Default />
+              <Mode>Field</Mode>
+              <Field_ToolId value="4" />
+              <Field_ConnectionName />
+              <Field_Connection>Output</Field_Connection>
+              <Field_IsOutput value="True" />
+              <Field_IncludeNone value="False" />
+              <Field_FilterTypes>String,WString,V_String,V_WString</Field_FilterTypes>
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="3" Selected="True" />
+        <Tool ToolId="4" Selected="True" />
+        <Tool ToolId="6" Selected="True" />
+        <Tool ToolId="7" Selected="True" />
+        <Tool ToolId="8" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

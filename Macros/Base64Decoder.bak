@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.4">
+  <Nodes>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+        <Position x="354" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>Base64_encoded</Field>
+          <RegExExpression value="(.{4})" />
+          <CaseInsensitve value="True" />
+          <Method>ParseSimple</Method>
+          <Replace expression="">
+            <CopyUnmatched value="True" />
+          </Replace>
+          <ParseSimple>
+            <SplitToRows value="True" />
+          </ParseSimple>
+          <ParseComplex>
+            <Field field="RegExOut1" type="String" size="11" />
+          </ParseComplex>
+          <Match>
+            <Field>Base64_encoded_Matched</Field>
+            <ErrorUnmatched value="False" />
+          </Match>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Tokenize:
+(.{4})</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Base64_encoded" size="1216" source="TextInput:" type="V_String" />
+            <Field name="Input" size="2147483647" source="Formula: [Base64_encoded]" type="V_String" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="RecordID" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="450" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="FindString(&#xA;User.Base64,&#xA;SubString(Replace([Base64_encoded],&quot;=&quot;,&quot;A&quot;),0,1)&#xA;)" field="Code1" size="2" type="Int16" />
+            <FormulaField expression="FindString(&#xA;User.Base64,&#xA;SubString(Replace([Base64_encoded],&quot;=&quot;,&quot;A&quot;),1,1)&#xA;)" field="Code2" size="2" type="Int16" />
+            <FormulaField expression="FindString(&#xA;User.Base64,&#xA;SubString(Replace([Base64_encoded],&quot;=&quot;,&quot;A&quot;),2,1)&#xA;)" field="Code3" size="2" type="Int16" />
+            <FormulaField expression="FindString(&#xA;User.Base64,&#xA;SubString(Replace([Base64_encoded],&quot;=&quot;,&quot;A&quot;),3,1)&#xA;)" field="Code4" size="2" type="Int16" />
+            <FormulaField expression="((Code1 * 64 + Code2) * 64 + Code3) * 64 + Code4" field="Coded" size="8" type="Int64" />
+            <FormulaField expression="ShiftRight([Coded], 16)" field="Code1" size="2" type="Int16" />
+            <FormulaField expression="MOD(ShiftRight([Coded], 8),256)" field="Code2" size="2" type="Int16" />
+            <FormulaField expression="MOD([Coded], 256)" field="Code3" size="2" type="Int16" />
+            <FormulaField expression="CharFromInt([Code1])&#xA;+ IIF([Code2]=0,&quot;&quot; ,&#xA;CharFromInt([Code2]) + IIF([Code3]=0,&quot;&quot;,CharFromInt([Code3])))" field="Decoded" size="3" type="WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Code1 = FindString(
+User.Base64,
+SubString(Replace([Base64_encoded],"=","A"),0,1...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Base64_encoded" size="1216" source="TextInput:" type="V_String" />
+            <Field name="Input" size="2147483647" source="Formula: [Base64_encoded]" type="V_String" />
+            <Field name="Code1" source="Formula: ShiftRight([Coded], 16)" type="Int16" />
+            <Field name="Code2" source="Formula: MOD(ShiftRight([Coded], 8),256)" type="Int16" />
+            <Field name="Code3" source="Formula: MOD([Coded], 256)" type="Int16" />
+            <Field name="Code4" source="Formula: FindString(&#xA;User.Base64,&#xA;SubString(Replace([Base64_encoded],&quot;=&quot;,&quot;A&quot;),3,1)&#xA;)" type="Int16" />
+            <Field name="Coded" source="Formula: ((Code1 * 64 + Code2) * 64 + Code3) * 64 + Code4" type="Int64" />
+            <Field name="Decoded" size="3" source="Formula: CharFromInt([Code1])&#xA;+ IIF([Code2]=0,&quot;&quot; ,&#xA;CharFromInt([Code2]) + IIF([Code3]=0,&quot;&quot;,CharFromInt([Code3])))" type="WString" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="RecordID" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="546" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Input" action="GroupBy" rename="Base64_encoded" />
+            <SummarizeField field="Decoded" action="Concat" rename="Decoded">
+              <Concat_Start />
+              <Separator />
+              <Concat_End />
+            </SummarizeField>
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Base64_encoded" size="2147483647" source="Summarize: GroupBy - Input" type="V_String" />
+            <Field name="Decoded" size="1073741823" source="Summarize: Concat - Decoded" type="V_WString" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="Input" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="258" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldName>RecordID</FieldName>
+          <StartValue>1</StartValue>
+          <FieldType>Int32</FieldType>
+          <FieldSize>6</FieldSize>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="RecordID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Base64_encoded" size="1216" source="TextInput:" type="V_String" />
+            <Field name="Input" size="2147483647" source="Formula: [Base64_encoded]" type="V_String" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="RecordID" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="162" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[Base64_encoded]" field="Input" size="2147483647" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[Input = [Base64_encoded]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Base64_encoded" size="1216" source="TextInput:" type="V_String" />
+            <Field name="Input" size="2147483647" source="Formula: [Base64_encoded]" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Encoded</Name>
+          <Abbrev />
+          <ShowFieldMap value="True" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="Base64_encoded" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklqaHZXbTgzYkZKNmVYRlZVRmxxZUhreWVTMVJSMDR3UmpSMWVtRnhPRzVpZG1wSE9HVklNbTFEZURnaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUpyZFdKbExYTjVjM1JsYlNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKa1pXWmhkV3gwTFhSdmEyVnVMWHBqZURaM0lpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WlhKMmFXTmxMV0ZqWTI5MWJuUXVibUZ0WlNJNkltUmxabUYxYkhRaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNTFhV1FpT2lJNE16WmpabUZsTkMwMFltUXpMVFF3WWpFdFlUQXlZeTFtWlRRNVptRXpNREUzWXpBaUxDSnpkV0lpT2lKemVYTjBaVzA2YzJWeWRtbGpaV0ZqWTI5MWJuUTZhM1ZpWlMxemVYTjBaVzA2WkdWbVlYVnNkQ0o5LlF0QVFLb3pkb2hzSzdfZkpzWTNRbU5KZU9EMWx2LWxma19WanNIZi1RSS1zYUcxc09iLV9ET0hJeURFVHlqTEtHV1NkdXhsMVF2RjMwQVR1RVpyMDh3MHhQTXhWTHhTV1d6MUNKM1RZb05JY2tPNmQ1YzE5aDZ4VF9SM1pGbTNKVGUtYnhMazJveWJrOG9GdlhXaVZTQk05d3hKb2FlM2VHcHhQTjdzR29nSnJRMjdnbHhGMnFYMDE3N0xaYzc5b1AxMTBCLWV5VXVRRGRUV1R4Z05yWXROc3l0VWZOd2daV2xnSDd2Um1RV3NTRkY5aGMyWmtmTHNjR0N5ZVA4aEJEQXpUZVdHWWN4N0kzR3hEYkhTMkhGSl9ib3ByQTJ5MXU0emZlRnQxUVZ2UWp5UTFKQXNuakZwZUJrX1ZiMjA0QmNiX2tSZFlRc0hCcVVKY0pweFQ3UQ==</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>Text Input (15)</Name>
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Base64_encoded" size="1216" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="666" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Decoded</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="17" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>User</Namespace>
+        <Name>Base64</Name>
+        <Value>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (17)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (18)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Base64Decoder</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="ca7ecf86-6eac-4d96-967f-bb7b2aa567d5" />
+      <Telemetry>
+        <PreviousWorkflowId value="" />
+        <OriginWorkflowId value="ca7ecf86-6eac-4d96-967f-bb7b2aa567d5" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (16)</Name>
+          <ToolId value="16" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (17)</Description>
+              <Name>Macro Input (17)</Name>
+              <ToolId value="17" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (18)</Description>
+              <Name>Macro Output (18)</Name>
+              <ToolId value="18" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="17" Selected="True" />
+        <Tool ToolId="18" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

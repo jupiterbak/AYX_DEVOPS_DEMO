@@ -1,0 +1,1125 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="126" y="378" width="72" height="163" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>If user would like a group by, add it into both summarize tools and change the Join field to be the Group</Text>
+          <Font name="Microsoft Sans Serif" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="594" y="750" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Group" action="GroupBy" rename="Group" />
+            <SummarizeField field="Correlation" action="Avg" rename="Avg_Correlation" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Group" size="255" source="TextInput:" type="String" />
+            <Field name="Avg_Correlation" source="Summarize: Avg - Correlation" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="45">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+        <Position x="1062" y="978" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Result" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+    </Node>
+    <Node ToolID="46">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Detour.Detour">
+        <Position x="102" y="906" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <DetourRight value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Right">
+          <RecordInfo>
+            <Field name="Variable1" source="TextInput:" type="Double" />
+            <Field name="Variable2" source="TextInput:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Left">
+          <RecordInfo>
+            <Field name="Variable1" source="TextInput:" type="Double" />
+            <Field name="Variable2" source="TextInput:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetour" />
+    </Node>
+    <Node ToolID="47">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1134" y="1038" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\ProgramData\Alteryx\Engine\Engine_25340_51586aa82f4c6c4a8888a222661728b4_\Engine_25340_f26ed07941b18c468208321d0d6b4bda~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="48">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+        <Position x="294" y="738" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <CartesianMode>Error</CartesianMode>
+          <SelectConfiguration>
+            <Configuration outputConnection="Output">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Source_Group" selected="True" type="String" size="255" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Variable1" source="TextInput:" type="Double" />
+            <Field name="Variable2" source="TextInput:" type="Double" />
+            <Field name="Group" size="255" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+    </Node>
+    <Node ToolID="49">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="198" y="822" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="Group" />
+          </Fields>
+          <Data>
+            <r>
+              <c>group1</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Group" size="2147483647" source="TextInput:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="51">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="30" y="906" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Field Selection</Name>
+          <Abbrev />
+          <ShowFieldMap value="True" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="100" />
+              <Fields>
+                <Field name="Variable1" />
+                <Field name="Variable2" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>17953.000001</c>
+                  <c>51858.0000002</c>
+                </r>
+                <r>
+                  <c>74105.000001</c>
+                  <c>180269.0000002</c>
+                </r>
+                <r>
+                  <c>10593.000001</c>
+                  <c>27986.0000002</c>
+                </r>
+                <r>
+                  <c>7581.000001</c>
+                  <c>22072.0000002</c>
+                </r>
+                <r>
+                  <c>19622.000001</c>
+                  <c>58382.0000002</c>
+                </r>
+                <r>
+                  <c>3997.000001</c>
+                  <c>10715.0000002</c>
+                </r>
+                <r>
+                  <c>8650.000001</c>
+                  <c>20330.0000002</c>
+                </r>
+                <r>
+                  <c>46121.000001</c>
+                  <c>113333.0000002</c>
+                </r>
+                <r>
+                  <c>14524.000001</c>
+                  <c>34847.0000002</c>
+                </r>
+                <r>
+                  <c>9981.000001</c>
+                  <c>25221.0000002</c>
+                </r>
+                <r>
+                  <c>15969.000001</c>
+                  <c>42823.0000002</c>
+                </r>
+                <r>
+                  <c>6469.000001</c>
+                  <c>14324.0000002</c>
+                </r>
+                <r>
+                  <c>10755.000001</c>
+                  <c>27150.0000002</c>
+                </r>
+                <r>
+                  <c>5865.000001</c>
+                  <c>13736.0000002</c>
+                </r>
+                <r>
+                  <c>5746.000001</c>
+                  <c>14929.0000002</c>
+                </r>
+                <r>
+                  <c>18976.000001</c>
+                  <c>47019.0000002</c>
+                </r>
+                <r>
+                  <c>23338.000001</c>
+                  <c>54875.0000002</c>
+                </r>
+                <r>
+                  <c>5853.000001</c>
+                  <c>13241.0000002</c>
+                </r>
+                <r>
+                  <c>4792.000001</c>
+                  <c>10818.0000002</c>
+                </r>
+                <r>
+                  <c>15791.000001</c>
+                  <c>37272.0000002</c>
+                </r>
+                <r>
+                  <c>5693.000001</c>
+                  <c>13776.0000002</c>
+                </r>
+                <r>
+                  <c>30519.000001</c>
+                  <c>78766.0000002</c>
+                </r>
+                <r>
+                  <c>19379.000001</c>
+                  <c>48330.0000002</c>
+                </r>
+                <r>
+                  <c>18035.000001</c>
+                  <c>43359.0000002</c>
+                </r>
+                <r>
+                  <c>23937.000001</c>
+                  <c>68548.0000002</c>
+                </r>
+                <r>
+                  <c>25754.000001</c>
+                  <c>77742.0000002</c>
+                </r>
+                <r>
+                  <c>14481.000001</c>
+                  <c>37790.0000002</c>
+                </r>
+                <r>
+                  <c>43186.000001</c>
+                  <c>103093.0000002</c>
+                </r>
+                <r>
+                  <c>7630.000001</c>
+                  <c>17915.0000002</c>
+                </r>
+                <r>
+                  <c>12396.000001</c>
+                  <c>30833.0000002</c>
+                </r>
+                <r>
+                  <c>10609.000001</c>
+                  <c>25983.0000002</c>
+                </r>
+                <r>
+                  <c>3998.000001</c>
+                  <c>9219.0000002</c>
+                </r>
+                <r>
+                  <c>6723.000001</c>
+                  <c>18283.0000002</c>
+                </r>
+                <r>
+                  <c>6735.000001</c>
+                  <c>16887.0000002</c>
+                </r>
+                <r>
+                  <c>35529.000001</c>
+                  <c>97614.0000002</c>
+                </r>
+                <r>
+                  <c>22205.000001</c>
+                  <c>53845.0000002</c>
+                </r>
+                <r>
+                  <c>259482.000001</c>
+                  <c>658606.0000002</c>
+                </r>
+                <r>
+                  <c>6542.000001</c>
+                  <c>14170.0000002</c>
+                </r>
+                <r>
+                  <c>34988.000001</c>
+                  <c>87386.0000002</c>
+                </r>
+                <r>
+                  <c>13834.000001</c>
+                  <c>34254.0000002</c>
+                </r>
+                <r>
+                  <c>53470.000001</c>
+                  <c>128727.0000002</c>
+                </r>
+                <r>
+                  <c>26350.000001</c>
+                  <c>74155.0000002</c>
+                </r>
+                <r>
+                  <c>4889.000001</c>
+                  <c>12572.0000002</c>
+                </r>
+                <r>
+                  <c>9111.000001</c>
+                  <c>22197.0000002</c>
+                </r>
+                <r>
+                  <c>123834.000001</c>
+                  <c>314964.0000002</c>
+                </r>
+                <r>
+                  <c>8880.000001</c>
+                  <c>21686.0000002</c>
+                </r>
+                <r>
+                  <c>12996.000001</c>
+                  <c>29946.0000002</c>
+                </r>
+                <r>
+                  <c>31810.000001</c>
+                  <c>88913.0000002</c>
+                </r>
+                <r>
+                  <c>146822.000001</c>
+                  <c>407591.0000002</c>
+                </r>
+                <r>
+                  <c>9574.000001</c>
+                  <c>23124.0000002</c>
+                </r>
+                <r>
+                  <c>89209.000001</c>
+                  <c>229167.0000002</c>
+                </r>
+                <r>
+                  <c>46004.000001</c>
+                  <c>117057.0000002</c>
+                </r>
+                <r>
+                  <c>4380.000001</c>
+                  <c>11022.0000002</c>
+                </r>
+                <r>
+                  <c>8199.000001</c>
+                  <c>19949.0000002</c>
+                </r>
+                <r>
+                  <c>12468.000001</c>
+                  <c>29689.0000002</c>
+                </r>
+                <r>
+                  <c>8786.000001</c>
+                  <c>22837.0000002</c>
+                </r>
+                <r>
+                  <c>21887.000001</c>
+                  <c>50396.0000002</c>
+                </r>
+                <r>
+                  <c>23212.000001</c>
+                  <c>63816.0000002</c>
+                </r>
+                <r>
+                  <c>72612.000001</c>
+                  <c>189535.0000002</c>
+                </r>
+                <r>
+                  <c>5784.000001</c>
+                  <c>13296.0000002</c>
+                </r>
+                <r>
+                  <c>28879.000001</c>
+                  <c>80458.0000002</c>
+                </r>
+                <r>
+                  <c>17010.000001</c>
+                  <c>40924.0000002</c>
+                </r>
+                <r>
+                  <c>70773.000001</c>
+                  <c>178404.0000002</c>
+                </r>
+                <r>
+                  <c>27668.000001</c>
+                  <c>70272.0000002</c>
+                </r>
+                <r>
+                  <c>6838.000001</c>
+                  <c>17564.0000002</c>
+                </r>
+                <r>
+                  <c>4880.000001</c>
+                  <c>12926.0000002</c>
+                </r>
+                <r>
+                  <c>10270.000001</c>
+                  <c>24632.0000002</c>
+                </r>
+                <r>
+                  <c>537.000001</c>
+                  <c>2676.0000002</c>
+                </r>
+                <r>
+                  <c>1332.000001</c>
+                  <c>5213.0000002</c>
+                </r>
+                <r>
+                  <c>103269.000001</c>
+                  <c>288473.0000002</c>
+                </r>
+                <r>
+                  <c>4520.000001</c>
+                  <c>17372.0000002</c>
+                </r>
+                <r>
+                  <c>471.000001</c>
+                  <c>977.0000002</c>
+                </r>
+                <r>
+                  <c>811.000001</c>
+                  <c>1844.0000002</c>
+                </r>
+                <r>
+                  <c>1592.000001</c>
+                  <c>4945.0000002</c>
+                </r>
+                <r>
+                  <c>28318.000001</c>
+                  <c>85687.0000002</c>
+                </r>
+                <r>
+                  <c>1034.000001</c>
+                  <c>2194.0000002</c>
+                </r>
+                <r>
+                  <c>11986.000001</c>
+                  <c>30535.0000002</c>
+                </r>
+                <r>
+                  <c>18636.000001</c>
+                  <c>52811.0000002</c>
+                </r>
+                <r>
+                  <c>5686.000001</c>
+                  <c>13097.0000002</c>
+                </r>
+                <r>
+                  <c>4857.000001</c>
+                  <c>12708.0000002</c>
+                </r>
+                <r>
+                  <c>592.000001</c>
+                  <c>1458.0000002</c>
+                </r>
+                <r>
+                  <c>21657.000001</c>
+                  <c>86316.0000002</c>
+                </r>
+                <r>
+                  <c>2685.000001</c>
+                  <c>9204.0000002</c>
+                </r>
+                <r>
+                  <c>2273.000001</c>
+                  <c>6328.0000002</c>
+                </r>
+                <r>
+                  <c>1784.000001</c>
+                  <c>7562.0000002</c>
+                </r>
+                <r>
+                  <c>2384.000001</c>
+                  <c>5505.0000002</c>
+                </r>
+                <r>
+                  <c>3514.000001</c>
+                  <c>8886.0000002</c>
+                </r>
+                <r>
+                  <c>1554.000001</c>
+                  <c>2974.0000002</c>
+                </r>
+                <r>
+                  <c>2166.000001</c>
+                  <c>6934.0000002</c>
+                </r>
+                <r>
+                  <c>3927.000001</c>
+                  <c>9682.0000002</c>
+                </r>
+                <r>
+                  <c>1596.000001</c>
+                  <c>7697.0000002</c>
+                </r>
+                <r>
+                  <c>2690.000001</c>
+                  <c>5865.0000002</c>
+                </r>
+                <r>
+                  <c>270.000001</c>
+                  <c>654.0000002</c>
+                </r>
+                <r>
+                  <c>2381.000001</c>
+                  <c>5601.0000002</c>
+                </r>
+                <r>
+                  <c>19016.000001</c>
+                  <c>69023.0000002</c>
+                </r>
+                <r>
+                  <c>50007.000001</c>
+                  <c>129374.0000002</c>
+                </r>
+                <r>
+                  <c>43820.000001</c>
+                  <c>121130.0000002</c>
+                </r>
+                <r>
+                  <c>21920.000001</c>
+                  <c>52488.0000002</c>
+                </r>
+                <r>
+                  <c>10699.000001</c>
+                  <c>33718.0000002</c>
+                </r>
+                <r>
+                  <c>3107.000001</c>
+                  <c>7486.0000002</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Variable1" source="TextInput:" type="Double" />
+            <Field name="Variable2" source="TextInput:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="52">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1122" y="918" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Output16</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="59">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.PearsonCorrelation.PearsonCorrelation">
+        <Position x="198" y="990" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Fields orderChanged="False">
+            <Field name="Variable1" />
+            <Field name="Variable2" />
+            <Field name="*Unknown" selected="False" />
+          </Fields>
+          <Covariance value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Result" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxPearsonCorrelation" />
+    </Node>
+    <Node ToolID="61">
+      <GuiSettings>
+        <Position x="390" y="738" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="BatchMacroGroupBy"><![CDATA[Control=Group
+Input2=Group
+]]></Value>
+          <Value name="Input.Input2"><![CDATA[Property 01=Variable1
+Property 02=Variable2
+]]></Value>
+          <Value name="ControlParams"><![CDATA[Control Parameter (6)=Group
+]]></Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output4">
+          <RecordInfo>
+            <Field name="Result" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="Group_Pearson.yxmc" />
+    </Node>
+    <Node ToolID="62">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="486" y="750" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="True">
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Right_Variable1" selected="False" input="Right_" />
+                <SelectField field="Right_Variable2" selected="False" input="Right_" />
+                <SelectField field="Right_Group" selected="True" input="Right_" />
+                <SelectField field="Left_Result" selected="True" rename="Correlation" input="Left_" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Left">
+          <RecordInfo>
+            <Field name="Result" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Join">
+          <RecordInfo>
+            <Field name="Group" size="255" source="TextInput:" type="String" />
+            <Field name="Correlation" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Right">
+          <RecordInfo>
+            <Field name="Variable1" source="TextInput:" type="Double" />
+            <Field name="Variable2" source="TextInput:" type="Double" />
+            <Field name="Group" size="255" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="58">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="29" y="0" width="288" height="366" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Interface Tools</Caption>
+          <Folded value="False">False</Folded>
+          <Style Transparency="1" Margin="25" />
+          <Disabled value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="53">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="65" y="49" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Select Field to Group By</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="138" y="49" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Enable Group By</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="55">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Condition.Condition">
+            <Position x="66" y="157" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[Enable Group By]</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="56">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="137" y="277" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="63">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="54" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="21" Connection="Output" />
+      <Destination ToolID="45" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="59" Connection="Output" />
+      <Destination ToolID="45" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="45" Connection="Output" />
+      <Destination ToolID="52" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="45" Connection="Output" />
+      <Destination ToolID="47" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="46" Connection="Right" />
+      <Destination ToolID="48" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="49" Connection="Output" />
+      <Destination ToolID="48" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="46" Connection="Left" />
+      <Destination ToolID="59" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="61" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="61" Connection="Control" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="62" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="61" Connection="Output4" />
+      <Destination ToolID="62" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="51" Connection="Output" />
+      <Destination ToolID="46" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="56" Connection="Action" />
+      <Destination ToolID="46" Connection="Action" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="51" Connection="Question" />
+      <Destination ToolID="53" Connection="Question Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="62" Connection="Join" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="53" Connection="Question" />
+      <Destination ToolID="63" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="55" Connection="True Condition" />
+      <Destination ToolID="63" Connection="Condition" />
+    </Connection>
+    <Connection name="Enable Group By" Wireless="True">
+      <Origin ToolID="54" Connection="Question" />
+      <Destination ToolID="56" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="55" Connection="True Condition" />
+      <Destination ToolID="56" Connection="Condition" />
+    </Connection>
+    <Connection name="Enable Group By" Wireless="True">
+      <Origin ToolID="54" Connection="Question" />
+      <Destination ToolID="55" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="63" Connection="Action" />
+      <Destination ToolID="49" Connection="Action" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (53)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (54)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>PearsonByGroup</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="7e6a4a87-fcfe-4f07-874b-5ebca59cac38" />
+      <Telemetry>
+        <PreviousWorkflowId value="bd2d96dc-a509-4717-8059-37a09521bb54" />
+        <OriginWorkflowId value="c46b8d3f-d28e-42ee-89bf-57f671235d3f" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="False" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <Condition>
+          <Type>Condition</Type>
+          <Description />
+          <ToolId value="55" />
+          <Expression>[Enable Group By]</Expression>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description>Enable Group By</Description>
+              <ToolId value="56" />
+              <Mode>Simple</Mode>
+              <Variable>Enable Group By</Variable>
+              <Replace value="True" />
+              <ReplaceText>False</ReplaceText>
+              <Destination>46/DetourRight/@value</Destination>
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="63" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>49/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+          </True>
+          <False />
+        </Condition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (1)</Name>
+          <ToolId value="1" />
+          <Questions />
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Field Selection</Description>
+          <Name>Tab (10)</Name>
+          <ToolId value="10" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Field Selection</Description>
+              <Name>Macro Input (51)</Name>
+              <ToolId value="51" />
+            </Question>
+          </Questions>
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Group By (Optional)</Description>
+          <Name>Tab (11)</Name>
+          <ToolId value="11" />
+          <Questions>
+            <Question>
+              <Type>BooleanGroup</Type>
+              <Description>Enable Group By</Description>
+              <Name>Check Box (54)</Name>
+              <ToolId value="54" />
+              <Questions>
+                <Question>
+                  <Type>ListBox</Type>
+                  <Description>Select Field to Group By</Description>
+                  <Name>Drop Down (53)</Name>
+                  <ToolId value="53" />
+                  <Multiple value="False" />
+                  <Default />
+                  <Mode>MacroField</Mode>
+                  <MacroField_InputTool value="51" />
+                  <Field_IncludeNone value="False" />
+                  <MacroField_FilterTypes>Bool,Byte,Int16,Int32,Int64,FixedDecimal,Float,Double,String,WString,V_String,V_WString,Date,Time,DateTime,Blob,SpatialObj</MacroField_FilterTypes>
+                </Question>
+              </Questions>
+              <Default value="False" />
+              <Collapsable value="False" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Output16</Description>
+              <Name>Macro Output (52)</Name>
+              <ToolId value="52" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="True" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="47" Selected="False" />
+        <Tool ToolId="51" Selected="True" />
+        <Tool ToolId="52" Selected="True" />
+        <Tool ToolId="61" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

@@ -1,0 +1,3599 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxRPluginGui.R">
+        <Position x="690" y="858" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <RScript><![CDATA[# This macro provides the ability to create a K-Medoid clustering
+# solution in a flexible way. First, it allows the use of either
+# a dissimilarity/distance matrix or a set of raw records
+# containing numeric fields from which to construct a distance
+# matrix. Second, it can either find a single solution, or the
+# "best" solution among a range of possible solutions in terms
+# of the number of clusters to use. The metric to determine
+# which of a range of possible solutions is best is the average
+# silhouette width for solutions with different numbers of
+# clusters.
+
+# Load the needed packages into the R session
+library(cluster)
+
+# Read in the user provided data
+the_data <- read.Alteryx("#1")
+
+# How the input data is processed depends on whether it is a
+# dissimilarity/distance matrix or raw records. This results
+# in the need to use an if-else block, starting with working
+# with a dissimilarity/distance matrix
+if ('%Question.dissim.dist%' == "True") {
+
+  # The error checking on a dissimilarity/distance matrix
+  if (!(nrow(the_data) == ncol(the_data) || nrow(the_data) == (ncol(the_data) - 1))) {
+    stop.Alteryx("A distance or dissimilarity matrix input has been specified, but the data is not consistent with this.")
+  }
+
+  # The item identifier field in a MB Affinity generated cosine
+  # similarity is redundant since the same information is
+  # available in the column names, so remove it 
+  if (ncol(the_data) > nrow(the_data)) {
+	  the_data <- the_data[, -1]
+  }
+
+  # The pam function does not work with a dissimilarity matrix
+  # in a data frame, but the data frame can be coerced into a
+  # dist (distance) object which it can work with. This is
+  # done below
+  dissim <- as.dist(the_data)
+
+} else { # The case of raw records
+
+  # Get the needed user input, first for the distance metric,
+  # then for variable standardization. The use of tolower
+  # addresses the fact that mixed case was used in the GUI,
+  # but the R function we will be using wants the argument to
+  # be lowercase
+  dist_metric <- tolower('%Question.dist.metric%')
+  if (any(sapply(the_data, class) == "factor") && dist_metric != "gower") {
+    dist_metric <- "gower"
+    AlteryxMessage(paste(c("One or more of the provided columns is a factor,",
+                         "but the specified distance metrix is not Gower.",
+                         "The distance metric has be changed to Gower.")),
+                   iType = 2, iPriority = 3)
+  }
+  stand_vars <- ifelse('%Question.stand.vars%' == "True", TRUE, FALSE)
+  
+  # The function "daisy", also in the cluster package, is
+  # used to calculate the distance/dissimilarity matrix
+  dissim <- daisy(the_data, metric = dist_metric, stand = stand_vars)
+
+}
+
+# Get the user specified name for the cluster solution.
+# The call to make.names makes sure the user input is
+# converted to a valid R object name
+solution_name <- make.names('%Question.solution.name%')
+
+# How the final solution is obtained depends on whether the
+# user selects the creation of a single solution, or to search
+# over a possible range of solutions. Consequently, another
+# if-else block is needed to address this issue, with the
+# if block being the single solution case 
+if ('%Question.single.solution%' == "True") {
+
+  num_clusters <- %Question.num.clusters%
+  # Obtain the cluster solution.
+  the_solution <- pam(dissim, k = num_clusters)
+
+  # Solution level info: Isolation and number of clusters
+	isolation <- paste(summary(the_solution$isolation)[2:3], collapse = "|")
+  other_values <- c(paste(solution_name, num_clusters, sep = "|"), isolation)
+  other_labels <- c("name_clusters", "isolation")
+
+  # Write out a blank string to avoid a down stream error associated
+  # with not having a comparative plot as in the solution range case
+  write.Alteryx(data.frame(a = ""), 5)
+  
+} else { # The best solution search case
+
+  # The user specified minimum and maximum number of clusters
+  min_clusters <- %Question.min.clusters%
+  max_clusters <- %Question.max.clusters%
+
+  # The number of possible solutions
+  possible_sol <- max_clusters - min_clusters + 1
+
+  # Make sure that the implied number of solutions is positive
+  if (possible_sol < 1) {
+    stop.Alteryx("The provided minimum number of clusters exceeds the provided maximum number.")
+  }
+  
+  ## THE PARALLEL VERSION
+  # Load the needed libraries of paralleliztion
+  library(parallel)
+  library(doParallel)
+  library(foreach)
+
+  # Determine the number of cores to use in the parallel environment
+  numClus_si <- %Question.num.cores%
+  numClus_si[numClus_si == 0] <- detectCores() - 2
+
+  # Setup the parallel environment
+  clus <- makeCluster(numClus_si)
+  registerDoParallel(clus)
+
+  # The "best" solution within the provided range is found
+  # by getting solutions for each integer value of clusters
+  # in the range (a.k.a., by brute force).
+  #
+  # The function that will be used in the foreach call
+  pamSolution <- function(dissim, k) {
+    require(cluster)
+    the_sol <- pam(dissim, k)
+    list(k = k, asw = the_sol$silinfo$avg.width, sol = the_sol)
+  }
+
+  # Get the cluster solutions using parallelization
+  solutions <- foreach(k = min_clusters:max_clusters) %dopar%
+               pamSolution(dissim, k)
+
+  # Process the results to get the "best" solution
+  the_k <- sapply(solutions, function(x) x$k)
+  asw <- sapply(solutions, function(x) x$asw)
+  the_solutions <- lapply(solutions, function(x) x$sol)
+  k_best <- the_k[asw == max(asw)]
+  # Convert to a numeric index (why?)
+  j_best <- k_best - min_clusters + 1
+  the_solution <- the_solutions[[j_best]]
+
+  ## THE SERIAL VERSION
+  # Initialize a vector with the average silhouette width for
+  # each of the solutions and a list to hold the solutions
+  #asw <- numeric(possible_sol)
+  #sol_list <- list()
+  # Loop over the possible solutions
+  #for (k in min_clusters:max_clusters) {
+  #  this_sol <- pam(dissim, k)
+    # The "index" value for this k
+  #  j <- k - min_clusters + 1
+    # The overall average silhouette width for this solution
+  #  asw[j] <- this_sol$silinfo$avg.width
+  #  # Adding the solution to the list
+  #  sol_list[[j]] <- this_sol
+  #}
+  
+  # The index value that corresponds to the "best" solution
+  #j_best <- which.max(asw)
+  # Convert the best index value back to the value of k
+  #k_best <- j_best + min_clusters - 1
+  # The "best" solution
+  #the_solution <- sol_list[[j_best]]
+  
+  # Solution level info: Isolation and number of clusters
+  isolation <- paste(summary(the_solution$isolation)[2:3], collapse = "|")
+  other_values <- c(paste(solution_name, k_best, sep = "|"), isolation)
+  other_labels <- c("name_clusters", "isolation")
+  
+  # Create a diagnostic plot of average silhouette width vs
+  # the number of clusters
+  #
+  # Setup the needed graphics parameters based on user input
+  whr <- graphWHR(inches = '%Question.inches%', in.w = '%Question.in.w%', in.h = '%Question.in.h%', cm.w = '%Question.cm.w%', cm.h = '%Question.cm.h%', resolution = '%Question.graph.resolution%', print.high = FALSE)
+  # Start the AlteryxGraph device, output will be written to
+  # Alteryx through the fifth output node of the R tool
+  AlteryxGraph(nOutput = 5, width = whr[1], height = whr[2], res = whr[3], pointsize = %Question.pointsize%)
+  # Create the actual plot
+  plot(min_clusters:max_clusters, asw, type= "h", main = "Average Silhouette Width for Different Numbers of Clusters", xlab= "Number of Clusters", ylab = "Average Silhouette Width")
+#  axis(1, j_best + min_clusters - 1, paste("best",k_best,sep="\n"), col = "red", col.axis = "red")
+  axis(1, k_best , paste("best",k_best,sep="\n"), col = "red", col.axis = "red")
+  # Stop the AlteryxGraph device
+}
+
+# Create the cluster level summary information. There are
+# multiple elements in the pam R object that contains the
+# needed information. This information is brought together
+# below into a single table, and then written out to Alteyx.
+# You can refer to the R documentation for pam.object to
+# obtain additional information.
+print(the_solution$clusinfo)
+clus_info <- cbind(data.frame(Cluster = 1:nrow(the_solution$clusinfo)), as.data.frame(the_solution$clusinfo))
+clus_info$ave_sil_width <- the_solution$silinfo$clus.avg.widths
+clus_info$medoid <- the_solution$medoids
+# Alter the names of columns to make them a bit easier to
+# understand.
+names(clus_info) <- c("Cluster", "Size", "Max Dissimilarity", "Ave Dissimilarity", "Diameter", "Seperation", "Ave Silhouette Width", "Cluster Medoid")
+# Write the cluster level information to Alteryx through
+# the first R tool output
+write.Alteryx(clus_info)
+
+# Create the item level summary information. Luckily,
+# this is contained in one element of the solution
+# object. However, one element of the output is very
+# obscure, and not very informative, so it is removed
+item_info <- as.data.frame(the_solution$silinfo$widths)
+item_info <- cbind(data.frame(item = row.names(item_info)), item_info)
+# Remove the obscure column
+item_info$neighbor <- NULL
+# Alter the column names so they are attractive
+names(item_info) <- c("Item", "Cluster", "Silhouette Width")
+# Write the item level information out of the
+# second output node of the R tool
+write.Alteryx(item_info, nOutput = 2)
+
+# Write out the other (solution level) information
+write.Alteryx(data.frame(Key = other_labels, Value = other_values), nOutput = 4)
+
+# Write out the serialized pam object to Alteryx.
+# The code below converts it into the BLOB, which
+# enables it to pass through an Alteryx workflow
+# in a way where it can be used by downstream tools.
+# While the code may not appear to be intuitive, it
+# works as expected.
+the_obj <- vector(mode="list", length=2)
+the_obj[[1]] <- c(solution_name)
+the_obj[[2]] <- list(the_solution)
+names(the_obj) <- c("Name", "Object")
+suppressWarnings(write.Alteryx(the_obj, nOutput = 3))
+]]></RScript>
+          <UseFullUpdate value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output5">
+          <RecordInfo>
+            <Field name="Graph" size="1073741823" source="Report:R-Graph:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Output1">
+          <RecordInfo>
+            <Field name="Cluster" source="R-DATA:" type="Int32" />
+            <Field name="Size" source="R-DATA:" type="Double" />
+            <Field name="Max Dissimilarity" source="R-DATA:" type="Double" />
+            <Field name="Ave Dissimilarity" source="R-DATA:" type="Double" />
+            <Field name="Diameter" source="R-DATA:" type="Double" />
+            <Field name="Seperation" source="R-DATA:" type="Double" />
+            <Field name="Ave Silhouette Width" source="R-DATA:" type="Double" />
+            <Field name="Cluster Medoid" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Output2">
+          <RecordInfo>
+            <Field name="Item" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Cluster" source="R-DATA:" type="Double" />
+            <Field name="Silhouette Width" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Output3">
+          <RecordInfo>
+            <Field name="Name" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Object" size="2147483647" source="R-DATA:SERIAL" type="Blob" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Output4">
+          <RecordInfo>
+            <Field name="Key" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Value" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxRPluginEngine.dll" EngineDllEntryPoint="AlteryxR" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="162" y="858" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="True" />
+          <Name>Input</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <FileInput>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">Alteryx_Tool_Dissimilarity_Matrix2.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+          </FileInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>Input Data (1)</Name>
+          <AnnotationText>Alteryx_Tool_Dissimilarity_Matrix.yxdb</AnnotationText>
+          <DefaultAnnotationText>Alteryx_Tool_Dissimilarity_Matrix2.yxdb</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Tool" size="29" source="FieldInfo" type="V_String" />
+            <Field name="AB_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AB_Controls" source="R-DATA:" type="Double" />
+            <Field name="AB_Treatments" source="R-DATA:" type="Double" />
+            <Field name="AB_Trend" source="R-DATA:" type="Double" />
+            <Field name="Action" source="R-DATA:" type="Double" />
+            <Field name="AllocateAppend" source="R-DATA:" type="Double" />
+            <Field name="AllocateInput" source="R-DATA:" type="Double" />
+            <Field name="AllocateMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="AllocateReport" source="R-DATA:" type="Double" />
+            <Field name="AlteryxReportChartGui" source="R-DATA:" type="Double" />
+            <Field name="AlteryxSelect" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Download" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Upload" source="R-DATA:" type="Double" />
+            <Field name="APIOutput" source="R-DATA:" type="Double" />
+            <Field name="AppendFields" source="R-DATA:" type="Double" />
+            <Field name="Append_Cluster" source="R-DATA:" type="Double" />
+            <Field name="ARIMA" source="R-DATA:" type="Double" />
+            <Field name="Arrange" source="R-DATA:" type="Double" />
+            <Field name="Association_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AutoField" source="R-DATA:" type="Double" />
+            <Field name="Base64_Encoder" source="R-DATA:" type="Double" />
+            <Field name="BlobConvert" source="R-DATA:" type="Double" />
+            <Field name="BlobInput" source="R-DATA:" type="Double" />
+            <Field name="BlockUntilDone" source="R-DATA:" type="Double" />
+            <Field name="Boosted_Model" source="R-DATA:" type="Double" />
+            <Field name="Browse" source="R-DATA:" type="Double" />
+            <Field name="Buffer" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCount" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCountAppend" source="R-DATA:" type="Double" />
+            <Field name="CalgaryInput" source="R-DATA:" type="Double" />
+            <Field name="CalgaryJoin" source="R-DATA:" type="Double" />
+            <Field name="CalgaryLoader" source="R-DATA:" type="Double" />
+            <Field name="CASS" source="R-DATA:" type="Double" />
+            <Field name="CASSParse" source="R-DATA:" type="Double" />
+            <Field name="ComposerChart" source="R-DATA:" type="Double" />
+            <Field name="ComposerImage" source="R-DATA:" type="Double" />
+            <Field name="ComposerLayout" source="R-DATA:" type="Double" />
+            <Field name="ComposerOverlay" source="R-DATA:" type="Double" />
+            <Field name="ComposerRender" source="R-DATA:" type="Double" />
+            <Field name="ComposerTable" source="R-DATA:" type="Double" />
+            <Field name="ComposerText" source="R-DATA:" type="Double" />
+            <Field name="Condition" source="R-DATA:" type="Double" />
+            <Field name="ContingencyTable" source="R-DATA:" type="Double" />
+            <Field name="CountRecords" source="R-DATA:" type="Double" />
+            <Field name="Count_Regression" source="R-DATA:" type="Double" />
+            <Field name="CreatePoints" source="R-DATA:" type="Double" />
+            <Field name="Create_Samples" source="R-DATA:" type="Double" />
+            <Field name="CrossTab" source="R-DATA:" type="Double" />
+            <Field name="DataSift" source="R-DATA:" type="Double" />
+            <Field name="DateTime" source="R-DATA:" type="Double" />
+            <Field name="DateTimeNow" source="R-DATA:" type="Double" />
+            <Field name="Date_Filter" source="R-DATA:" type="Double" />
+            <Field name="DbFileInput" source="R-DATA:" type="Double" />
+            <Field name="DbFileOutput" source="R-DATA:" type="Double" />
+            <Field name="Decision_Tree" source="R-DATA:" type="Double" />
+            <Field name="Detour" source="R-DATA:" type="Double" />
+            <Field name="DetourEnd" source="R-DATA:" type="Double" />
+            <Field name="Directory" source="R-DATA:" type="Double" />
+            <Field name="Distance" source="R-DATA:" type="Double" />
+            <Field name="Distribution_Analysis" source="R-DATA:" type="Double" />
+            <Field name="Download" source="R-DATA:" type="Double" />
+            <Field name="DynamicInput" source="R-DATA:" type="Double" />
+            <Field name="DynamicRename" source="R-DATA:" type="Double" />
+            <Field name="DynamicReplace" source="R-DATA:" type="Double" />
+            <Field name="DynamicSelect" source="R-DATA:" type="Double" />
+            <Field name="Email" source="R-DATA:" type="Double" />
+            <Field name="aError" source="R-DATA:" type="Double" />
+            <Field name="ETS" source="R-DATA:" type="Double" />
+            <Field name="FieldInfo" source="R-DATA:" type="Double" />
+            <Field name="Field_Summary_Report" source="R-DATA:" type="Double" />
+            <Field name="Filter" source="R-DATA:" type="Double" />
+            <Field name="FindNearest" source="R-DATA:" type="Double" />
+            <Field name="FindReplace" source="R-DATA:" type="Double" />
+            <Field name="Find_Nearest_Neighbors" source="R-DATA:" type="Double" />
+            <Field name="Footer" source="R-DATA:" type="Double" />
+            <Field name="Forest_Model" source="R-DATA:" type="Double" />
+            <Field name="Formula" source="R-DATA:" type="Double" />
+            <Field name="Foursquare" source="R-DATA:" type="Double" />
+            <Field name="Frequency" source="R-DATA:" type="Double" />
+            <Field name="FuzzyMatch" source="R-DATA:" type="Double" />
+            <Field name="Gamma_Regression" source="R-DATA:" type="Double" />
+            <Field name="Generalize" source="R-DATA:" type="Double" />
+            <Field name="GenerateRows" source="R-DATA:" type="Double" />
+            <Field name="Geocoder" source="R-DATA:" type="Double" />
+            <Field name="Gnip" source="R-DATA:" type="Double" />
+            <Field name="Google_Analytics" source="R-DATA:" type="Double" />
+            <Field name="Header" source="R-DATA:" type="Double" />
+            <Field name="HeatMap" source="R-DATA:" type="Double" />
+            <Field name="Heat_Plot" source="R-DATA:" type="Double" />
+            <Field name="Histogram" source="R-DATA:" type="Double" />
+            <Field name="HtmlBox" source="R-DATA:" type="Double" />
+            <Field name="Imputation" source="R-DATA:" type="Double" />
+            <Field name="Input_XDF" source="R-DATA:" type="Double" />
+            <Field name="Join" source="R-DATA:" type="Double" />
+            <Field name="JoinMultiple" source="R-DATA:" type="Double" />
+            <Field name="JSONBuild" source="R-DATA:" type="Double" />
+            <Field name="JSONParse" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Clusters_Analysis" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Diagnostics" source="R-DATA:" type="Double" />
+            <Field name="Legend_Builder" source="R-DATA:" type="Double" />
+            <Field name="Legend_Splitter" source="R-DATA:" type="Double" />
+            <Field name="Lift_Chart" source="R-DATA:" type="Double" />
+            <Field name="Linear_Regression" source="R-DATA:" type="Double" />
+            <Field name="InDB_Browse" source="R-DATA:" type="Double" />
+            <Field name="InDB_Filter" source="R-DATA:" type="Double" />
+            <Field name="InDB_Formula" source="R-DATA:" type="Double" />
+            <Field name="InDB_Input" source="R-DATA:" type="Double" />
+            <Field name="InDB_Join" source="R-DATA:" type="Double" />
+            <Field name="InDB_Output" source="R-DATA:" type="Double" />
+            <Field name="InDB_Sample" source="R-DATA:" type="Double" />
+            <Field name="InDB_Select" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamIn" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamOut" source="R-DATA:" type="Double" />
+            <Field name="InDB_Summarize" source="R-DATA:" type="Double" />
+            <Field name="InDB_Union" source="R-DATA:" type="Double" />
+            <Field name="Logistic_Regression" source="R-DATA:" type="Double" />
+            <Field name="MacroInput" source="R-DATA:" type="Double" />
+            <Field name="MacroOutput" source="R-DATA:" type="Double" />
+            <Field name="MakeColumns" source="R-DATA:" type="Double" />
+            <Field name="MakeGrid" source="R-DATA:" type="Double" />
+            <Field name="MakeGroup" source="R-DATA:" type="Double" />
+            <Field name="MapInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoAppend" source="R-DATA:" type="Double" />
+            <Field name="MarketoInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoOutput" source="R-DATA:" type="Double" />
+            <Field name="MB_Inspect" source="R-DATA:" type="Double" />
+            <Field name="MB_Rules" source="R-DATA:" type="Double" />
+            <Field name="Message" source="R-DATA:" type="Double" />
+            <Field name="MongoInput" source="R-DATA:" type="Double" />
+            <Field name="MongoOutput" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldBinning" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldFormula" source="R-DATA:" type="Double" />
+            <Field name="MultiRowFormula" source="R-DATA:" type="Double" />
+            <Field name="Naive_Bayes" source="R-DATA:" type="Double" />
+            <Field name="Nested_Test" source="R-DATA:" type="Double" />
+            <Field name="Neural_Network" source="R-DATA:" type="Double" />
+            <Field name="Non_Overlapping_DT" source="R-DATA:" type="Double" />
+            <Field name="Oversample_Field" source="R-DATA:" type="Double" />
+            <Field name="PearsonConCoeff" source="R-DATA:" type="Double" />
+            <Field name="PearsonCorrelation" source="R-DATA:" type="Double" />
+            <Field name="PieWedgeTradeArea" source="R-DATA:" type="Double" />
+            <Field name="Plot_of_Means" source="R-DATA:" type="Double" />
+            <Field name="PolyBuild" source="R-DATA:" type="Double" />
+            <Field name="PolySplit" source="R-DATA:" type="Double" />
+            <Field name="PortfolioExplorer" source="R-DATA:" type="Double" />
+            <Field name="Principal_Components" source="R-DATA:" type="Double" />
+            <Field name="Questions" source="R-DATA:" type="Double" />
+            <Field name="R" source="R-DATA:" type="Double" />
+            <Field name="RandomRecords" source="R-DATA:" type="Double" />
+            <Field name="RecordID" source="R-DATA:" type="Double" />
+            <Field name="RegEx" source="R-DATA:" type="Double" />
+            <Field name="ReportMap" source="R-DATA:" type="Double" />
+            <Field name="RunCommand" source="R-DATA:" type="Double" />
+            <Field name="RunningTotal" source="R-DATA:" type="Double" />
+            <Field name="SalesForceInput" source="R-DATA:" type="Double" />
+            <Field name="SalesForceOutput" source="R-DATA:" type="Double" />
+            <Field name="Sample" source="R-DATA:" type="Double" />
+            <Field name="Scatterplot" source="R-DATA:" type="Double" />
+            <Field name="Score" source="R-DATA:" type="Double" />
+            <Field name="SelectRecords" source="R-DATA:" type="Double" />
+            <Field name="SharepointInput" source="R-DATA:" type="Double" />
+            <Field name="SharepointOutput" source="R-DATA:" type="Double" />
+            <Field name="Smooth" source="R-DATA:" type="Double" />
+            <Field name="SolocastClusterNum" source="R-DATA:" type="Double" />
+            <Field name="SolocastCompare" source="R-DATA:" type="Double" />
+            <Field name="SolocastCreateProfile" source="R-DATA:" type="Double" />
+            <Field name="SolocastDetailAsFields" source="R-DATA:" type="Double" />
+            <Field name="SolocastMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="SolocastReadProfileSet" source="R-DATA:" type="Double" />
+            <Field name="SolocastWriteProfileSet" source="R-DATA:" type="Double" />
+            <Field name="Sort" source="R-DATA:" type="Double" />
+            <Field name="SpatialInfo" source="R-DATA:" type="Double" />
+            <Field name="SpatialMatch" source="R-DATA:" type="Double" />
+            <Field name="SpatialProcess" source="R-DATA:" type="Double" />
+            <Field name="SpearmanCorrCoeff" source="R-DATA:" type="Double" />
+            <Field name="Spline_Model" source="R-DATA:" type="Double" />
+            <Field name="Stepwise" source="R-DATA:" type="Double" />
+            <Field name="Summarize" source="R-DATA:" type="Double" />
+            <Field name="SVM" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerDataPublish" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerLogin" source="R-DATA:" type="Double" />
+            <Field name="Test" source="R-DATA:" type="Double" />
+            <Field name="Test_of_Means" source="R-DATA:" type="Double" />
+            <Field name="TextBox" source="R-DATA:" type="Double" />
+            <Field name="TextInput" source="R-DATA:" type="Double" />
+            <Field name="TextToColumns" source="R-DATA:" type="Double" />
+            <Field name="Tile" source="R-DATA:" type="Double" />
+            <Field name="TimeSeriesFilter" source="R-DATA:" type="Double" />
+            <Field name="ToolContainer" source="R-DATA:" type="Double" />
+            <Field name="TradeArea" source="R-DATA:" type="Double" />
+            <Field name="Transpose" source="R-DATA:" type="Double" />
+            <Field name="TS_Compare" source="R-DATA:" type="Double" />
+            <Field name="TS_Covariate_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Plot" source="R-DATA:" type="Double" />
+            <Field name="Twitter_Search" source="R-DATA:" type="Double" />
+            <Field name="Union" source="R-DATA:" type="Double" />
+            <Field name="Unique" source="R-DATA:" type="Double" />
+            <Field name="Violin_Plot" source="R-DATA:" type="Double" />
+            <Field name="WeightedAvg" source="R-DATA:" type="Double" />
+            <Field name="WindowCompare" source="R-DATA:" type="Double" />
+            <Field name="XmlInputTool" source="R-DATA:" type="Double" />
+            <Field name="XmlOutputTool" source="R-DATA:" type="Double" />
+            <Field name="XMLParse" source="R-DATA:" type="Double" />
+            <Field name="XmlTransformTool" source="R-DATA:" type="Double" />
+            <Field name="ZIP9Coder" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="54" y="54" width="828" height="80" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Alteryx Lab Macro:
+K-Medoids Clustering</Text>
+          <Font name="Microsoft Sans Serif" size="18" style="0" />
+          <TextColor name="White" />
+          <FillColor r="95" g="152" b="171" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="126" y="930" width="132" height="72" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>The input data stream containing either a dissimilarity/distance matrix or raw records.</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="810" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Cluster Information</Name>
+          <Abbrev>C</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="990" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Item Information</Name>
+          <Abbrev>I</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="810" y="1254" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Object</Name>
+          <Abbrev>O</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="23">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="786" y="498" width="132" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>The cluster information, named "Cluster Information" and labeled "C".</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="24">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="954" y="498" width="132" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>The item information, named "Item Information" and labeled "I".</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="25">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="786" y="1314" width="132" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>The serialized R clustering solution object, named "Object" and labeled "O".</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="31">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Detour.Detour">
+        <Position x="318" y="858" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <DetourRight value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Left">
+          <RecordInfo>
+            <Field name="Tool" size="29" source="FieldInfo" type="V_String" />
+            <Field name="AB_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AB_Controls" source="R-DATA:" type="Double" />
+            <Field name="AB_Treatments" source="R-DATA:" type="Double" />
+            <Field name="AB_Trend" source="R-DATA:" type="Double" />
+            <Field name="Action" source="R-DATA:" type="Double" />
+            <Field name="AllocateAppend" source="R-DATA:" type="Double" />
+            <Field name="AllocateInput" source="R-DATA:" type="Double" />
+            <Field name="AllocateMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="AllocateReport" source="R-DATA:" type="Double" />
+            <Field name="AlteryxReportChartGui" source="R-DATA:" type="Double" />
+            <Field name="AlteryxSelect" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Download" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Upload" source="R-DATA:" type="Double" />
+            <Field name="APIOutput" source="R-DATA:" type="Double" />
+            <Field name="AppendFields" source="R-DATA:" type="Double" />
+            <Field name="Append_Cluster" source="R-DATA:" type="Double" />
+            <Field name="ARIMA" source="R-DATA:" type="Double" />
+            <Field name="Arrange" source="R-DATA:" type="Double" />
+            <Field name="Association_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AutoField" source="R-DATA:" type="Double" />
+            <Field name="Base64_Encoder" source="R-DATA:" type="Double" />
+            <Field name="BlobConvert" source="R-DATA:" type="Double" />
+            <Field name="BlobInput" source="R-DATA:" type="Double" />
+            <Field name="BlockUntilDone" source="R-DATA:" type="Double" />
+            <Field name="Boosted_Model" source="R-DATA:" type="Double" />
+            <Field name="Browse" source="R-DATA:" type="Double" />
+            <Field name="Buffer" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCount" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCountAppend" source="R-DATA:" type="Double" />
+            <Field name="CalgaryInput" source="R-DATA:" type="Double" />
+            <Field name="CalgaryJoin" source="R-DATA:" type="Double" />
+            <Field name="CalgaryLoader" source="R-DATA:" type="Double" />
+            <Field name="CASS" source="R-DATA:" type="Double" />
+            <Field name="CASSParse" source="R-DATA:" type="Double" />
+            <Field name="ComposerChart" source="R-DATA:" type="Double" />
+            <Field name="ComposerImage" source="R-DATA:" type="Double" />
+            <Field name="ComposerLayout" source="R-DATA:" type="Double" />
+            <Field name="ComposerOverlay" source="R-DATA:" type="Double" />
+            <Field name="ComposerRender" source="R-DATA:" type="Double" />
+            <Field name="ComposerTable" source="R-DATA:" type="Double" />
+            <Field name="ComposerText" source="R-DATA:" type="Double" />
+            <Field name="Condition" source="R-DATA:" type="Double" />
+            <Field name="ContingencyTable" source="R-DATA:" type="Double" />
+            <Field name="CountRecords" source="R-DATA:" type="Double" />
+            <Field name="Count_Regression" source="R-DATA:" type="Double" />
+            <Field name="CreatePoints" source="R-DATA:" type="Double" />
+            <Field name="Create_Samples" source="R-DATA:" type="Double" />
+            <Field name="CrossTab" source="R-DATA:" type="Double" />
+            <Field name="DataSift" source="R-DATA:" type="Double" />
+            <Field name="DateTime" source="R-DATA:" type="Double" />
+            <Field name="DateTimeNow" source="R-DATA:" type="Double" />
+            <Field name="Date_Filter" source="R-DATA:" type="Double" />
+            <Field name="DbFileInput" source="R-DATA:" type="Double" />
+            <Field name="DbFileOutput" source="R-DATA:" type="Double" />
+            <Field name="Decision_Tree" source="R-DATA:" type="Double" />
+            <Field name="Detour" source="R-DATA:" type="Double" />
+            <Field name="DetourEnd" source="R-DATA:" type="Double" />
+            <Field name="Directory" source="R-DATA:" type="Double" />
+            <Field name="Distance" source="R-DATA:" type="Double" />
+            <Field name="Distribution_Analysis" source="R-DATA:" type="Double" />
+            <Field name="Download" source="R-DATA:" type="Double" />
+            <Field name="DynamicInput" source="R-DATA:" type="Double" />
+            <Field name="DynamicRename" source="R-DATA:" type="Double" />
+            <Field name="DynamicReplace" source="R-DATA:" type="Double" />
+            <Field name="DynamicSelect" source="R-DATA:" type="Double" />
+            <Field name="Email" source="R-DATA:" type="Double" />
+            <Field name="aError" source="R-DATA:" type="Double" />
+            <Field name="ETS" source="R-DATA:" type="Double" />
+            <Field name="FieldInfo" source="R-DATA:" type="Double" />
+            <Field name="Field_Summary_Report" source="R-DATA:" type="Double" />
+            <Field name="Filter" source="R-DATA:" type="Double" />
+            <Field name="FindNearest" source="R-DATA:" type="Double" />
+            <Field name="FindReplace" source="R-DATA:" type="Double" />
+            <Field name="Find_Nearest_Neighbors" source="R-DATA:" type="Double" />
+            <Field name="Footer" source="R-DATA:" type="Double" />
+            <Field name="Forest_Model" source="R-DATA:" type="Double" />
+            <Field name="Formula" source="R-DATA:" type="Double" />
+            <Field name="Foursquare" source="R-DATA:" type="Double" />
+            <Field name="Frequency" source="R-DATA:" type="Double" />
+            <Field name="FuzzyMatch" source="R-DATA:" type="Double" />
+            <Field name="Gamma_Regression" source="R-DATA:" type="Double" />
+            <Field name="Generalize" source="R-DATA:" type="Double" />
+            <Field name="GenerateRows" source="R-DATA:" type="Double" />
+            <Field name="Geocoder" source="R-DATA:" type="Double" />
+            <Field name="Gnip" source="R-DATA:" type="Double" />
+            <Field name="Google_Analytics" source="R-DATA:" type="Double" />
+            <Field name="Header" source="R-DATA:" type="Double" />
+            <Field name="HeatMap" source="R-DATA:" type="Double" />
+            <Field name="Heat_Plot" source="R-DATA:" type="Double" />
+            <Field name="Histogram" source="R-DATA:" type="Double" />
+            <Field name="HtmlBox" source="R-DATA:" type="Double" />
+            <Field name="Imputation" source="R-DATA:" type="Double" />
+            <Field name="Input_XDF" source="R-DATA:" type="Double" />
+            <Field name="Join" source="R-DATA:" type="Double" />
+            <Field name="JoinMultiple" source="R-DATA:" type="Double" />
+            <Field name="JSONBuild" source="R-DATA:" type="Double" />
+            <Field name="JSONParse" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Clusters_Analysis" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Diagnostics" source="R-DATA:" type="Double" />
+            <Field name="Legend_Builder" source="R-DATA:" type="Double" />
+            <Field name="Legend_Splitter" source="R-DATA:" type="Double" />
+            <Field name="Lift_Chart" source="R-DATA:" type="Double" />
+            <Field name="Linear_Regression" source="R-DATA:" type="Double" />
+            <Field name="InDB_Browse" source="R-DATA:" type="Double" />
+            <Field name="InDB_Filter" source="R-DATA:" type="Double" />
+            <Field name="InDB_Formula" source="R-DATA:" type="Double" />
+            <Field name="InDB_Input" source="R-DATA:" type="Double" />
+            <Field name="InDB_Join" source="R-DATA:" type="Double" />
+            <Field name="InDB_Output" source="R-DATA:" type="Double" />
+            <Field name="InDB_Sample" source="R-DATA:" type="Double" />
+            <Field name="InDB_Select" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamIn" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamOut" source="R-DATA:" type="Double" />
+            <Field name="InDB_Summarize" source="R-DATA:" type="Double" />
+            <Field name="InDB_Union" source="R-DATA:" type="Double" />
+            <Field name="Logistic_Regression" source="R-DATA:" type="Double" />
+            <Field name="MacroInput" source="R-DATA:" type="Double" />
+            <Field name="MacroOutput" source="R-DATA:" type="Double" />
+            <Field name="MakeColumns" source="R-DATA:" type="Double" />
+            <Field name="MakeGrid" source="R-DATA:" type="Double" />
+            <Field name="MakeGroup" source="R-DATA:" type="Double" />
+            <Field name="MapInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoAppend" source="R-DATA:" type="Double" />
+            <Field name="MarketoInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoOutput" source="R-DATA:" type="Double" />
+            <Field name="MB_Inspect" source="R-DATA:" type="Double" />
+            <Field name="MB_Rules" source="R-DATA:" type="Double" />
+            <Field name="Message" source="R-DATA:" type="Double" />
+            <Field name="MongoInput" source="R-DATA:" type="Double" />
+            <Field name="MongoOutput" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldBinning" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldFormula" source="R-DATA:" type="Double" />
+            <Field name="MultiRowFormula" source="R-DATA:" type="Double" />
+            <Field name="Naive_Bayes" source="R-DATA:" type="Double" />
+            <Field name="Nested_Test" source="R-DATA:" type="Double" />
+            <Field name="Neural_Network" source="R-DATA:" type="Double" />
+            <Field name="Non_Overlapping_DT" source="R-DATA:" type="Double" />
+            <Field name="Oversample_Field" source="R-DATA:" type="Double" />
+            <Field name="PearsonConCoeff" source="R-DATA:" type="Double" />
+            <Field name="PearsonCorrelation" source="R-DATA:" type="Double" />
+            <Field name="PieWedgeTradeArea" source="R-DATA:" type="Double" />
+            <Field name="Plot_of_Means" source="R-DATA:" type="Double" />
+            <Field name="PolyBuild" source="R-DATA:" type="Double" />
+            <Field name="PolySplit" source="R-DATA:" type="Double" />
+            <Field name="PortfolioExplorer" source="R-DATA:" type="Double" />
+            <Field name="Principal_Components" source="R-DATA:" type="Double" />
+            <Field name="Questions" source="R-DATA:" type="Double" />
+            <Field name="R" source="R-DATA:" type="Double" />
+            <Field name="RandomRecords" source="R-DATA:" type="Double" />
+            <Field name="RecordID" source="R-DATA:" type="Double" />
+            <Field name="RegEx" source="R-DATA:" type="Double" />
+            <Field name="ReportMap" source="R-DATA:" type="Double" />
+            <Field name="RunCommand" source="R-DATA:" type="Double" />
+            <Field name="RunningTotal" source="R-DATA:" type="Double" />
+            <Field name="SalesForceInput" source="R-DATA:" type="Double" />
+            <Field name="SalesForceOutput" source="R-DATA:" type="Double" />
+            <Field name="Sample" source="R-DATA:" type="Double" />
+            <Field name="Scatterplot" source="R-DATA:" type="Double" />
+            <Field name="Score" source="R-DATA:" type="Double" />
+            <Field name="SelectRecords" source="R-DATA:" type="Double" />
+            <Field name="SharepointInput" source="R-DATA:" type="Double" />
+            <Field name="SharepointOutput" source="R-DATA:" type="Double" />
+            <Field name="Smooth" source="R-DATA:" type="Double" />
+            <Field name="SolocastClusterNum" source="R-DATA:" type="Double" />
+            <Field name="SolocastCompare" source="R-DATA:" type="Double" />
+            <Field name="SolocastCreateProfile" source="R-DATA:" type="Double" />
+            <Field name="SolocastDetailAsFields" source="R-DATA:" type="Double" />
+            <Field name="SolocastMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="SolocastReadProfileSet" source="R-DATA:" type="Double" />
+            <Field name="SolocastWriteProfileSet" source="R-DATA:" type="Double" />
+            <Field name="Sort" source="R-DATA:" type="Double" />
+            <Field name="SpatialInfo" source="R-DATA:" type="Double" />
+            <Field name="SpatialMatch" source="R-DATA:" type="Double" />
+            <Field name="SpatialProcess" source="R-DATA:" type="Double" />
+            <Field name="SpearmanCorrCoeff" source="R-DATA:" type="Double" />
+            <Field name="Spline_Model" source="R-DATA:" type="Double" />
+            <Field name="Stepwise" source="R-DATA:" type="Double" />
+            <Field name="Summarize" source="R-DATA:" type="Double" />
+            <Field name="SVM" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerDataPublish" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerLogin" source="R-DATA:" type="Double" />
+            <Field name="Test" source="R-DATA:" type="Double" />
+            <Field name="Test_of_Means" source="R-DATA:" type="Double" />
+            <Field name="TextBox" source="R-DATA:" type="Double" />
+            <Field name="TextInput" source="R-DATA:" type="Double" />
+            <Field name="TextToColumns" source="R-DATA:" type="Double" />
+            <Field name="Tile" source="R-DATA:" type="Double" />
+            <Field name="TimeSeriesFilter" source="R-DATA:" type="Double" />
+            <Field name="ToolContainer" source="R-DATA:" type="Double" />
+            <Field name="TradeArea" source="R-DATA:" type="Double" />
+            <Field name="Transpose" source="R-DATA:" type="Double" />
+            <Field name="TS_Compare" source="R-DATA:" type="Double" />
+            <Field name="TS_Covariate_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Plot" source="R-DATA:" type="Double" />
+            <Field name="Twitter_Search" source="R-DATA:" type="Double" />
+            <Field name="Union" source="R-DATA:" type="Double" />
+            <Field name="Unique" source="R-DATA:" type="Double" />
+            <Field name="Violin_Plot" source="R-DATA:" type="Double" />
+            <Field name="WeightedAvg" source="R-DATA:" type="Double" />
+            <Field name="WindowCompare" source="R-DATA:" type="Double" />
+            <Field name="XmlInputTool" source="R-DATA:" type="Double" />
+            <Field name="XmlOutputTool" source="R-DATA:" type="Double" />
+            <Field name="XMLParse" source="R-DATA:" type="Double" />
+            <Field name="XmlTransformTool" source="R-DATA:" type="Double" />
+            <Field name="ZIP9Coder" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Right">
+          <RecordInfo>
+            <Field name="Tool" size="29" source="FieldInfo" type="V_String" />
+            <Field name="AB_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AB_Controls" source="R-DATA:" type="Double" />
+            <Field name="AB_Treatments" source="R-DATA:" type="Double" />
+            <Field name="AB_Trend" source="R-DATA:" type="Double" />
+            <Field name="Action" source="R-DATA:" type="Double" />
+            <Field name="AllocateAppend" source="R-DATA:" type="Double" />
+            <Field name="AllocateInput" source="R-DATA:" type="Double" />
+            <Field name="AllocateMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="AllocateReport" source="R-DATA:" type="Double" />
+            <Field name="AlteryxReportChartGui" source="R-DATA:" type="Double" />
+            <Field name="AlteryxSelect" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Download" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Upload" source="R-DATA:" type="Double" />
+            <Field name="APIOutput" source="R-DATA:" type="Double" />
+            <Field name="AppendFields" source="R-DATA:" type="Double" />
+            <Field name="Append_Cluster" source="R-DATA:" type="Double" />
+            <Field name="ARIMA" source="R-DATA:" type="Double" />
+            <Field name="Arrange" source="R-DATA:" type="Double" />
+            <Field name="Association_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AutoField" source="R-DATA:" type="Double" />
+            <Field name="Base64_Encoder" source="R-DATA:" type="Double" />
+            <Field name="BlobConvert" source="R-DATA:" type="Double" />
+            <Field name="BlobInput" source="R-DATA:" type="Double" />
+            <Field name="BlockUntilDone" source="R-DATA:" type="Double" />
+            <Field name="Boosted_Model" source="R-DATA:" type="Double" />
+            <Field name="Browse" source="R-DATA:" type="Double" />
+            <Field name="Buffer" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCount" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCountAppend" source="R-DATA:" type="Double" />
+            <Field name="CalgaryInput" source="R-DATA:" type="Double" />
+            <Field name="CalgaryJoin" source="R-DATA:" type="Double" />
+            <Field name="CalgaryLoader" source="R-DATA:" type="Double" />
+            <Field name="CASS" source="R-DATA:" type="Double" />
+            <Field name="CASSParse" source="R-DATA:" type="Double" />
+            <Field name="ComposerChart" source="R-DATA:" type="Double" />
+            <Field name="ComposerImage" source="R-DATA:" type="Double" />
+            <Field name="ComposerLayout" source="R-DATA:" type="Double" />
+            <Field name="ComposerOverlay" source="R-DATA:" type="Double" />
+            <Field name="ComposerRender" source="R-DATA:" type="Double" />
+            <Field name="ComposerTable" source="R-DATA:" type="Double" />
+            <Field name="ComposerText" source="R-DATA:" type="Double" />
+            <Field name="Condition" source="R-DATA:" type="Double" />
+            <Field name="ContingencyTable" source="R-DATA:" type="Double" />
+            <Field name="CountRecords" source="R-DATA:" type="Double" />
+            <Field name="Count_Regression" source="R-DATA:" type="Double" />
+            <Field name="CreatePoints" source="R-DATA:" type="Double" />
+            <Field name="Create_Samples" source="R-DATA:" type="Double" />
+            <Field name="CrossTab" source="R-DATA:" type="Double" />
+            <Field name="DataSift" source="R-DATA:" type="Double" />
+            <Field name="DateTime" source="R-DATA:" type="Double" />
+            <Field name="DateTimeNow" source="R-DATA:" type="Double" />
+            <Field name="Date_Filter" source="R-DATA:" type="Double" />
+            <Field name="DbFileInput" source="R-DATA:" type="Double" />
+            <Field name="DbFileOutput" source="R-DATA:" type="Double" />
+            <Field name="Decision_Tree" source="R-DATA:" type="Double" />
+            <Field name="Detour" source="R-DATA:" type="Double" />
+            <Field name="DetourEnd" source="R-DATA:" type="Double" />
+            <Field name="Directory" source="R-DATA:" type="Double" />
+            <Field name="Distance" source="R-DATA:" type="Double" />
+            <Field name="Distribution_Analysis" source="R-DATA:" type="Double" />
+            <Field name="Download" source="R-DATA:" type="Double" />
+            <Field name="DynamicInput" source="R-DATA:" type="Double" />
+            <Field name="DynamicRename" source="R-DATA:" type="Double" />
+            <Field name="DynamicReplace" source="R-DATA:" type="Double" />
+            <Field name="DynamicSelect" source="R-DATA:" type="Double" />
+            <Field name="Email" source="R-DATA:" type="Double" />
+            <Field name="aError" source="R-DATA:" type="Double" />
+            <Field name="ETS" source="R-DATA:" type="Double" />
+            <Field name="FieldInfo" source="R-DATA:" type="Double" />
+            <Field name="Field_Summary_Report" source="R-DATA:" type="Double" />
+            <Field name="Filter" source="R-DATA:" type="Double" />
+            <Field name="FindNearest" source="R-DATA:" type="Double" />
+            <Field name="FindReplace" source="R-DATA:" type="Double" />
+            <Field name="Find_Nearest_Neighbors" source="R-DATA:" type="Double" />
+            <Field name="Footer" source="R-DATA:" type="Double" />
+            <Field name="Forest_Model" source="R-DATA:" type="Double" />
+            <Field name="Formula" source="R-DATA:" type="Double" />
+            <Field name="Foursquare" source="R-DATA:" type="Double" />
+            <Field name="Frequency" source="R-DATA:" type="Double" />
+            <Field name="FuzzyMatch" source="R-DATA:" type="Double" />
+            <Field name="Gamma_Regression" source="R-DATA:" type="Double" />
+            <Field name="Generalize" source="R-DATA:" type="Double" />
+            <Field name="GenerateRows" source="R-DATA:" type="Double" />
+            <Field name="Geocoder" source="R-DATA:" type="Double" />
+            <Field name="Gnip" source="R-DATA:" type="Double" />
+            <Field name="Google_Analytics" source="R-DATA:" type="Double" />
+            <Field name="Header" source="R-DATA:" type="Double" />
+            <Field name="HeatMap" source="R-DATA:" type="Double" />
+            <Field name="Heat_Plot" source="R-DATA:" type="Double" />
+            <Field name="Histogram" source="R-DATA:" type="Double" />
+            <Field name="HtmlBox" source="R-DATA:" type="Double" />
+            <Field name="Imputation" source="R-DATA:" type="Double" />
+            <Field name="Input_XDF" source="R-DATA:" type="Double" />
+            <Field name="Join" source="R-DATA:" type="Double" />
+            <Field name="JoinMultiple" source="R-DATA:" type="Double" />
+            <Field name="JSONBuild" source="R-DATA:" type="Double" />
+            <Field name="JSONParse" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Clusters_Analysis" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Diagnostics" source="R-DATA:" type="Double" />
+            <Field name="Legend_Builder" source="R-DATA:" type="Double" />
+            <Field name="Legend_Splitter" source="R-DATA:" type="Double" />
+            <Field name="Lift_Chart" source="R-DATA:" type="Double" />
+            <Field name="Linear_Regression" source="R-DATA:" type="Double" />
+            <Field name="InDB_Browse" source="R-DATA:" type="Double" />
+            <Field name="InDB_Filter" source="R-DATA:" type="Double" />
+            <Field name="InDB_Formula" source="R-DATA:" type="Double" />
+            <Field name="InDB_Input" source="R-DATA:" type="Double" />
+            <Field name="InDB_Join" source="R-DATA:" type="Double" />
+            <Field name="InDB_Output" source="R-DATA:" type="Double" />
+            <Field name="InDB_Sample" source="R-DATA:" type="Double" />
+            <Field name="InDB_Select" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamIn" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamOut" source="R-DATA:" type="Double" />
+            <Field name="InDB_Summarize" source="R-DATA:" type="Double" />
+            <Field name="InDB_Union" source="R-DATA:" type="Double" />
+            <Field name="Logistic_Regression" source="R-DATA:" type="Double" />
+            <Field name="MacroInput" source="R-DATA:" type="Double" />
+            <Field name="MacroOutput" source="R-DATA:" type="Double" />
+            <Field name="MakeColumns" source="R-DATA:" type="Double" />
+            <Field name="MakeGrid" source="R-DATA:" type="Double" />
+            <Field name="MakeGroup" source="R-DATA:" type="Double" />
+            <Field name="MapInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoAppend" source="R-DATA:" type="Double" />
+            <Field name="MarketoInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoOutput" source="R-DATA:" type="Double" />
+            <Field name="MB_Inspect" source="R-DATA:" type="Double" />
+            <Field name="MB_Rules" source="R-DATA:" type="Double" />
+            <Field name="Message" source="R-DATA:" type="Double" />
+            <Field name="MongoInput" source="R-DATA:" type="Double" />
+            <Field name="MongoOutput" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldBinning" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldFormula" source="R-DATA:" type="Double" />
+            <Field name="MultiRowFormula" source="R-DATA:" type="Double" />
+            <Field name="Naive_Bayes" source="R-DATA:" type="Double" />
+            <Field name="Nested_Test" source="R-DATA:" type="Double" />
+            <Field name="Neural_Network" source="R-DATA:" type="Double" />
+            <Field name="Non_Overlapping_DT" source="R-DATA:" type="Double" />
+            <Field name="Oversample_Field" source="R-DATA:" type="Double" />
+            <Field name="PearsonConCoeff" source="R-DATA:" type="Double" />
+            <Field name="PearsonCorrelation" source="R-DATA:" type="Double" />
+            <Field name="PieWedgeTradeArea" source="R-DATA:" type="Double" />
+            <Field name="Plot_of_Means" source="R-DATA:" type="Double" />
+            <Field name="PolyBuild" source="R-DATA:" type="Double" />
+            <Field name="PolySplit" source="R-DATA:" type="Double" />
+            <Field name="PortfolioExplorer" source="R-DATA:" type="Double" />
+            <Field name="Principal_Components" source="R-DATA:" type="Double" />
+            <Field name="Questions" source="R-DATA:" type="Double" />
+            <Field name="R" source="R-DATA:" type="Double" />
+            <Field name="RandomRecords" source="R-DATA:" type="Double" />
+            <Field name="RecordID" source="R-DATA:" type="Double" />
+            <Field name="RegEx" source="R-DATA:" type="Double" />
+            <Field name="ReportMap" source="R-DATA:" type="Double" />
+            <Field name="RunCommand" source="R-DATA:" type="Double" />
+            <Field name="RunningTotal" source="R-DATA:" type="Double" />
+            <Field name="SalesForceInput" source="R-DATA:" type="Double" />
+            <Field name="SalesForceOutput" source="R-DATA:" type="Double" />
+            <Field name="Sample" source="R-DATA:" type="Double" />
+            <Field name="Scatterplot" source="R-DATA:" type="Double" />
+            <Field name="Score" source="R-DATA:" type="Double" />
+            <Field name="SelectRecords" source="R-DATA:" type="Double" />
+            <Field name="SharepointInput" source="R-DATA:" type="Double" />
+            <Field name="SharepointOutput" source="R-DATA:" type="Double" />
+            <Field name="Smooth" source="R-DATA:" type="Double" />
+            <Field name="SolocastClusterNum" source="R-DATA:" type="Double" />
+            <Field name="SolocastCompare" source="R-DATA:" type="Double" />
+            <Field name="SolocastCreateProfile" source="R-DATA:" type="Double" />
+            <Field name="SolocastDetailAsFields" source="R-DATA:" type="Double" />
+            <Field name="SolocastMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="SolocastReadProfileSet" source="R-DATA:" type="Double" />
+            <Field name="SolocastWriteProfileSet" source="R-DATA:" type="Double" />
+            <Field name="Sort" source="R-DATA:" type="Double" />
+            <Field name="SpatialInfo" source="R-DATA:" type="Double" />
+            <Field name="SpatialMatch" source="R-DATA:" type="Double" />
+            <Field name="SpatialProcess" source="R-DATA:" type="Double" />
+            <Field name="SpearmanCorrCoeff" source="R-DATA:" type="Double" />
+            <Field name="Spline_Model" source="R-DATA:" type="Double" />
+            <Field name="Stepwise" source="R-DATA:" type="Double" />
+            <Field name="Summarize" source="R-DATA:" type="Double" />
+            <Field name="SVM" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerDataPublish" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerLogin" source="R-DATA:" type="Double" />
+            <Field name="Test" source="R-DATA:" type="Double" />
+            <Field name="Test_of_Means" source="R-DATA:" type="Double" />
+            <Field name="TextBox" source="R-DATA:" type="Double" />
+            <Field name="TextInput" source="R-DATA:" type="Double" />
+            <Field name="TextToColumns" source="R-DATA:" type="Double" />
+            <Field name="Tile" source="R-DATA:" type="Double" />
+            <Field name="TimeSeriesFilter" source="R-DATA:" type="Double" />
+            <Field name="ToolContainer" source="R-DATA:" type="Double" />
+            <Field name="TradeArea" source="R-DATA:" type="Double" />
+            <Field name="Transpose" source="R-DATA:" type="Double" />
+            <Field name="TS_Compare" source="R-DATA:" type="Double" />
+            <Field name="TS_Covariate_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Plot" source="R-DATA:" type="Double" />
+            <Field name="Twitter_Search" source="R-DATA:" type="Double" />
+            <Field name="Union" source="R-DATA:" type="Double" />
+            <Field name="Unique" source="R-DATA:" type="Double" />
+            <Field name="Violin_Plot" source="R-DATA:" type="Double" />
+            <Field name="WeightedAvg" source="R-DATA:" type="Double" />
+            <Field name="WindowCompare" source="R-DATA:" type="Double" />
+            <Field name="XmlInputTool" source="R-DATA:" type="Double" />
+            <Field name="XmlOutputTool" source="R-DATA:" type="Double" />
+            <Field name="XMLParse" source="R-DATA:" type="Double" />
+            <Field name="XmlTransformTool" source="R-DATA:" type="Double" />
+            <Field name="ZIP9Coder" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetour" />
+    </Node>
+    <Node ToolID="33">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="474" y="930" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Tool" size="29" source="FieldInfo" type="V_String" />
+            <Field name="AB_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AB_Controls" source="R-DATA:" type="Double" />
+            <Field name="AB_Treatments" source="R-DATA:" type="Double" />
+            <Field name="AB_Trend" source="R-DATA:" type="Double" />
+            <Field name="Action" source="R-DATA:" type="Double" />
+            <Field name="AllocateAppend" source="R-DATA:" type="Double" />
+            <Field name="AllocateInput" source="R-DATA:" type="Double" />
+            <Field name="AllocateMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="AllocateReport" source="R-DATA:" type="Double" />
+            <Field name="AlteryxReportChartGui" source="R-DATA:" type="Double" />
+            <Field name="AlteryxSelect" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Download" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Upload" source="R-DATA:" type="Double" />
+            <Field name="APIOutput" source="R-DATA:" type="Double" />
+            <Field name="AppendFields" source="R-DATA:" type="Double" />
+            <Field name="Append_Cluster" source="R-DATA:" type="Double" />
+            <Field name="ARIMA" source="R-DATA:" type="Double" />
+            <Field name="Arrange" source="R-DATA:" type="Double" />
+            <Field name="Association_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AutoField" source="R-DATA:" type="Double" />
+            <Field name="Base64_Encoder" source="R-DATA:" type="Double" />
+            <Field name="BlobConvert" source="R-DATA:" type="Double" />
+            <Field name="BlobInput" source="R-DATA:" type="Double" />
+            <Field name="BlockUntilDone" source="R-DATA:" type="Double" />
+            <Field name="Boosted_Model" source="R-DATA:" type="Double" />
+            <Field name="Browse" source="R-DATA:" type="Double" />
+            <Field name="Buffer" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCount" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCountAppend" source="R-DATA:" type="Double" />
+            <Field name="CalgaryInput" source="R-DATA:" type="Double" />
+            <Field name="CalgaryJoin" source="R-DATA:" type="Double" />
+            <Field name="CalgaryLoader" source="R-DATA:" type="Double" />
+            <Field name="CASS" source="R-DATA:" type="Double" />
+            <Field name="CASSParse" source="R-DATA:" type="Double" />
+            <Field name="ComposerChart" source="R-DATA:" type="Double" />
+            <Field name="ComposerImage" source="R-DATA:" type="Double" />
+            <Field name="ComposerLayout" source="R-DATA:" type="Double" />
+            <Field name="ComposerOverlay" source="R-DATA:" type="Double" />
+            <Field name="ComposerRender" source="R-DATA:" type="Double" />
+            <Field name="ComposerTable" source="R-DATA:" type="Double" />
+            <Field name="ComposerText" source="R-DATA:" type="Double" />
+            <Field name="Condition" source="R-DATA:" type="Double" />
+            <Field name="ContingencyTable" source="R-DATA:" type="Double" />
+            <Field name="CountRecords" source="R-DATA:" type="Double" />
+            <Field name="Count_Regression" source="R-DATA:" type="Double" />
+            <Field name="CreatePoints" source="R-DATA:" type="Double" />
+            <Field name="Create_Samples" source="R-DATA:" type="Double" />
+            <Field name="CrossTab" source="R-DATA:" type="Double" />
+            <Field name="DataSift" source="R-DATA:" type="Double" />
+            <Field name="DateTime" source="R-DATA:" type="Double" />
+            <Field name="DateTimeNow" source="R-DATA:" type="Double" />
+            <Field name="Date_Filter" source="R-DATA:" type="Double" />
+            <Field name="DbFileInput" source="R-DATA:" type="Double" />
+            <Field name="DbFileOutput" source="R-DATA:" type="Double" />
+            <Field name="Decision_Tree" source="R-DATA:" type="Double" />
+            <Field name="Detour" source="R-DATA:" type="Double" />
+            <Field name="DetourEnd" source="R-DATA:" type="Double" />
+            <Field name="Directory" source="R-DATA:" type="Double" />
+            <Field name="Distance" source="R-DATA:" type="Double" />
+            <Field name="Distribution_Analysis" source="R-DATA:" type="Double" />
+            <Field name="Download" source="R-DATA:" type="Double" />
+            <Field name="DynamicInput" source="R-DATA:" type="Double" />
+            <Field name="DynamicRename" source="R-DATA:" type="Double" />
+            <Field name="DynamicReplace" source="R-DATA:" type="Double" />
+            <Field name="DynamicSelect" source="R-DATA:" type="Double" />
+            <Field name="Email" source="R-DATA:" type="Double" />
+            <Field name="Error" source="R-DATA:" type="Double" />
+            <Field name="ETS" source="R-DATA:" type="Double" />
+            <Field name="FieldInfo" source="R-DATA:" type="Double" />
+            <Field name="Field_Summary_Report" source="R-DATA:" type="Double" />
+            <Field name="Filter" source="R-DATA:" type="Double" />
+            <Field name="FindNearest" source="R-DATA:" type="Double" />
+            <Field name="FindReplace" source="R-DATA:" type="Double" />
+            <Field name="Find_Nearest_Neighbors" source="R-DATA:" type="Double" />
+            <Field name="Footer" source="R-DATA:" type="Double" />
+            <Field name="Forest_Model" source="R-DATA:" type="Double" />
+            <Field name="Formula" source="R-DATA:" type="Double" />
+            <Field name="Foursquare" source="R-DATA:" type="Double" />
+            <Field name="Frequency" source="R-DATA:" type="Double" />
+            <Field name="FuzzyMatch" source="R-DATA:" type="Double" />
+            <Field name="Gamma_Regression" source="R-DATA:" type="Double" />
+            <Field name="Generalize" source="R-DATA:" type="Double" />
+            <Field name="GenerateRows" source="R-DATA:" type="Double" />
+            <Field name="Geocoder" source="R-DATA:" type="Double" />
+            <Field name="Gnip" source="R-DATA:" type="Double" />
+            <Field name="Google_Analytics" source="R-DATA:" type="Double" />
+            <Field name="Header" source="R-DATA:" type="Double" />
+            <Field name="HeatMap" source="R-DATA:" type="Double" />
+            <Field name="Heat_Plot" source="R-DATA:" type="Double" />
+            <Field name="Histogram" source="R-DATA:" type="Double" />
+            <Field name="HtmlBox" source="R-DATA:" type="Double" />
+            <Field name="Imputation" source="R-DATA:" type="Double" />
+            <Field name="Input_XDF" source="R-DATA:" type="Double" />
+            <Field name="Join" source="R-DATA:" type="Double" />
+            <Field name="JoinMultiple" source="R-DATA:" type="Double" />
+            <Field name="JSONBuild" source="R-DATA:" type="Double" />
+            <Field name="JSONParse" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Clusters_Analysis" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Diagnostics" source="R-DATA:" type="Double" />
+            <Field name="Legend_Builder" source="R-DATA:" type="Double" />
+            <Field name="Legend_Splitter" source="R-DATA:" type="Double" />
+            <Field name="Lift_Chart" source="R-DATA:" type="Double" />
+            <Field name="Linear_Regression" source="R-DATA:" type="Double" />
+            <Field name="InDB_Browse" source="R-DATA:" type="Double" />
+            <Field name="InDB_Filter" source="R-DATA:" type="Double" />
+            <Field name="InDB_Formula" source="R-DATA:" type="Double" />
+            <Field name="InDB_Input" source="R-DATA:" type="Double" />
+            <Field name="InDB_Join" source="R-DATA:" type="Double" />
+            <Field name="InDB_Output" source="R-DATA:" type="Double" />
+            <Field name="InDB_Sample" source="R-DATA:" type="Double" />
+            <Field name="InDB_Select" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamIn" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamOut" source="R-DATA:" type="Double" />
+            <Field name="InDB_Summarize" source="R-DATA:" type="Double" />
+            <Field name="InDB_Union" source="R-DATA:" type="Double" />
+            <Field name="Logistic_Regression" source="R-DATA:" type="Double" />
+            <Field name="MacroInput" source="R-DATA:" type="Double" />
+            <Field name="MacroOutput" source="R-DATA:" type="Double" />
+            <Field name="MakeColumns" source="R-DATA:" type="Double" />
+            <Field name="MakeGrid" source="R-DATA:" type="Double" />
+            <Field name="MakeGroup" source="R-DATA:" type="Double" />
+            <Field name="MapInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoAppend" source="R-DATA:" type="Double" />
+            <Field name="MarketoInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoOutput" source="R-DATA:" type="Double" />
+            <Field name="MB_Inspect" source="R-DATA:" type="Double" />
+            <Field name="MB_Rules" source="R-DATA:" type="Double" />
+            <Field name="Message" source="R-DATA:" type="Double" />
+            <Field name="MongoInput" source="R-DATA:" type="Double" />
+            <Field name="MongoOutput" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldBinning" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldFormula" source="R-DATA:" type="Double" />
+            <Field name="MultiRowFormula" source="R-DATA:" type="Double" />
+            <Field name="Naive_Bayes" source="R-DATA:" type="Double" />
+            <Field name="Nested_Test" source="R-DATA:" type="Double" />
+            <Field name="Neural_Network" source="R-DATA:" type="Double" />
+            <Field name="Non_Overlapping_DT" source="R-DATA:" type="Double" />
+            <Field name="Oversample_Field" source="R-DATA:" type="Double" />
+            <Field name="PearsonConCoeff" source="R-DATA:" type="Double" />
+            <Field name="PearsonCorrelation" source="R-DATA:" type="Double" />
+            <Field name="PieWedgeTradeArea" source="R-DATA:" type="Double" />
+            <Field name="Plot_of_Means" source="R-DATA:" type="Double" />
+            <Field name="PolyBuild" source="R-DATA:" type="Double" />
+            <Field name="PolySplit" source="R-DATA:" type="Double" />
+            <Field name="PortfolioExplorer" source="R-DATA:" type="Double" />
+            <Field name="Principal_Components" source="R-DATA:" type="Double" />
+            <Field name="Questions" source="R-DATA:" type="Double" />
+            <Field name="R" source="R-DATA:" type="Double" />
+            <Field name="RandomRecords" source="R-DATA:" type="Double" />
+            <Field name="RecordID" source="R-DATA:" type="Double" />
+            <Field name="RegEx" source="R-DATA:" type="Double" />
+            <Field name="ReportMap" source="R-DATA:" type="Double" />
+            <Field name="RunCommand" source="R-DATA:" type="Double" />
+            <Field name="RunningTotal" source="R-DATA:" type="Double" />
+            <Field name="SalesForceInput" source="R-DATA:" type="Double" />
+            <Field name="SalesForceOutput" source="R-DATA:" type="Double" />
+            <Field name="Sample" source="R-DATA:" type="Double" />
+            <Field name="Scatterplot" source="R-DATA:" type="Double" />
+            <Field name="Score" source="R-DATA:" type="Double" />
+            <Field name="SelectRecords" source="R-DATA:" type="Double" />
+            <Field name="SharepointInput" source="R-DATA:" type="Double" />
+            <Field name="SharepointOutput" source="R-DATA:" type="Double" />
+            <Field name="Smooth" source="R-DATA:" type="Double" />
+            <Field name="SolocastClusterNum" source="R-DATA:" type="Double" />
+            <Field name="SolocastCompare" source="R-DATA:" type="Double" />
+            <Field name="SolocastCreateProfile" source="R-DATA:" type="Double" />
+            <Field name="SolocastDetailAsFields" source="R-DATA:" type="Double" />
+            <Field name="SolocastMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="SolocastReadProfileSet" source="R-DATA:" type="Double" />
+            <Field name="SolocastWriteProfileSet" source="R-DATA:" type="Double" />
+            <Field name="Sort" source="R-DATA:" type="Double" />
+            <Field name="SpatialInfo" source="R-DATA:" type="Double" />
+            <Field name="SpatialMatch" source="R-DATA:" type="Double" />
+            <Field name="SpatialProcess" source="R-DATA:" type="Double" />
+            <Field name="SpearmanCorrCoeff" source="R-DATA:" type="Double" />
+            <Field name="Spline_Model" source="R-DATA:" type="Double" />
+            <Field name="Stepwise" source="R-DATA:" type="Double" />
+            <Field name="Summarize" source="R-DATA:" type="Double" />
+            <Field name="SVM" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerDataPublish" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerLogin" source="R-DATA:" type="Double" />
+            <Field name="Test" source="R-DATA:" type="Double" />
+            <Field name="Test_of_Means" source="R-DATA:" type="Double" />
+            <Field name="TextBox" source="R-DATA:" type="Double" />
+            <Field name="TextInput" source="R-DATA:" type="Double" />
+            <Field name="TextToColumns" source="R-DATA:" type="Double" />
+            <Field name="Tile" source="R-DATA:" type="Double" />
+            <Field name="TimeSeriesFilter" source="R-DATA:" type="Double" />
+            <Field name="ToolContainer" source="R-DATA:" type="Double" />
+            <Field name="TradeArea" source="R-DATA:" type="Double" />
+            <Field name="Transpose" source="R-DATA:" type="Double" />
+            <Field name="TS_Compare" source="R-DATA:" type="Double" />
+            <Field name="TS_Covariate_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Plot" source="R-DATA:" type="Double" />
+            <Field name="Twitter_Search" source="R-DATA:" type="Double" />
+            <Field name="Union" source="R-DATA:" type="Double" />
+            <Field name="Unique" source="R-DATA:" type="Double" />
+            <Field name="Violin_Plot" source="R-DATA:" type="Double" />
+            <Field name="WeightedAvg" source="R-DATA:" type="Double" />
+            <Field name="WindowCompare" source="R-DATA:" type="Double" />
+            <Field name="XmlInputTool" source="R-DATA:" type="Double" />
+            <Field name="XmlOutputTool" source="R-DATA:" type="Double" />
+            <Field name="XMLParse" source="R-DATA:" type="Double" />
+            <Field name="XmlTransformTool" source="R-DATA:" type="Double" />
+            <Field name="ZIP9Coder" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="34">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="282" y="930" width="132" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Branch depending whether the input data is a dissimilarity/distance matrix or raw records.</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="35">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+        <Position x="594" y="858" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Tool" size="29" source="FieldInfo" type="V_String" />
+            <Field name="AB_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AB_Controls" source="R-DATA:" type="Double" />
+            <Field name="AB_Treatments" source="R-DATA:" type="Double" />
+            <Field name="AB_Trend" source="R-DATA:" type="Double" />
+            <Field name="Action" source="R-DATA:" type="Double" />
+            <Field name="AllocateAppend" source="R-DATA:" type="Double" />
+            <Field name="AllocateInput" source="R-DATA:" type="Double" />
+            <Field name="AllocateMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="AllocateReport" source="R-DATA:" type="Double" />
+            <Field name="AlteryxReportChartGui" source="R-DATA:" type="Double" />
+            <Field name="AlteryxSelect" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Download" source="R-DATA:" type="Double" />
+            <Field name="AmazonS3Upload" source="R-DATA:" type="Double" />
+            <Field name="APIOutput" source="R-DATA:" type="Double" />
+            <Field name="AppendFields" source="R-DATA:" type="Double" />
+            <Field name="Append_Cluster" source="R-DATA:" type="Double" />
+            <Field name="ARIMA" source="R-DATA:" type="Double" />
+            <Field name="Arrange" source="R-DATA:" type="Double" />
+            <Field name="Association_Analysis" source="R-DATA:" type="Double" />
+            <Field name="AutoField" source="R-DATA:" type="Double" />
+            <Field name="Base64_Encoder" source="R-DATA:" type="Double" />
+            <Field name="BlobConvert" source="R-DATA:" type="Double" />
+            <Field name="BlobInput" source="R-DATA:" type="Double" />
+            <Field name="BlockUntilDone" source="R-DATA:" type="Double" />
+            <Field name="Boosted_Model" source="R-DATA:" type="Double" />
+            <Field name="Browse" source="R-DATA:" type="Double" />
+            <Field name="Buffer" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCount" source="R-DATA:" type="Double" />
+            <Field name="CalgaryCrossCountAppend" source="R-DATA:" type="Double" />
+            <Field name="CalgaryInput" source="R-DATA:" type="Double" />
+            <Field name="CalgaryJoin" source="R-DATA:" type="Double" />
+            <Field name="CalgaryLoader" source="R-DATA:" type="Double" />
+            <Field name="CASS" source="R-DATA:" type="Double" />
+            <Field name="CASSParse" source="R-DATA:" type="Double" />
+            <Field name="ComposerChart" source="R-DATA:" type="Double" />
+            <Field name="ComposerImage" source="R-DATA:" type="Double" />
+            <Field name="ComposerLayout" source="R-DATA:" type="Double" />
+            <Field name="ComposerOverlay" source="R-DATA:" type="Double" />
+            <Field name="ComposerRender" source="R-DATA:" type="Double" />
+            <Field name="ComposerTable" source="R-DATA:" type="Double" />
+            <Field name="ComposerText" source="R-DATA:" type="Double" />
+            <Field name="Condition" source="R-DATA:" type="Double" />
+            <Field name="ContingencyTable" source="R-DATA:" type="Double" />
+            <Field name="CountRecords" source="R-DATA:" type="Double" />
+            <Field name="Count_Regression" source="R-DATA:" type="Double" />
+            <Field name="CreatePoints" source="R-DATA:" type="Double" />
+            <Field name="Create_Samples" source="R-DATA:" type="Double" />
+            <Field name="CrossTab" source="R-DATA:" type="Double" />
+            <Field name="DataSift" source="R-DATA:" type="Double" />
+            <Field name="DateTime" source="R-DATA:" type="Double" />
+            <Field name="DateTimeNow" source="R-DATA:" type="Double" />
+            <Field name="Date_Filter" source="R-DATA:" type="Double" />
+            <Field name="DbFileInput" source="R-DATA:" type="Double" />
+            <Field name="DbFileOutput" source="R-DATA:" type="Double" />
+            <Field name="Decision_Tree" source="R-DATA:" type="Double" />
+            <Field name="Detour" source="R-DATA:" type="Double" />
+            <Field name="DetourEnd" source="R-DATA:" type="Double" />
+            <Field name="Directory" source="R-DATA:" type="Double" />
+            <Field name="Distance" source="R-DATA:" type="Double" />
+            <Field name="Distribution_Analysis" source="R-DATA:" type="Double" />
+            <Field name="Download" source="R-DATA:" type="Double" />
+            <Field name="DynamicInput" source="R-DATA:" type="Double" />
+            <Field name="DynamicRename" source="R-DATA:" type="Double" />
+            <Field name="DynamicReplace" source="R-DATA:" type="Double" />
+            <Field name="DynamicSelect" source="R-DATA:" type="Double" />
+            <Field name="Email" source="R-DATA:" type="Double" />
+            <Field name="aError" source="R-DATA:" type="Double" />
+            <Field name="ETS" source="R-DATA:" type="Double" />
+            <Field name="FieldInfo" source="R-DATA:" type="Double" />
+            <Field name="Field_Summary_Report" source="R-DATA:" type="Double" />
+            <Field name="Filter" source="R-DATA:" type="Double" />
+            <Field name="FindNearest" source="R-DATA:" type="Double" />
+            <Field name="FindReplace" source="R-DATA:" type="Double" />
+            <Field name="Find_Nearest_Neighbors" source="R-DATA:" type="Double" />
+            <Field name="Footer" source="R-DATA:" type="Double" />
+            <Field name="Forest_Model" source="R-DATA:" type="Double" />
+            <Field name="Formula" source="R-DATA:" type="Double" />
+            <Field name="Foursquare" source="R-DATA:" type="Double" />
+            <Field name="Frequency" source="R-DATA:" type="Double" />
+            <Field name="FuzzyMatch" source="R-DATA:" type="Double" />
+            <Field name="Gamma_Regression" source="R-DATA:" type="Double" />
+            <Field name="Generalize" source="R-DATA:" type="Double" />
+            <Field name="GenerateRows" source="R-DATA:" type="Double" />
+            <Field name="Geocoder" source="R-DATA:" type="Double" />
+            <Field name="Gnip" source="R-DATA:" type="Double" />
+            <Field name="Google_Analytics" source="R-DATA:" type="Double" />
+            <Field name="Header" source="R-DATA:" type="Double" />
+            <Field name="HeatMap" source="R-DATA:" type="Double" />
+            <Field name="Heat_Plot" source="R-DATA:" type="Double" />
+            <Field name="Histogram" source="R-DATA:" type="Double" />
+            <Field name="HtmlBox" source="R-DATA:" type="Double" />
+            <Field name="Imputation" source="R-DATA:" type="Double" />
+            <Field name="Input_XDF" source="R-DATA:" type="Double" />
+            <Field name="Join" source="R-DATA:" type="Double" />
+            <Field name="JoinMultiple" source="R-DATA:" type="Double" />
+            <Field name="JSONBuild" source="R-DATA:" type="Double" />
+            <Field name="JSONParse" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Clusters_Analysis" source="R-DATA:" type="Double" />
+            <Field name="K_Centroids_Diagnostics" source="R-DATA:" type="Double" />
+            <Field name="Legend_Builder" source="R-DATA:" type="Double" />
+            <Field name="Legend_Splitter" source="R-DATA:" type="Double" />
+            <Field name="Lift_Chart" source="R-DATA:" type="Double" />
+            <Field name="Linear_Regression" source="R-DATA:" type="Double" />
+            <Field name="InDB_Browse" source="R-DATA:" type="Double" />
+            <Field name="InDB_Filter" source="R-DATA:" type="Double" />
+            <Field name="InDB_Formula" source="R-DATA:" type="Double" />
+            <Field name="InDB_Input" source="R-DATA:" type="Double" />
+            <Field name="InDB_Join" source="R-DATA:" type="Double" />
+            <Field name="InDB_Output" source="R-DATA:" type="Double" />
+            <Field name="InDB_Sample" source="R-DATA:" type="Double" />
+            <Field name="InDB_Select" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamIn" source="R-DATA:" type="Double" />
+            <Field name="InDB_StreamOut" source="R-DATA:" type="Double" />
+            <Field name="InDB_Summarize" source="R-DATA:" type="Double" />
+            <Field name="InDB_Union" source="R-DATA:" type="Double" />
+            <Field name="Logistic_Regression" source="R-DATA:" type="Double" />
+            <Field name="MacroInput" source="R-DATA:" type="Double" />
+            <Field name="MacroOutput" source="R-DATA:" type="Double" />
+            <Field name="MakeColumns" source="R-DATA:" type="Double" />
+            <Field name="MakeGrid" source="R-DATA:" type="Double" />
+            <Field name="MakeGroup" source="R-DATA:" type="Double" />
+            <Field name="MapInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoAppend" source="R-DATA:" type="Double" />
+            <Field name="MarketoInput" source="R-DATA:" type="Double" />
+            <Field name="MarketoOutput" source="R-DATA:" type="Double" />
+            <Field name="MB_Inspect" source="R-DATA:" type="Double" />
+            <Field name="MB_Rules" source="R-DATA:" type="Double" />
+            <Field name="Message" source="R-DATA:" type="Double" />
+            <Field name="MongoInput" source="R-DATA:" type="Double" />
+            <Field name="MongoOutput" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldBinning" source="R-DATA:" type="Double" />
+            <Field name="MultiFieldFormula" source="R-DATA:" type="Double" />
+            <Field name="MultiRowFormula" source="R-DATA:" type="Double" />
+            <Field name="Naive_Bayes" source="R-DATA:" type="Double" />
+            <Field name="Nested_Test" source="R-DATA:" type="Double" />
+            <Field name="Neural_Network" source="R-DATA:" type="Double" />
+            <Field name="Non_Overlapping_DT" source="R-DATA:" type="Double" />
+            <Field name="Oversample_Field" source="R-DATA:" type="Double" />
+            <Field name="PearsonConCoeff" source="R-DATA:" type="Double" />
+            <Field name="PearsonCorrelation" source="R-DATA:" type="Double" />
+            <Field name="PieWedgeTradeArea" source="R-DATA:" type="Double" />
+            <Field name="Plot_of_Means" source="R-DATA:" type="Double" />
+            <Field name="PolyBuild" source="R-DATA:" type="Double" />
+            <Field name="PolySplit" source="R-DATA:" type="Double" />
+            <Field name="PortfolioExplorer" source="R-DATA:" type="Double" />
+            <Field name="Principal_Components" source="R-DATA:" type="Double" />
+            <Field name="Questions" source="R-DATA:" type="Double" />
+            <Field name="R" source="R-DATA:" type="Double" />
+            <Field name="RandomRecords" source="R-DATA:" type="Double" />
+            <Field name="RecordID" source="R-DATA:" type="Double" />
+            <Field name="RegEx" source="R-DATA:" type="Double" />
+            <Field name="ReportMap" source="R-DATA:" type="Double" />
+            <Field name="RunCommand" source="R-DATA:" type="Double" />
+            <Field name="RunningTotal" source="R-DATA:" type="Double" />
+            <Field name="SalesForceInput" source="R-DATA:" type="Double" />
+            <Field name="SalesForceOutput" source="R-DATA:" type="Double" />
+            <Field name="Sample" source="R-DATA:" type="Double" />
+            <Field name="Scatterplot" source="R-DATA:" type="Double" />
+            <Field name="Score" source="R-DATA:" type="Double" />
+            <Field name="SelectRecords" source="R-DATA:" type="Double" />
+            <Field name="SharepointInput" source="R-DATA:" type="Double" />
+            <Field name="SharepointOutput" source="R-DATA:" type="Double" />
+            <Field name="Smooth" source="R-DATA:" type="Double" />
+            <Field name="SolocastClusterNum" source="R-DATA:" type="Double" />
+            <Field name="SolocastCompare" source="R-DATA:" type="Double" />
+            <Field name="SolocastCreateProfile" source="R-DATA:" type="Double" />
+            <Field name="SolocastDetailAsFields" source="R-DATA:" type="Double" />
+            <Field name="SolocastMetaInfo" source="R-DATA:" type="Double" />
+            <Field name="SolocastReadProfileSet" source="R-DATA:" type="Double" />
+            <Field name="SolocastWriteProfileSet" source="R-DATA:" type="Double" />
+            <Field name="Sort" source="R-DATA:" type="Double" />
+            <Field name="SpatialInfo" source="R-DATA:" type="Double" />
+            <Field name="SpatialMatch" source="R-DATA:" type="Double" />
+            <Field name="SpatialProcess" source="R-DATA:" type="Double" />
+            <Field name="SpearmanCorrCoeff" source="R-DATA:" type="Double" />
+            <Field name="Spline_Model" source="R-DATA:" type="Double" />
+            <Field name="Stepwise" source="R-DATA:" type="Double" />
+            <Field name="Summarize" source="R-DATA:" type="Double" />
+            <Field name="SVM" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerDataPublish" source="R-DATA:" type="Double" />
+            <Field name="Tableau_ServerLogin" source="R-DATA:" type="Double" />
+            <Field name="Test" source="R-DATA:" type="Double" />
+            <Field name="Test_of_Means" source="R-DATA:" type="Double" />
+            <Field name="TextBox" source="R-DATA:" type="Double" />
+            <Field name="TextInput" source="R-DATA:" type="Double" />
+            <Field name="TextToColumns" source="R-DATA:" type="Double" />
+            <Field name="Tile" source="R-DATA:" type="Double" />
+            <Field name="TimeSeriesFilter" source="R-DATA:" type="Double" />
+            <Field name="ToolContainer" source="R-DATA:" type="Double" />
+            <Field name="TradeArea" source="R-DATA:" type="Double" />
+            <Field name="Transpose" source="R-DATA:" type="Double" />
+            <Field name="TS_Compare" source="R-DATA:" type="Double" />
+            <Field name="TS_Covariate_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Forecast" source="R-DATA:" type="Double" />
+            <Field name="TS_Plot" source="R-DATA:" type="Double" />
+            <Field name="Twitter_Search" source="R-DATA:" type="Double" />
+            <Field name="Union" source="R-DATA:" type="Double" />
+            <Field name="Unique" source="R-DATA:" type="Double" />
+            <Field name="Violin_Plot" source="R-DATA:" type="Double" />
+            <Field name="WeightedAvg" source="R-DATA:" type="Double" />
+            <Field name="WindowCompare" source="R-DATA:" type="Double" />
+            <Field name="XmlInputTool" source="R-DATA:" type="Double" />
+            <Field name="XmlOutputTool" source="R-DATA:" type="Double" />
+            <Field name="XMLParse" source="R-DATA:" type="Double" />
+            <Field name="XmlTransformTool" source="R-DATA:" type="Double" />
+            <Field name="ZIP9Coder" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+    </Node>
+    <Node ToolID="42">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="438" y="986" width="132" height="72" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Select the set of numeric variables to be used to contstuct the distance matrix from the raw records.</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="47">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="56">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="65">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="67">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="79">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1026" y="1098" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Field>Key</Field>
+            <Operator>=</Operator>
+            <Operands>
+              <Operand>name_clusters</Operand>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Key] = "name_clusters"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="True">
+          <RecordInfo>
+            <Field name="Key" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Value" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="False">
+          <RecordInfo>
+            <Field name="Key" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Value" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="80">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
+        <Position x="1182" y="1194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>Value</Field>
+          <NumFields value="2" />
+          <ErrorHandling>Last</ErrorHandling>
+          <RootName>Value</RootName>
+          <Delimeters value="|" />
+          <Flags value="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Key" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Value" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field description="TextToColumns: Parsed from Value" name="Value1" size="1073741823" source="TextToColumns: Parsed from Value" type="V_WString" />
+            <Field description="TextToColumns: Parsed from Value" name="Value2" size="1073741823" source="TextToColumns: Parsed from Value" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
+    </Node>
+    <Node ToolID="81">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1278" y="1194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Key" selected="False" />
+            <SelectField field="Value" selected="False" />
+            <SelectField field="Value1" selected="True" rename="isolated" type="Int32" size="4" />
+            <SelectField field="Value2" selected="True" rename="very_isolated" type="Int32" size="4" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="TextToColumns: Parsed from Value" name="isolated" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field description="TextToColumns: Parsed from Value" name="very_isolated" source="TextToColumns: Parsed from Value" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="82">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerText.PortfolioComposerText">
+        <Position x="1374" y="1194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Images />
+          <Output>Text</Output>
+          <HeaderMode value="False" />
+          <RawMode value="False" />
+          <ValidatePCXML value="True" />
+          <Message />
+          <RichTextMode value="True" />
+          <RichTextString><![CDATA[{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Verdana;}}
+\viewkind4\uc1\pard\b\f0\fs24 Isolated Clusters\par
+\b0\fs23\par
+The number of isolated clusters: [isolated:0]\par
+The number of very isolated clusters: [very_isolated:0]\par
+\par
+\par
+}
+]]></RichTextString>
+          <Styles>
+            <Style Name="TextStyle" />
+          </Styles>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Isolated Clusters
+
+The number ...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="TextToColumns: Parsed from Value" name="isolated" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field description="TextToColumns: Parsed from Value" name="very_isolated" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field name="Text" size="2147483647" source="Report:Text:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTextPlugin" />
+    </Node>
+    <Node ToolID="83">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerText.PortfolioComposerText">
+        <Position x="1362" y="1050" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Images />
+          <Output>Text</Output>
+          <HeaderMode value="False" />
+          <RawMode value="False" />
+          <ValidatePCXML value="True" />
+          <Message />
+          <RichTextMode value="True" />
+          <RichTextString><![CDATA[{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Verdana;}}
+\viewkind4\uc1\pard\qc\b\f0\fs29 Summary Report for the K-Mediods Cluster Analysis Solution [solution_name:A]\par
+\pard\b0\fs23\par
+The number of clusters in the solution: [clusters:0]\par
+}
+]]></RichTextString>
+          <Styles>
+            <Style Name="TextStyle" />
+          </Styles>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Summary Report for the K-Medio...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="TextToColumns: Parsed from Value" name="solution_name" size="100" source="TextToColumns: Parsed from Value" type="V_String" />
+            <Field description="TextToColumns: Parsed from Value" name="clusters" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field name="Text" size="2147483647" source="Report:Text:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTextPlugin" />
+    </Node>
+    <Node ToolID="86">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
+        <Position x="1170" y="1050" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>Value</Field>
+          <NumFields value="2" />
+          <ErrorHandling>Last</ErrorHandling>
+          <RootName>Value</RootName>
+          <Delimeters value="|" />
+          <Flags value="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Key" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Value" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field description="TextToColumns: Parsed from Value" name="Value1" size="1073741823" source="TextToColumns: Parsed from Value" type="V_WString" />
+            <Field description="TextToColumns: Parsed from Value" name="Value2" size="1073741823" source="TextToColumns: Parsed from Value" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
+    </Node>
+    <Node ToolID="88">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1266" y="1050" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Key" selected="False" />
+            <SelectField field="Value" selected="False" />
+            <SelectField field="Value1" selected="True" rename="solution_name" type="V_String" size="100" />
+            <SelectField field="Value2" selected="True" rename="clusters" type="Int32" size="4" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="TextToColumns: Parsed from Value" name="solution_name" size="100" source="TextToColumns: Parsed from Value" type="V_String" />
+            <Field description="TextToColumns: Parsed from Value" name="clusters" source="TextToColumns: Parsed from Value" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="90">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1458" y="1050" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField field="desc" type="V_String" size="64" expression="&quot;title_clusters&quot;" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>desc="title_clusters"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="TextToColumns: Parsed from Value" name="solution_name" size="100" source="TextToColumns: Parsed from Value" type="V_String" />
+            <Field description="TextToColumns: Parsed from Value" name="clusters" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field name="Text" size="2147483647" source="Report:Text:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;title_clusters&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="91">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1554" y="1050" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="solution_name" selected="False" />
+            <SelectField field="clusters" selected="False" />
+            <SelectField field="Text" selected="True" rename="report" size="512" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="report" size="512" source="Report:Text:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;title_clusters&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="92">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1062" y="906" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField field="desc" type="String" size="64" expression="&quot;plot&quot;" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>desc="plot"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Graph" size="1073741823" source="Report:R-Graph:" type="V_WString" />
+            <Field name="desc" size="64" source="Formula: &quot;plot&quot;" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="93">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1170" y="906" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Graph" selected="True" rename="report" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="report" size="1073741823" source="Report:R-Graph:" type="V_WString" />
+            <Field name="desc" size="64" source="Formula: &quot;plot&quot;" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="94">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="1674" y="894" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Warning</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="True" />
+          <OutputOrder>
+            <Connection>#1</Connection>
+            <Connection>#2</Connection>
+            <Connection>#3</Connection>
+            <Connection>#4</Connection>
+            <Connection>#5</Connection>
+          </OutputOrder>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="report" size="1073741823" source="Report: (Multiple Sources)" type="V_WString" />
+            <Field name="desc" size="64" source="Formula: (Multiple Sources)" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="96">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerTable.PortfolioComposerTable">
+        <Position x="1002" y="618" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TableMode>Basic</TableMode>
+          <GroupingFields orderChanged="False" />
+          <Width>100%</Width>
+          <ShowHeader value="True" />
+          <ShowBarGraph value="False" />
+          <TableFields orderChanged="False">
+            <Field name="Cluster" selected="True" Alignment="Right" />
+            <Field name="Size" selected="True" Alignment="Right" />
+            <Field name="Max Dissimilarity" selected="True" Alignment="Right" Places="4" />
+            <Field name="Ave Dissimilarity" selected="True" Alignment="Right" Places="4" />
+            <Field name="Diameter" selected="True" Alignment="Right" Places="4" />
+            <Field name="Seperation" selected="True" Alignment="Right" Places="4" />
+            <Field name="Ave Silhouette Width" selected="True" Alignment="Right" Places="4" Width="" />
+            <Field name="Cluster Medoid" selected="True" Alignment="Right" />
+            <Field name="*Unknown" selected="True" Alignment="Right" />
+          </TableFields>
+          <TableStyles>
+            <Style Name="Data" Font="Arial" Size="8" TextColor="#000000" BackColor="#ffffff" AltColor="#f0f0f0" RowGroup="1" />
+            <Style Name="Header" Font="Arial" Size="10" TextColor="#000000" BackColor="#dbdbdb" />
+            <Style Name="Borders" Width="1" DataColor="#000000" HeaderColor="#000000" RowBorder="None" BasicColBorder="Default (Use Per Column Setting)" />
+            <Style Name="Table" CellPadding="0" ColumnPadding="0" TableBorder="true" Width="1" BorderColor="#000000" />
+          </TableStyles>
+          <StyleRules />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Basic Table</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTablePlugin" />
+    </Node>
+    <Node ToolID="97">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerText.PortfolioComposerText">
+        <Position x="1110" y="618" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Images />
+          <HeaderMode value="True" />
+          <HeaderField>Table</HeaderField>
+          <Position>Above</Position>
+          <RawMode value="False" />
+          <ValidatePCXML value="True" />
+          <Message />
+          <RichTextMode value="True" />
+          <RichTextString><![CDATA[{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Verdana;}}
+\viewkind4\uc1\pard\b\f0\fs24 Cluster Level Summary Information\par
+\par
+}
+]]></RichTextString>
+          <Styles>
+            <Style Name="TextStyle" />
+          </Styles>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Cluster Level Summary Informat...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTextPlugin" />
+    </Node>
+    <Node ToolID="98">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1302" y="618" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Table" selected="True" rename="report" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="report" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;cluster_info&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="99">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1206" y="618" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField field="desc" type="V_String" size="64" expression="&quot;cluster_info&quot;" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>desc="cluster_info"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;cluster_info&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="100">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerTable.PortfolioComposerTable">
+        <Position x="1002" y="774" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TableMode>Basic</TableMode>
+          <GroupingFields orderChanged="False" />
+          <Width>100%</Width>
+          <ShowHeader value="True" />
+          <ShowBarGraph value="False" />
+          <TableFields orderChanged="False">
+            <Field name="Item" selected="True" Alignment="Right" />
+            <Field name="Cluster" selected="True" Alignment="Right" />
+            <Field name="Silhouette Width" selected="True" Alignment="Right" Places="4" Width="" />
+            <Field name="*Unknown" selected="True" Alignment="Right" />
+          </TableFields>
+          <TableStyles>
+            <Style Name="Data" Font="Arial" Size="8" TextColor="#000000" BackColor="#ffffff" AltColor="#f0f0f0" RowGroup="1" />
+            <Style Name="Header" Font="Arial" Size="10" TextColor="#000000" BackColor="#dbdbdb" />
+            <Style Name="Borders" Width="1" DataColor="#000000" HeaderColor="#000000" RowBorder="None" BasicColBorder="Default (Use Per Column Setting)" />
+            <Style Name="Table" CellPadding="0" ColumnPadding="0" TableBorder="true" Width="1" BorderColor="#000000" />
+          </TableStyles>
+          <StyleRules />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Basic Table</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTablePlugin" />
+    </Node>
+    <Node ToolID="101">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerText.PortfolioComposerText">
+        <Position x="1098" y="774" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Images />
+          <HeaderMode value="True" />
+          <HeaderField>Table</HeaderField>
+          <Position>Above</Position>
+          <RawMode value="False" />
+          <ValidatePCXML value="True" />
+          <Message />
+          <RichTextMode value="True" />
+          <RichTextString><![CDATA[{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Verdana;}}
+\viewkind4\uc1\pard\b\f0\fs24 Item Level Summary Information\par
+\par
+}
+]]></RichTextString>
+          <Styles>
+            <Style Name="TextStyle" />
+          </Styles>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Item Level Summary Information...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTextPlugin" />
+    </Node>
+    <Node ToolID="102">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1194" y="774" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField field="desc" type="V_String" size="64" expression="&quot;item_info&quot;" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>desc="item_info"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;item_info&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="103">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1278" y="774" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Table" selected="True" rename="report" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="report" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;item_info&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="104">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1470" y="1194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField field="desc" type="V_String" size="64" expression="&quot;isolated&quot;" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>desc="isolated"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="TextToColumns: Parsed from Value" name="isolated" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field description="TextToColumns: Parsed from Value" name="very_isolated" source="TextToColumns: Parsed from Value" type="Int32" />
+            <Field name="Text" size="2147483647" source="Report:Text:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;isolated&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="105">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1578" y="1194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="isolated" selected="False" />
+            <SelectField field="very_isolated" selected="False" />
+            <SelectField field="Text" selected="True" rename="report" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="report" size="2147483647" source="Report:Text:" type="V_String" />
+            <Field name="desc" size="64" source="Formula: &quot;isolated&quot;" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="106">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1002" y="678" width="348" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Cluster level summary report</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="107">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1002" y="834" width="348" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Item level summary report</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="108">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1025" y="960" width="276" height="30" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Preparing plot related information in the case of finding the "best" number of clusters in a range</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="109">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="990" y="1158" width="132" height="48" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Split the overall solution information into its components</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="110">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1182" y="1110" width="420" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Model name and the number of clusters in the solution</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="111">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1194" y="1254" width="420" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Summary information on cluster isolation</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="112">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1662" y="954" width="96" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Union the report elements</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="0" g="128" b="192" />
+          <Shape shape="0" />
+          <Justification Justification="1" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="113">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1794" y="894" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Report</Name>
+          <Abbrev>R</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="728" y="69" width="190" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Module Description</Caption>
+          <Style TextColor="#2f4f4f" FillColor="#ffffff" BorderColor="#2f4f4f" Transparency="10" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="True" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="738" y="98" width="302" height="220" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>The K-Medoids macro allows for the creation of a clustering solution using the pam (partitionaing around medoids) function of R's cluster package . The macro allows for the use of either a dissimilarity/distance matrix or a set of raw records containing numeric fields from which to construct a distance matrix. The macro can either find a single solution, or the "best" solution among a range of possible solutions in terms of the number of clusters to use. The metric used to determine which of a range of possible solutions is best is the average silhouette width for solutions with different numbers of clusters.</Text>
+              <Font name="Microsoft Sans Serif" size="9.75" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="0" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="769" y="102" width="141" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Tools Used</Caption>
+          <Style TextColor="#2f4f4f" FillColor="#ffffff" BorderColor="#2f4f4f" Transparency="10" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="True" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="8">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="779" y="131" width="144" height="307" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text><![CDATA[TOOLS USED:
+Macro Input
+Detour
+Select
+Detour End
+R
+Macro Output
+Report Text
+Table
+Formula
+Filter
+Text To Columns
+Union
+Text Box
+Radio Button
+Action
+List Box
+Drop Down
+Check Box
+Numeric Up Down
+]]></Text>
+              <Font name="Microsoft Sans Serif" size="9.75" style="0" />
+              <TextColor name="Black" />
+              <FillColor r="255" g="243" b="196" />
+              <Shape shape="0" />
+              <Justification Justification="2" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="54" y="167" width="2060" height="207" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Interface Tools</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="12">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+            <Position x="822" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>num.clusters</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="79" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>solution.name</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="26">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="187" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>dissim.dist</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="29">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="296" y="218" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>raw.records</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="32">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="294" y="290" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="40">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+            <Position x="402" y="217" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>record.variables</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="41">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="402" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="44">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="534" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>dist.metric</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="46">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="630" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>stand.vars</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="49">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="726" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>single.solution</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="51">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+            <Position x="1135" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>max.clusters</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="53">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="918" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>best.solution</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="55">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+            <Position x="1027" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>min.clusters</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="68">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="1350" y="216" width="739" height="104" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Graphics Options Tab</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="57">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                <Position x="1444" y="250" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>in.w</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="58">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                <Position x="1528" y="250" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>in.h</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="59">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                <Position x="1360" y="251" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>inches</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="60">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                <Position x="1720" y="251" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>cm.w</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="61">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                <Position x="1816" y="251" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>cm.h</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="62">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                <Position x="1624" y="251" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>centimeters</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="63">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+                <Position x="1924" y="251" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>graph.resolution</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="64">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                <Position x="2020" y="251" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>pointsize</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="114">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+            <Position x="1230" y="242" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>num.cores</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Output1" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output2" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output3" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output4" />
+      <Destination ToolID="79" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output5" />
+      <Destination ToolID="92" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output1" />
+      <Destination ToolID="96" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output2" />
+      <Destination ToolID="100" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="31" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="32" Connection="Action" />
+      <Destination ToolID="31" Connection="Action" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="4" Connection="Question" />
+      <Destination ToolID="40" Connection="Question Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Right" />
+      <Destination ToolID="33" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="41" Connection="Action" />
+      <Destination ToolID="33" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Left" />
+      <Destination ToolID="35" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="33" Connection="Output" />
+      <Destination ToolID="35" Connection="Right" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="35" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="79" Connection="False" />
+      <Destination ToolID="80" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="79" Connection="True" />
+      <Destination ToolID="86" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="80" Connection="Output" />
+      <Destination ToolID="81" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="81" Connection="Output" />
+      <Destination ToolID="82" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="82" Connection="Output" />
+      <Destination ToolID="104" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="83" Connection="Output" />
+      <Destination ToolID="90" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="86" Connection="Output" />
+      <Destination ToolID="88" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="88" Connection="Output" />
+      <Destination ToolID="83" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="90" Connection="Output" />
+      <Destination ToolID="91" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="91" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="93" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection name="#4">
+      <Origin ToolID="98" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection name="#5">
+      <Origin ToolID="103" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="105" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="92" Connection="Output" />
+      <Destination ToolID="93" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="94" Connection="Output" />
+      <Destination ToolID="113" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="96" Connection="Output" />
+      <Destination ToolID="97" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="97" Connection="Output" />
+      <Destination ToolID="99" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="99" Connection="Output" />
+      <Destination ToolID="98" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="100" Connection="Output" />
+      <Destination ToolID="101" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="101" Connection="Output" />
+      <Destination ToolID="102" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="102" Connection="Output" />
+      <Destination ToolID="103" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="104" Connection="Output" />
+      <Destination ToolID="105" Connection="Input" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="32" Connection="Question" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="40" Connection="Question" />
+      <Destination ToolID="41" Connection="Question" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="False" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>solution.name</Name>
+        <Value>test_solution</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>dissim.dist</Name>
+        <Value>True</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>record.variables</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>dist.metric</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>stand.vars</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>raw.records</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>num.clusters</Name>
+        <Value>2</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>single.solution</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>min.clusters</Name>
+        <Value>2</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>max.clusters</Name>
+        <Value>20</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>num.cores</Name>
+        <Value>0</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>best.solution</Name>
+        <Value>True</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>in.w</Name>
+        <Value>7</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>in.h</Name>
+        <Value>6</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>inches</Name>
+        <Value>True</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>cm.w</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>cm.h</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>centimeters</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>graph.resolution</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>pointsize</Name>
+        <Value>9</Value>
+        <IsNumeric value="True" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>K-Medoids</Name>
+      <Description>The K-Medoids macro allows for the creation of a clustering solution using the pam (partitionaing around medoids) function of R's cluster package . The macro allows for the use of either a dissimilarity/distance matrix or a set of raw records containing numeric fields from which to construct a distance matrix. The macro can either find a single solution, or the "best" solution among a range of possible solutions in terms of the number of clusters to use. The metric used to determine which of a range of possible solutions is best is the average silhouette width for solutions with different numbers of clusters.</Description>
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags>predictive,clustering,k-centoids</SearchTags>
+      <Author>Dan Putler</Author>
+      <Company>Alteryx, Inc.</Company>
+      <Copyright>2018, Alteryx, Inc.</Copyright>
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="176e8de6-b6ac-4b0d-8a81-a0477bf83e7f" />
+      <Telemetry>
+        <PreviousWorkflowId value="c7fc3a44-8a18-429e-b600-e105b717d22f" />
+        <OriginWorkflowId value="c7fc3a44-8a18-429e-b600-e105b717d22f" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="32" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>31/DetourRight/@value</Destination>
+              <Mapping>Update Detour Direction from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>UpdateSelect</Type>
+              <Description />
+              <ToolId value="41" />
+              <Variable />
+              <SelectTool value="-1" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Configuration</Description>
+          <Name>Tab (3)</Name>
+          <ToolId value="3" />
+          <Questions>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>The name of the cluster solution</Description>
+              <Name>solution.name</Name>
+              <ToolId value="14" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>LabelGroup</Type>
+              <Description>Data input type</Description>
+              <Name>LabelGroup (47)</Name>
+              <ToolId value="47" />
+              <Questions>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Dissimilarity or distance matrix</Description>
+                  <Name>dissim.dist</Name>
+                  <ToolId value="26" />
+                  <Questions />
+                  <Default value="True" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Raw records</Description>
+                  <Name>raw.records</Name>
+                  <ToolId value="29" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the variables to use in constructing the distance matrix</Description>
+                      <Name>record.variables</Name>
+                      <ToolId value="40" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="False" />
+                      <Multiple_Default value="False" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>Byte,Int16,Int32,Int64,FixedDecimal,Float,Double,String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>The distatance metric to use in creating the matrix</Description>
+                      <Name>dist.metric</Name>
+                      <ToolId value="44" />
+                      <Multiple value="False" />
+                      <Default />
+                      <Mode>Manual</Mode>
+                      <Manual_Values><![CDATA[Euclidian
+Manhattan
+Gower
+]]></Manual_Values>
+                    </Question>
+                    <Question>
+                      <Type>BooleanGroup</Type>
+                      <Description>Standardize the variables</Description>
+                      <Name>stand.vars</Name>
+                      <ToolId value="46" />
+                      <Questions />
+                      <Default value="False" />
+                      <Collapsable value="False" />
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+            </Question>
+            <Question>
+              <Type>LabelGroup</Type>
+              <Description>Solution approach</Description>
+              <Name>LabelGroup (56)</Name>
+              <ToolId value="56" />
+              <Questions>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Create only a single clustering solution</Description>
+                  <Name>single.solution</Name>
+                  <ToolId value="49" />
+                  <Questions>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>The number of clusters to use in the solution</Description>
+                      <Name>num.clusters</Name>
+                      <ToolId value="12" />
+                      <Minimum value="2" />
+                      <Maximum value="9999" />
+                      <Increment value="1" />
+                      <Default value="2" />
+                      <Decimals value="0" />
+                    </Question>
+                  </Questions>
+                  <Default value="True" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Find the "best" solution in a range of the possible number of clusters to use</Description>
+                  <Name>best.solution</Name>
+                  <ToolId value="53" />
+                  <Questions>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>The minimun number of clusters to consider in a solution</Description>
+                      <Name>min.clusters</Name>
+                      <ToolId value="55" />
+                      <Minimum value="2" />
+                      <Maximum value="9999" />
+                      <Increment value="1" />
+                      <Default value="2" />
+                      <Decimals value="0" />
+                    </Question>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>The maximum number of clusters to consider in a solution</Description>
+                      <Name>max.clusters</Name>
+                      <ToolId value="51" />
+                      <Minimum value="3" />
+                      <Maximum value="10000" />
+                      <Increment value="1" />
+                      <Default value="3" />
+                      <Decimals value="0" />
+                    </Question>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>Number of cores to use to create the solutions (0 indicates auto-detection of the number, use with care)</Description>
+                      <Name>num.cores</Name>
+                      <ToolId value="114" />
+                      <Minimum value="0" />
+                      <Maximum value="200" />
+                      <Increment value="1" />
+                      <Default value="0" />
+                      <Decimals value="0" />
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (4)</Description>
+              <Name>Macro Input (4)</Name>
+              <ToolId value="4" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (19)</Description>
+              <Name>Macro Output (19)</Name>
+              <ToolId value="19" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (20)</Description>
+              <Name>Macro Output (20)</Name>
+              <ToolId value="20" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (22)</Description>
+              <Name>Macro Output (22)</Name>
+              <ToolId value="22" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (113)</Description>
+              <Name>Macro Output (113)</Name>
+              <ToolId value="113" />
+            </Question>
+          </Questions>
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Graphics Options</Description>
+          <Name>Tab (65)</Name>
+          <ToolId value="65" />
+          <Questions>
+            <Question>
+              <Type>LabelGroup</Type>
+              <Description>Plot size</Description>
+              <Name>LabelGroup (67)</Name>
+              <ToolId value="67" />
+              <Questions>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Inches</Description>
+                  <Name>inches</Name>
+                  <ToolId value="59" />
+                  <Questions>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>Width</Description>
+                      <Name>in.w</Name>
+                      <ToolId value="57" />
+                      <Minimum value="1" />
+                      <Maximum value="100" />
+                      <Increment value="0.05" />
+                      <Default value="7" />
+                      <Decimals value="2" />
+                    </Question>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>Height</Description>
+                      <Name>in.h</Name>
+                      <ToolId value="58" />
+                      <Minimum value="1" />
+                      <Maximum value="100" />
+                      <Increment value="0.05" />
+                      <Default value="6" />
+                      <Decimals value="2" />
+                    </Question>
+                  </Questions>
+                  <Default value="True" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Centimeters</Description>
+                  <Name>centimeters</Name>
+                  <ToolId value="62" />
+                  <Questions>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>Width</Description>
+                      <Name>cm.w</Name>
+                      <ToolId value="60" />
+                      <Minimum value="1" />
+                      <Maximum value="100" />
+                      <Increment value="0.05" />
+                      <Default value="17.78" />
+                      <Decimals value="2" />
+                    </Question>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>Height</Description>
+                      <Name>cm.h</Name>
+                      <ToolId value="61" />
+                      <Minimum value="1" />
+                      <Maximum value="100" />
+                      <Increment value="0.05" />
+                      <Default value="15.24" />
+                      <Decimals value="2" />
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+            </Question>
+            <Question>
+              <Type>ListBox</Type>
+              <Description>Graph Resolution</Description>
+              <Name>graph.resolution</Name>
+              <ToolId value="63" />
+              <Multiple value="False" />
+              <Default>1x</Default>
+              <Mode>Manual</Mode>
+              <Manual_Values><![CDATA[1x (96 dpi)5419541n5148905f1n0941f58091x
+2x (192 dpi)5419541n5148905f1n0941f58092x
+3x (288 dpi)5419541n5148905f1n0941f58093x
+]]></Manual_Values>
+            </Question>
+            <Question>
+              <Type>NumericUpDown</Type>
+              <Description>Base font size (points)</Description>
+              <Name>pointsize</Name>
+              <ToolId value="64" />
+              <Minimum value="5" />
+              <Maximum value="100" />
+              <Increment value="1" />
+              <Default value="10" />
+              <Decimals value="0" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>iVBORw0KGgoAAAANSUhEUgAAAKsAAACrCAYAAAAZ6GwZAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwAAADsABataJCQAAJo1JREFUeF7tfQt0G8d5rvNwk9RJmsZp0yS+SduTnuamzW2atolzmqSJ69ZNe31ue3184tS9SZrGvul103Nb39gidiFY1sOmKCwAkaL40FsmdgG+H6JEUpQoUaKot0Q9qAclSiT1lkiJIiWKkrj3/wYDGQKHABZYgJA8n853SBGzO4vdb//5559/Zh6RSB4u0/X+vErXb3rKHM94dOUNEbUy5ekFda5PuVyu9/PDJCQyh3krZzyuBWa+ounqOk1XxkmUt+n3OyLiM+Itj6E2aH7nz32rXR/np5GQSB/ymUiVV0h4PZqhjpFQ79DvZiJEWRLvGAn3OB37s+Lg67/GTyshYR9cG10f9Pid3yDRrSXRjXoM5W60GBMnO3bEYzjrPUHXV3FuXo2ERGpAs60ZyovEI7w5FwgwCdK56JyHvYbjuYKg66O8OgmJ5OBrdH3c43f81KOr/cSEm/xEyXxav9rnCSg/lIKVSBrFxS8/6vMrf0PN/l7ihEhs9lC5CwtLfFq6BBJJYWHA9XUSE3zU8ckCs5vKbWL9QkP9I169hERi0Codn6Ee+ywSEHWmROKyn+i4eXXnDMRt+WVIPCyAj+cmS6T5lR97/MpLk6gr3/XWzv10Mk2r5nf8HetQCUSVZh6i7/MUvwyJBx0ew/kMCWkOPdjNZP32E3vJKp2eRPiBurKDRFtKZX+U73d9lp8iJrxB1+fpnG5iBpr/+8nq9Ktz3QHH5/jlJAS8kNpqx2fwgrIOYRTdes4/eo2cP8xb9epj/BCJdAHDmlq589v0MP3Ugz5EvMjjlcKHHkkS7TX6eYK4lo7/2fyg67f4aYVgD9xQNkeeI8Ns9RmuJ/nlxMQCXfkvVP5HxGJ6MTvovhzw6OrJaNL37qHPdxGbqYxTWu80wDTN9+VXzXicxPMm3ei9dONvRDxUawzFSE+QeJdruvPbxbuKH+XV3ActoPyYC1x8nnRTV6+SoDx4aTBixi/rPqCVoO/wMpVZQ+WPJ3q9dN47dB/P0c+99P8lbsOR0EshEQcul+uD7sBrXyGhlpFlOB9945MlHiydbyP9fNFT7frEW2Uzft3jn/ENqud/k69bTJ/tFx2XYZ6l69lFP5twTT5D+YU3qHyrEEkzsPy6uow+6+EvoOj4eJygY6/TebZRp86RW5P7MX7bJayCDW8GHV+lm7mWHpr9PXI8ZL+yj36upvMH6G9biWgqr99XLguIa6IXq5fYSWyk/+/ACycqmwQn6FxnNMO51Fuh/p7MDLMI3LC8CuULnoBaQc1V2jo5aBJJrDfpYWW8I5WFHKGXt2ZhRc6XgsHnP8AfhUQ8uAOuT9LNm0sWJGMxTklmwcepJXvH68/5NPoK/HFITAV34D8+4tXV/043bUB0QyXTTbhBTjV3yS+lDxsP3uDrnyeh1olvpGQmSBb2tBZQnnIFXb/CH4tENBCw9ugzfxB6u8U3UjJTVMp9gZzf4I9GIhq+StcTZFVXiG+eZIY5rJU5nl2+3PVh/ngkwkAEYEHQ+SeaofYKbpzkdNCvFuetkkk1k8A6VobzOeFNk5wWYoh2YYXrSzIyEAX4R5rf4RLdNMnpoy+g/I2v8Rcf4o9JAkBChldXS0Q3THL6qPmV1zAczR+TBJD3jvIFzVCWi26Y5DRSVwswSMAfkwSQF1B+x6M7dOENk5w+SrFORgFyAQzHKuENk5w+SrFOhvRZs5RSrJNREHT9Fjnz84U3THLaSAakCM+GPyYJIG9V3mNuv/pPohsmOZ10tHr1nL9EHJw/Kglk+XiC6k/EN0xyeuloJT5TXOf6Vf643rvATfDozu9rutohvlmS0032bOgZPbSCxXg/mg+MTqEDFU1MHV5Q9p+f0nTlr6VQs594RnhWmKouep54zss3uj78QE2NwdvnW+16QjMcX3MbjufoSzrR04+mx+/II+aEmhnxDZLMNjpaNUNZKnyehqJ6dPV/+srVP/atfu2JrLbCeKvwhnmNmc/TRS8jkZ4Uf2HJh5yYeLkUiUlI+8yqNMNQc+/6pNdQ/1YLKNV0oTJ5WhIcxqRPJMMUls349Wl3DzBlGj4MNQFv0sX1RV2spGRomoyhutDqTtuSnvSmfBALo5FFNeiiRqIvUlLyXaK1VcryA+pXgsFgZqd6m+Yj79PK1T/w+JV68k0fiHn33oDTXBh8w1xUMdssrJpDnHuPiypn02cuVkZ0rGTqJAs7TqzOC+R8GfrhUko/4KNSxSuJWT+3nxx9c2H5G+ayere5rrPCPHhit9l34YR55tLpezzUu9dc0xEwl9QvYILGMaJzSaZMtMBLoB8upfQCK/p5dGUmVXo24iKykrCUS+ryzK1dLea1kUEzHgaHL5mb9jaaJbW50sqmi7o6QEbOAR1xSaUPmuH8c6p056SLSJlOJpAQZ3KG/i8uH5uwjoH1pWb/hZPm3bt3uBzj4w6VPXnmiOlvXkznkYJNB6nD1eEJOL/JJZU+oPknZ9nW5r+g4k2zfMNSc/vhNrP71D6z/+JJ89T5HnNXd7u5dlvQLKycIzwuFqvaVpiXhs5xCVoH3IPyDUuE55ZMjcx9DDhLuaTSA6/f+Vd2LglZVP2W2bankZroIWb97k7cNScmJiJ4l/5+1xy/fcvsOrHDXEo+peg80VzWoJmnzh1nVjJZoP7es0epTrewDskUqau7vbrzL7m07Af5qm+QWFNeK9UXnMma6L7zJ8w7d26bJEsukakBMV+/cc1s2l7BjhedN8xdR7aYN26N8iOTx8jN62bHgVZhHZIpUlfPuv2KyqVlL/Ka8h6jClrJBUhhK0gI1WVWt600L109zyypFUDUsLJN2ytZqEl0/tXrCswLg2cSegHiAda1j3zelY0LhXVJpkKmo7V5TWnY5wABXbKsuydXao2B1lLz7OU+1sQni7Hxm2bDVp2FmaLP375/HVnEYV4ydVwdGTQ37K6fVI9k6tQMpRMbc3CJ2QdvKJO/J7pCK4TPuZuaaCu986mAUNSyem1StOBo3wHz9p1xXip13CY35fCpvffVIWkbj2IrUC4x+8C2qUkxk6pm82pmqewAmmj4kxh9iqwDvXg4DHYCoazIOiRtIjbv8Cs/5hKzD17d8W9UQdLJKgi07zi8ybKfGguXr15g542s59zlfv6pfei/0MsGFyLrkbSB6RKrJ+D4d6ogabH6mwvNEwPd/PHbA7gTiM+i0xauJx1iPX2+J6lYr2Qcpk2sfuUlcoiTXpKyqm2leTGFIP1UaOqsNAsqZt2rJx1iRbw12ZE0yRhMn1hT81nhr14ZvsQfv33YTq4FMqfC9RzrP8g6RXYBobIDJ3bd910kbWLaxGoo3/HoSpew0gSYLrHuOdphLq6ad6+eDbsbzOuj1/inqWNo+LLZtL3qvu8iaReVPd4y5VtcYvYBy8hQBdjcTFBpfKZLrOt31bLcgnA9CGchIpBKHDcMdAZPkguwpC6xYV5Ji9SVtrRsWc92XjbUQk1XrworjkNjfQnrqNiNyo3L7xvN8gVmmh0H1rOh0lSBnIW2vY3snJHfRdIWDpIbsDBtU100Y+aLmq4cE1Qclwj97D6ylcvAHtwcGzVXrPFM6vwg+QSDA/A3kwWOPdy7V4as0kQyet1eQ32BS8t+aJWOz2iGUk/m2/IGt7B+zeT73Rof43JIHV09O8hffbdzFUlY8t6zx5IazYJQj/cfMvWWYuG5JVMjtdBj9LMKC51waaUHbkP5Z3KMk7KuZU2LzJ6Bw1wSqeHmrRumQWKaKgMLTTcE29Wz0xy14BKgc7bveKcZoGNl858eUut8hH7+iEsqfUBHi8x3STK+KzpCjduCbPpIqug8uPG+jtVUXNnoM1t21LCQFlIMRSNo+Nu10SGz+/R+ltG1Yo1XCjV9HETfB9vRc0mlF2xqS0BtScYdKK5522zbsyYlwR7t62JJMYkG6vPLZ5nvkFXHi7Lt4AZz77Ft5hES5uFT+9jv6JBhwuDqtflUdnIml6Q9RPNPVnVdRqa0hFFcXPyom5xjcgeSirtCsIiHIqfVCtD0w0+F8DBHC+cxWkrMyrYVbBoLWNZUyPzYqYSMz9BpgjBXrV3IfpdDqZkiW62noLj45Ue5lDIDT/Xrv01vSuPkC0qMRdXzzMaOoNnduy/OzNMJJlKEvTbtXct6+hUblrHf4Y9i+srAxVPmwKUQkX8An7N1Vx0TbuRQrOT0kqzqOAm2DMsJcRllBswV0JUtootKlIgQrFjjY1EChLWO9R1ks1FBZOifPHPU3Hes09xIVhgJKxDqxt1rSLgnzBtjoyxNcCoMj15lnbmWHdVmCVlgUf2S00Flszvg+DqXUWag+ZVXqOIT4guyRjTZaIoxJaVi47J7ROgITT3KlNTkmru6tzCRWsGVa5fM7YfaWEdLJqNMPzVEkgLKS1xGmQFVXEBmPe0rBmL+f2ntfHNnd3vSMwDgRmBaN1ZlEdUhmTlyzRRwGaUXcI7dgRlf9OhqS/SFpINY+gcrqqSaSQW3AH5sZIaW5PSQBLsmv2rG41xS9oMtbakr39V058vU/BcT+0UXYicR6yxrLmTxUTuAqd+YAi6qayrCT4bIJa1zqhFA5goYao67zPkXWAqTSyx1sCFWv+PvqOfvhnNMFV2LrjxdRNAfEwztAoZRsZYVVhIU1SdiXXsZP1rCKnYe3iy8p4y6elXT1U30e56n3Pn9lPbbQnO/MOD6Ool0Fgn0CP3M+NKW6MUPDl/mX90eHD3dxTpyovpElGJNHjHFygldkb4O008X9U/+zHIM1tfo+rhmOJ4l5a8jazoty1rCBfA3LeZf2z5gAYzqTSuFdYoYKdYbYyMk9gNJE7HicCcRnT4k2ojKpYs9A933VqrBEDOW/hSVS4VXrl1k5wcSEWsEsRxmg6fM8YxvtevjXIqxgYKYwuKFNdWVO1EnzBixgEXdFj//2vZh5MawuXZbubBOESPF2n+xV1gmUcKHQ0cPwEuDETRRuXQRYUAsMALgpQm22r/w3M7uzez8gEWxIhn7FnGXR3f8ZEnNLz/GJSlGKMFaeZH8iX4S6oTwhBliusQKYJBBVKeIUqzWmJJYGZW7pL9T3qD6QszEbI/f+Q34p1R42ixqmOkSKx7S+p01wjpFlGK1xtTFykJbpD/l4JQjXfkrZzxOBdcmk0mVDmIoFokpdgPzwOq2lAnrFFGK1RrtECtI/aUxEmy9cEl3LaC8QorOmj0CMHKFGCduqp3AZELM2xLVKaIUqzXaJVaQ9DjsDTh/ziUawryQVe1h/oLgoOkidlVBQotdQOLL/uPbzWUNiQ+7SrFao51ipVYeeuy+z7pqgZmvaKF5MeKDponwW5Ewbceqg8Do2AhbAyByuaF4lGK1RlvFSmStva78KxMqds1APDXk1IoPmE5itOnclQH+9ZMHlnvHbNVVa/OF9UxFKVZrtF2sbDDKWc92d8EiAyTUrN14DYMDyGW1mhoYCQTALw6dZTMKRHXEohSrNdotVs4RthgGRgzIzN4WFMgaQrCNHYG4CdciwKJiQTisCGOl+Q9TitUa0yJWXb3h9ef8VWhTiyyIq8YjogMYJh26fpnd6HiAqFEu3PtPRqigFKs1pkesyi3SqPMRr+GY9SCINUxM8NtzrION0+OG37l7mzXzjGRF8X9kVw1dv8JmrZbWzReeJ1FKsVpjWsXqMRzebBixskp0vLAJBqasnDhzhG3yhlVUsARm+YZlZiJrCiTCSLFiYiIGK5JlsLX03gqHF8iHxixdUbl0ES/62Suh9Wsh1gq+TpidjEzptFOsxJkPrFgzxUixYpcYWNdkCYHC8gO3yPqfJ+sqKpcuwqreuh1avgluEnx5UblUGG45ABvFetvjV5c8MD7rdDFSrBLWYKdl9TI3QIo1JqVYk4ftPqtWpjzNzKyokOR9Yr189TwLgSVLLMwRjhejA4h5SqJy6SLyeDE1HYA70r6vWVguFWJNsTDsE6t6Q/MrTz2yoM71KShXWEgyqoPVy0JgyRK7K14PRwPQwVpXICyXLpaig8U3CAl1sJYJy6VC7Jsbhm1iNdSR/Kp5jz/icrneT/9pyNbh1ulmpFjRgRCVSZQydGWdfO5fDXTK8gM0v/Pn5BNkXSJLNlCK1RptFysSWQIz313Bhc270pXj2ZYimA2UYrVGW8WqK3cx83XSBEIytz+jAphhKD7wPUopVmu0U6wk1GuegPpTLtF3URx8/deQiiU7W/dTitUa7RIrNf9jmu6sfpt0ySV6PzxB11fZggMy7nqPUqzWaIdYQ519pcttqH/EpTkZmPrqNRzPefzYUFj6r6AUqzWmLlY2FfukN+D4B5crzh5ZBUHXRz0B5YewsHTge36wQIrVGlMRK1lUJKxsdxs5L+Q1vfoYl2RsQLAk1qdJrPUsdCA48XuFUqzWmKxYSWfXvQGl2l2W8xfQH5diYoBLsJB8Bq/unEEnO8SDs8KKHmZKsVqjVbGSSMepj3SAmv7XvX7Xf0tpe0w2R8uvPEV+7Fw6eSudNKm9Wx9USrFaY6JipZZ7iH6u9+rqbGr2v+cL5PwGl1zqcAccn/MZrie9AfWfvIbiozfidPQFPIyUYrXGBMXa7TGc/9dtOJ7M97s+yyVmP2CmPfrrv01ibRZcxENHKVZrTEisutKQ0e2FyB1YSBwWXsxDxEixnr8ywHbhTpYNWw1z5OYwO9flaxfM6k2rhOXSRexliynpAPZoQMqgqFwqPHBiJzs/IBQrNEPa4TLKDOjt+FeqvGfSxTxkjBQrclExzytZYn8vWDRg7NZNtriwqFy6iH3FsIgxMDFxl7UUonKpMHKbU7FlVY66deVfuIwyA0/ZjG9qhto++WIeLkaKVcIaRGKlnv8mze/4Uy6jzCDV7TAfFEaKFU3n1ZHBpIlVtzFlHLhz9w7bhUZULl2EvxyesDhB/+CSiMqlQkyqDGOSWFneibIaeShcRumHK+j6Far8R+R7HLrvYh5CRooVTRwWdkuWnYfa7jXD2DIe+3uJyqWL2I0c02kAvCw7SEyicqmw9+xRdn5gsmXlGw3vKs7cRsP0hnyXrOrG0JsSeTEPHyPFKqMB8RkzGgC9YOt/Q/kOl1J6gbgYWdRlLNcw8kIeUkqxWmPc0JWuXvUaagn2V+OSSh9COww+/FGAMKVYrTGROCsZumPCpGo7ga0LyZSveS80/2FKsVpjgoMC0E+Nb7XrCS4t+0EVoFN1/L6KkySWscR6VGB++ays3V5ditUaExIrUdOxa6XyIpeWvWDDrIZabMVXxTKVoQW73mDixA7XuGHYSt3fVGhWbFjKiJuGOfRL6xeYRdXzWHkcj/KYix593kxSitUaExcrS4gqSCnLaipoqx2fobehI7pSESFMsLByDtsnFVsE1W/xm807qs1tB1vNfcc6zWN9B+7jkVP7zb1HO1g4p3l7FRNJVdtKc+UaH1leiJbOOQ3ClWK1xkTFytk2P5UNhqcC+RnfZXmH4kqZFYVA0aSvaPQxgWJztK6eneaZS6csLbOOgDWCyzhu95GtZtP2SrYgMIQbstYhy5sJSrFaoxWxkp72piWMhf1cyV89GV0hfE2IdBG3omu2Bsy9x7axDWcReLYD4eUZIVwsebN6bT7VG7Le0ddjN6VYrdGSZaX+j+ZXfswlZh88AeUlzVB7IyuDWNBBWkmWFGv+d5/aZ47eHOGXmh7g/HtItNgUY2ndgrRbWSlWa8wSsTr+nSroC1eE5rikNtcspy+873gnG/fOJCDaLfubTb25iLke6bKyUqzWmBVi9eqOf/MYjj6IFE3/krr51BGqNs9d7mdr+U8XTpzpZv5xae38tFhZKVZrzA7LCp/VcJ6EIJav8bALQdZQNuDayCBb63R5g8YiB8IbkySlWK0xK8TqM9SfkVB7l5Eg4JuG16bPFozfuWV2dLWwzhfcAuHNSYJSrNZoRawYGPDoyg+4xOxBQbDgo4XVc5zLGjxnj5zez7buyVYghosBBrssrBSrNVq0rNt8AdeXucxSR3Hxy48urp77L0sbFpwkoU5ks1DDwP5XK9Z42QiY8CZZoBSrNSYqVi20nlpDcZ3rV7nUUgPV9z5PufMbiypnd2e7RY3EOD2Ijbsb2IZtGPmKvlFWGClWPGhEQJIl1twPR00uXT3Pwm+icuki4uDYzgiAWDGqKCqXCvcd387OD8QUq6GcoZ85XGqpw1s799OFNfO2k6W6E56VaRUI6GMLdkwJGb89znzdW+M3ozjGXgTcQJS1uj+rCNiuHQ8jVesaKVYJa4gh1gniToyKcqmlhmDw+Q8sq1+g0cMaCk+FSBSYORnelhI9dYSXdnW3M2uHhx9cX3IfEXrCZ50HN4RmSF67xMUb2uoyWZy70m8GNyxJKQYrxZo8Yoh1mIS6mEstdWiG888LKmedPHXu+ERiw6ZkQUlYsJLY1WTzvnXU0VmUVEcHcdwS8q9atlebPQOHmfCTFS38V2RzJesO1La/Y96hl0bSOrFV6aR7qjOr2u4OOL7OpZY6iuvmN7ftbrw1evM6f+yxgcl0eJMQOpp0gSnRaRZVzTM37Wk0r14ftOwiYKSrZtNqwXklp4OarvSTIXyNyyx1uFc7niypzj115dqluMpANhWab2xim84E6nDCDGZowh9FZlaiCIWzkrPyknZSGfEG1KLcml9+jEstdRTV5jZt7Wq5dTNOWh+aaL2liOeZZibTH805XIQjp7tYU5MIRm5cZ8256HySGSKmsuhKuTsw44tcZqnDHZjzuYLyN3upczIxlZ+I0BB2ksOwK1L1hBcXh7ByWBspQB2saGIWgeiYSBZUzGKdsjE+Dz8WYIVhXVc1LjQxc0F0Psn0kZp+rBewwhNQf//e5mt2oLjq7bkN7f7hqUJVEGo7dZ4QU7PS7MNNWNdZYe491sE6YDeoKb95a5SJLZpYCGKEfGXkxGIWAfxVCC36nBhWxawCnCseLg2dY9Z1uqfJvNeItFJv0DmjsNL1m88Hn/8Al5k9WFQxe9/+49vvTDUAgARozKFKRKiwYkZLMVtZji0tQyJErDXRLC10ptDUIxaLjh6C8sibjezZQ7Bb97eY8VwW1ImZC6kOEkgmSuUaCdVALBXLrtMjeB+XmD3I9bs+Sy7AwCB1rES97t5zx0x/8+KEmn6dyh08sYuJFMJH+AtDjedIcNbZz6wsBAcriiVq4CqE46eLKmebR08fYPXEAr2E0hVIO5VjHl1d7DXUv8Vq1lhqisvLXnjK1L8vb106JMr2R/Pf2BFklkx8kSEihbCps9K8MDjAxBPuteOcGDeGO2CdC8ylZM0xIwGpgH3nT7BpLrDaYUtZtXE5G4CIBRxX3bZSRgWSpqNJ0x1FJMaCaGoB5/+jTvYzC8pyvsREutz1YS6r9GB5gye/bU/jjciV4MLoPXssbuIFhAofEuPe0Z0zjIkjs190nBXCisINwYgY3IJ3mgqYhcVLhBmysawr8m+xgK50BaxT09V2NOmYjer153w6mp5q1yd8vl98iG6zvc39VCitz2s7crprHGP00UB8c3HVXOEXCRMdKHRkML4fDbvEGibCV/uPdzJrjbUG8Ld12yrI1RjiNU4GXqAW8lujzyUZmxCq5leeWp5ua2kFi6rnHuvpP3xXFL/EVOhYnSr4gkdPdwmFCtgtVhBuAaw4i/WSdUUe6+WrF3iNYnR0rWfrGYjOJymiowkWNauECpDPcRHDptGdK/wNI0DiLxNi685a1pmaCukQKwSKzhZcD7gHcAWw7n8swH0oqckVnk9yMqmj9GpGN6tIFPQGXRHlAiBRON6Y/+4jW2KuExBPrKXUkYKQItl5cKMwvhpJuAGYzhJ2BRA5iAVcJyYXRp9Hcgrqjlz4pFwi2YOpxIq/IWQl/DKcGCGKhXhiheVGrDSSGJjAfC9R+TA3711rbjvQSmJ9KyHLKsVqkbqyOK17VSWLqcSKjglWQonls6YqVrwM0YA7cmnovLB8mBDf9kMbmVgxlQU+bCxIsVrkgyZWIF40AJ9fH516arZVseIFuXLtgrl+R+zeO3zWtj2NZmHVHHNdZ3nMaAAgxWqR2SrWhRVvDAxcPDUhGg49eeYI630LvxBx9bp888RANy89GfHEuph8ToS+wkQ8FDMIIEJReRDrBMCSIvllUcVsM5F5YjsObzKLa94Snk9SwGwV6+KaeV09A4fviEJX8CExLo9sJ9GXwoBAKM4qbobjidUqMQqFztWh3j1s1iZGsFgkg4+YTYVNexvlCJYVZqtYlza4a/cc7bg1lXXCKFZZU+GUvmsx+Y2bqMMzNHyZH/Eu7BQr3JH2/U1svhbW2sKQ7PH+g+bt25MHMyKB79W8oyqhJBzJEL26MmPeyhmPc4lkD0pr3p7R1Fl1PbxXUzSQMYXkFOSxir4YCOHAf0W4K9KdsEOspbW5Zl37OyzNEJMQ69v9LMDfcaD13v5SsYBkmIatukxksUDNcDyb9nH+ZOAJOL+5co3vEoQ1FZA3gOZ3ecPUiddoliGKY30HmfsA2CFWo6XIPHhyN0s5xKxTvBgbdtezBBZRllg0evoPm8HWUlsWv3hPUFePuwPqV2xNmLYLvtWuj2OWQN/5EzFntCIhBKEquARTWSkIAp9jliua6DOXTrOYqKgsiKA+srWqN61kYShRmaUkTrwEEOqqtflsguLVkSsk1MTyY9G5gsCTnd3wXqOmqyUF6VhG3S4UVsxt6OhaP4ZE6VgYG7/BcgEgHviqoi8LokOGMXtMQcFy66IyICINZy6eMrtP7b83fCoqB2I0DQsKh5r++BYVwMRGnFda1QSpq8Oa7vwf7sB/fIRLI/tAIvlnvano8tXrZLHiCAFJK/BNMTcfi/oifCT84sSypkXMIoo+A2HxMM+8ZUe1uaYjEDNMht581/EdbAWXRHHq3HG2XI+c1pIYNUMNYtMTLovsBMz+oqo5B06cOXIHK6IkAmTvo8ODJr9iwzKWKBLO4g8znlgh9PBEQbgWK9d42XoB0eXCLFu3KJSOmIALAFHDX8Z1SRcgAerqKc1QnvY1/uJDXBbZi6Kat+aR/zgUq6MlAjpfmAyIJBRYSLbDCllI+KAI3McTq0HWGXmqGM3CoACabVHZMDFxUZQoHo2zl/rYcHH0CyQ5mWwmakBV3s7kNuupQCub8btkhfZjgMBKUxsJzFxFJv/h3r1s7H4HNfGxfFa4Abu6N7NOE9YjQIAf868QWRCVBzHDdoD83KlyaAG0Du37mtj5I10AaubG2IN5D23tGZehe7EKc/Ho1mUm498OkHXNrdm8ehABfiurn0yFeKErUSILgvixIgggZgeElosXXyOiEFiHNGogYJDE2qgFVA81d8vp/60eQ+mmhzUcUSY7yK4Jk/CUNq+h1NL17qeXLB0v2IjmVyp9gZwvB4NBe6dMpxvuVTO+WFD55paunh3jiTS18ZCMWBE7xfpWWFhNdAyItEBEJTChMRqIACAOi8QVWFVmTQ3lMB1XgJgyFkr2LHd9whd0/gn5aT8hUWgkhGpeRlhfpohrwLWErsnxss9wPFlQoXzBbagv0OdN9PlQ9DFJU1cHsK06FqHA6pFcAg8WSupyf663FPX3nj02kWhnayokI1ZgytXoIohefvQMBxyHAYRQVME5SA/9ID2QIAngf8VKJnYHXJ8kQbxK5ewTg0WiblwDroVf1j0U7yp+FCs8arpaRN/paApuzAQdj5VStlJ9M4qDb8NHfXCa/mi4A+6P5Fe+WdiwVb96cehsQj3vqYCIAdLzkHMqYv0WnZe8H3BBsN4AkrNFx4WJ0FT4hcJ19p0/ieb/KvX+t8E60UP9gVaZWCgGYqCHSK6B8CFngq24Bn45QmCWqSeo/kQLwPqq3Qm/XLpyl36eofK76L4UY2Vz03yARRoJX+VrT3iMmTXt+5tHh65fTlqw6KhdHDxrdvfuExJ5qVMBFvP0uR7hcWFiOku4M8iWCtr8zmhpXZ6/qDL3a1Z3XnavcHyOHujcFKxW8gzVORfXwC8nJpAR5dbVf6Rj8kl8bSTCvRgmnUSywuQ6dBIbyX93+Azn9/gpHi4sqXnrOwUVbzZv6WpJSbCZAPIE1u+ovbWswd1YVP3WV/hXsAx6qE/TA+66T0gZodKFuvllJAy8kHBvNN35bewtFU1ygV7Q/Oof5K169TF+yMOLwuq3nymomLVxS1fzjWwULPIDELnYsLN+fEWDZ3Nh5ZwnXa7k97LHQmIknhxiJiMEqCsHdfPLkEgWiyre/HsSbOvWAy0jmJ+P5dOzAUi6uTB4dqJhiz66pHZ++6LKeX9mR/jFE3R9lZrVauJYlKhsJ+pAXaiTVy+RKoqYSzCrdl1nxXD/hZNs9xU74rDJAmE1XEfFhqWDpbV5VfnU9NsVJ0TT6jNyvqfpjk7eMREKLWXSuVEH6rLqX0vEgbdM/T1fYObywPqSi4dO7rmDiYKxRpHSASR2I0qw9+i2u6V18/uKKufmF1Vqtide5C755cc8AeWH5O/1kD95Wyi2lKjcZuemOlAXr1bCTiCstbhqTk5JzVtdrbvqr2OiIVL20u3Lhpe9RDphddvK64XV8w75KpzP4nr4pdkOrC/qNhzPaYaKnvYNseiSIJ0L58S5UQevTiJdWFanfa2wau7KZWu8A1v2Nd88d7mfiTaUvG2fe4AgP8s3uNRnruusvLkw6Dq7uGpegTfo+nwmMtnRPC/wq39MPfVKEtgg385RLMI4xLHsHHQunFM2/RkEEnQXVcx5Nj/wRkNJTe755u2VoyfPHL2LMXvsiwXhJjLtJBIojyA/jh+5MTxxvP/Q3bUdwVGv4by4pNYdLAy8OS1Dg1ja0RNQf0p+JkJM16hTlHAsFmVxDI5l56Bz8dNKTAeW1OT+aXHt24vzK2b1LG/wDG/c3TB2vO/QXexSiNkHkVtfRhN/x+eYt4XhU/jD63fW3iiqzb1YUDnn5JK6+fMWBmb/TjbMCUJOgcevvKQZzkoS4RA16cPMRRBzGGVQFsfgWH4aiWwA8iEXlc/+65KatxdR56fLZzivLq6aOxxcXzq8blv52NaulvGOrpbbIH5v39803ry9+pbevHi0qGreoNdQh4rqcjtL6+fP9ho5f8hPm3XAi7OgzvUpza885dUVh4j4DGWycuKdxGSgA4ERFI/u/D75m/+HRLzAv7ZgCbh6jbeYOmq51Dz+p7dM+ZZHf+2/8sMkJDgeeeT/A56zMjtwudlqAAAAAElFTkSuQmCC</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="4" Selected="True" />
+        <Tool ToolId="19" Selected="True" />
+        <Tool ToolId="20" Selected="True" />
+        <Tool ToolId="22" Selected="True" />
+        <Tool ToolId="113" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

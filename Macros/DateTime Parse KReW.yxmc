@@ -1,0 +1,1044 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2020.2">
+  <Nodes>
+    <Node ToolID="45">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="57" y="57" width="1248" height="192" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>User Interface Tools</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor r="255" g="184" b="149" />
+          <Shape shape="0" />
+          <Justification Justification="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="813" y="585" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Input</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="6" />
+              <Fields>
+                <Field name="Customer ID" />
+                <Field name="Join Date" />
+                <Field name="DOB" />
+                <Field name="Last login datetime" />
+                <Field name="Last login time" />
+                <Field name="M-dd/yyyy" />
+                <Field name="mon-dd/yyyy" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>1</c>
+                  <c>2005-01-10</c>
+                  <c>January 24, 1977</c>
+                  <c>2015-09-15 12:25:31</c>
+                  <c>12:25:31</c>
+                  <c>9-14/1979</c>
+                  <c>January 24, 1977</c>
+                </r>
+                <r>
+                  <c>2</c>
+                  <c>2015-03-14</c>
+                  <c>July 06, 1952</c>
+                  <c>2015-09-12 03:42:06</c>
+                  <c>03:42:06</c>
+                  <c>9-14/1979</c>
+                  <c>July 06, 1952</c>
+                </r>
+                <r>
+                  <c>3</c>
+                  <c>2009-10-13</c>
+                  <c>October 12, 1988</c>
+                  <c>2015-09-13 19:20:58</c>
+                  <c>19:20:58</c>
+                  <c>9-14/1979</c>
+                  <c>October 12, 1988</c>
+                </r>
+                <r>
+                  <c>4</c>
+                  <c>2010-09-30</c>
+                  <c>February 29, 1984</c>
+                  <c>2015-08-28 08:16:32</c>
+                  <c>08:16:32</c>
+                  <c>9-14/1979</c>
+                  <c>February 29, 1984</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>2014-12-31</c>
+                  <c>June 9, 1979</c>
+                  <c>2015-08-22 10:00:00</c>
+                  <c>10:00:00</c>
+                  <c>9-14/1979</c>
+                  <c>June 9, 1979</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>2016-11-05</c>
+                  <c>May 12, 1965</c>
+                  <c>2016-12-05 11:52:45</c>
+                  <c>11:52:45</c>
+                  <c>9-14/1979</c>
+                  <c>May 12, 1965</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Customer ID" source="TextInput:" type="Byte" />
+            <Field name="Join Date" source="TextInput:" type="Date" />
+            <Field name="DOB" size="17" source="TextInput:" type="String" />
+            <Field name="Last login datetime" source="TextInput:" type="DateTime" />
+            <Field name="Last login time" source="TextInput:" type="Time" />
+            <Field name="M-dd/yyyy" size="9" source="TextInput:" type="String" />
+            <Field name="mon-dd/yyyy" size="17" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiFieldFormula.MultiFieldFormula">
+        <Position x="921" y="585" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldType>All</FieldType>
+          <Fields orderChanged="False">
+            <Field name="Join Date" />
+            <Field name="Customer ID" selected="False" />
+            <Field name="DOB" selected="False" />
+            <Field name="Last login datetime" selected="False" />
+            <Field name="Last login time" selected="False" />
+            <Field name="M-dd/yyyy" selected="False" />
+            <Field name="mon-dd/yyyy" selected="False" />
+            <Field name="*Unknown" selected="False" />
+          </Fields>
+          <NewFieldAddOn>New_</NewFieldAddOn>
+          <NewFieldAddOnPos>Prefix</NewFieldAddOnPos>
+          <CopyOutput value="True" />
+          <Expression>datetimeformat(tostring([_CurrentField_]),"%d-%m-%Y")</Expression>
+          <ChangeFieldType value="True" />
+          <OutputFieldType type="String" size="60" scale="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>datetimeformat(tostring([_CurrentField_]),"%d-%m-%Y")</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Customer ID" source="TextInput:" type="Byte" />
+            <Field name="Join Date" source="TextInput:" type="Date" />
+            <Field name="DOB" size="17" source="TextInput:" type="String" />
+            <Field name="Last login datetime" source="TextInput:" type="DateTime" />
+            <Field name="Last login time" source="TextInput:" type="Time" />
+            <Field name="M-dd/yyyy" size="9" source="TextInput:" type="String" />
+            <Field name="mon-dd/yyyy" size="17" source="TextInput:" type="String" />
+            <Field name="New_Join Date" size="60" source="Formula: datetimeformat(tostring([_CurrentField_]),&quot;%d-%m-%Y&quot;)" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiFieldFormula" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+        <Position x="681" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name>NewFields</Name>
+          <DefaultAnnotationText>Output values as separate field(s)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="693" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1017" y="585" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Output</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+        <Position x="369" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Select the Date/Time field(s) with the same structure to convert</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="381" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Raw XML with Formula</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+        <Position x="57" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Date/Time format to string</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+        <Position x="213" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>String to Date/Time format</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="537" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Raw XML with Formula</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Condition.Condition">
+        <Position x="57" y="321" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[#1]</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+        <Position x="525" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Select the string field(s) to convert</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="993" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="1137" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>If you chose Custom, specify the format here (must use specifiers and separators, i.e. %B %Y)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="24">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="1149" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Condition.Condition">
+        <Position x="861" y="321" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[#1]="true"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="28">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="837" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="29">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="825" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Prefix to append to new field(s)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="31">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Condition.Condition">
+        <Position x="1173" y="321" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[#1]="Custom"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="33">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="1305" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="39">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="1437" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="40">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="1425" y="225" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Only used to change formula. User cannot see or change this.</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="42">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="1617" y="393" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value with Formula</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="43">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Error.Error">
+        <Position x="213" y="237" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>((Length([#1]) &lt;= 17) &amp;&amp; [#2]) || ((Length([#3]) &lt;= 17) &amp;&amp; [#4])
+No fields selected.</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="44">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Link.Link">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+        <Position x="981" y="81" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name>ChangeField</Name>
+          <DefaultAnnotationText>Select the format for the converted field(s) if converting to string or select the format that matches the incoming field if converting to Date/Time</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection Wireless="True">
+      <Origin ToolID="2" Connection="Question" />
+      <Destination ToolID="9" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="2" Connection="Question" />
+      <Destination ToolID="17" Connection="Question Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="6" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="10" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="15" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#5">
+      <Origin ToolID="19" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#6">
+      <Origin ToolID="24" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#4">
+      <Origin ToolID="28" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#7">
+      <Origin ToolID="33" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#9">
+      <Origin ToolID="39" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection name="#10">
+      <Origin ToolID="42" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="5" Connection="Question" />
+      <Destination ToolID="6" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="5" Connection="Question" />
+      <Destination ToolID="27" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="9" Connection="Question" />
+      <Destination ToolID="10" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="16" Connection="True Condition" />
+      <Destination ToolID="10" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="9" Connection="Question" />
+      <Destination ToolID="43" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="11" Connection="Question" />
+      <Destination ToolID="43" Connection="Question" />
+    </Connection>
+    <Connection name="#4">
+      <Origin ToolID="12" Connection="Question" />
+      <Destination ToolID="43" Connection="Question" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="17" Connection="Question" />
+      <Destination ToolID="43" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="11" Connection="Question" />
+      <Destination ToolID="16" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="16" Connection="False Condition" />
+      <Destination ToolID="15" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="17" Connection="Question" />
+      <Destination ToolID="15" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="16" Connection="True Condition" />
+      <Destination ToolID="19" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="18" Connection="Question" />
+      <Destination ToolID="19" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="16" Connection="False Condition" />
+      <Destination ToolID="33" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="18" Connection="Question" />
+      <Destination ToolID="33" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="16" Connection="False Condition" />
+      <Destination ToolID="39" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="40" Connection="Question" />
+      <Destination ToolID="39" Connection="Question" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="16" Connection="False Condition" />
+      <Destination ToolID="42" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="18" Connection="Question" />
+      <Destination ToolID="42" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="20" Connection="Question" />
+      <Destination ToolID="24" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="True Condition" />
+      <Destination ToolID="24" Connection="Condition" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="27" Connection="True Condition" />
+      <Destination ToolID="28" Connection="Condition" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="28" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="18" Connection="Question" />
+      <Destination ToolID="31" Connection="Question" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>List Box (9)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Radio Button (11)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>List Box (17)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Radio Button (12)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>ChangeField</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (20)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (29)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>NewFields</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (40)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>DateTime Parse KReW</Name>
+      <Description>This tool is much like the normal DateTime Parse tool provided by Alteryx, but allows the option to select multiple fields. The user is also not required to generate new fields for the converted fields.</Description>
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName>Parse</CategoryName>
+      <SearchTags>Date, Time, Parse</SearchTags>
+      <Author>Kenda Barnes</Author>
+      <Company>MedPro Group</Company>
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="6" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>3/CopyOutput/@value</Destination>
+            </Action>
+            <Action>
+              <Type>Error</Type>
+              <Description>No fields selected.</Description>
+              <ToolId value="43" />
+              <Expression>((Length([#1]) &lt;= 17) &amp;&amp; [#2]) || ((Length([#3]) &lt;= 17) &amp;&amp; [#4])</Expression>
+            </Action>
+          </True>
+        </NoCondition>
+        <Condition>
+          <Type>Condition</Type>
+          <Description />
+          <ToolId value="16" />
+          <Expression>[#1]</Expression>
+          <True>
+            <Action>
+              <Type>UpdateRawXml</Type>
+              <Description />
+              <ToolId value="10" />
+              <Expression>[#1]</Expression>
+              <Destination>3/Fields</Destination>
+              <OuterXml value="False" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="19" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>%d-%m-%Y</ReplaceText>
+              <Destination>3/Expression</Destination>
+            </Action>
+          </True>
+          <False>
+            <Action>
+              <Type>UpdateRawXml</Type>
+              <Description />
+              <ToolId value="15" />
+              <Expression>[#1]</Expression>
+              <Destination>3/Fields</Destination>
+              <OuterXml value="False" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="33" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>%d-%m-%Y</ReplaceText>
+              <Destination>3/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="39" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>datetimeformat</ReplaceText>
+              <Destination>3/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValueFormula</Type>
+              <Description />
+              <ToolId value="42" />
+              <Expression>if (Contains([#1], ":") &amp;&amp; Contains([#1], " ")) then "DateTime" elseif (Contains([#1], ":")) then "Time" else "Date" endif</Expression>
+              <Destination>3/OutputFieldType/@type</Destination>
+              <Mode>Expression</Mode>
+            </Action>
+          </False>
+        </Condition>
+        <Condition>
+          <Type>Condition</Type>
+          <Description />
+          <ToolId value="27" />
+          <Expression>[#1]="true"</Expression>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="28" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>3/NewFieldAddOn</Destination>
+            </Action>
+          </True>
+          <False />
+        </Condition>
+        <Condition>
+          <Type>Condition</Type>
+          <Description />
+          <ToolId value="31" />
+          <Expression>[#1]="Custom"</Expression>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="24" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>Custom</ReplaceText>
+              <Destination>3/Expression</Destination>
+            </Action>
+          </True>
+          <False />
+        </Condition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (1)</Name>
+          <ToolId value="1" />
+          <Questions>
+            <Question>
+              <Type>LabelGroup</Type>
+              <Description>Select the field(s) to convert</Description>
+              <Name>LabelGroup (13)</Name>
+              <ToolId value="13" />
+              <Questions>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>String to Date/Time format</Description>
+                  <Name>Radio Button (12)</Name>
+                  <ToolId value="12" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the string field(s) to convert</Description>
+                      <Name>List Box (17)</Name>
+                      <ToolId value="17" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="True" />
+                      <Multiple_Start>&lt;Field name="</Multiple_Start>
+                      <Multiple_Separator>" /&gt;&lt;Field name="</Multiple_Separator>
+                      <Multiple_End>" /&gt;</Multiple_End>
+                      <Multiple_Default value="True" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="True" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Date/Time format to string</Description>
+                  <Name>Radio Button (11)</Name>
+                  <ToolId value="11" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the Date/Time field(s) with the same structure to convert</Description>
+                      <Name>List Box (9)</Name>
+                      <ToolId value="9" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="True" />
+                      <Multiple_Start>&lt;Field name="</Multiple_Start>
+                      <Multiple_Separator>" /&gt;&lt;Field name="</Multiple_Separator>
+                      <Multiple_End>" /&gt;</Multiple_End>
+                      <Multiple_Default value="True" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>Date,Time,DateTime</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+            </Question>
+            <Question>
+              <Type>ListBox</Type>
+              <Description>Select the format for the converted field(s) if converting to string or select the format that matches the incoming field if converting to Date/Time</Description>
+              <Name>ChangeField</Name>
+              <ToolId value="18" />
+              <Multiple value="False" />
+              <Default>day, dd Month, yyy</Default>
+              <Mode>DW2</Mode>
+              <DW2_Path>G:\Alteryx\Macros\Input Formats.xlsx|||`Sheet1$`</DW2_Path>
+              <DW2_Password />
+              <DW2_CachedCosmeticName />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>If you chose Custom, specify the format here (must use specifiers and separators, i.e. %B %Y)</Description>
+              <Name>Text Box (20)</Name>
+              <ToolId value="20" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>Link</Type>
+              <Description>Go To Alteryx Help Page on Date Formatting</Description>
+              <Name>Link (44)</Name>
+              <ToolId value="44" />
+              <LinkDest>https://help.alteryx.com/current/index.htm#Reference/DateTimeFunctions.htm</LinkDest>
+            </Question>
+            <Question>
+              <Type>BooleanGroup</Type>
+              <Description>Output values as separate field(s)</Description>
+              <Name>NewFields</Name>
+              <ToolId value="5" />
+              <Questions>
+                <Question>
+                  <Type>TextBox</Type>
+                  <Description>Prefix to append to new field(s)</Description>
+                  <Name>Text Box (29)</Name>
+                  <ToolId value="29" />
+                  <Default>New_</Default>
+                  <Password value="False" />
+                  <Multiline value="False" />
+                  <Hidden value="False" />
+                </Question>
+              </Questions>
+              <Default value="False" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (8)</Description>
+              <Name>Macro Output (8)</Name>
+              <ToolId value="8" />
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (2)</Description>
+              <Name>Macro Input (2)</Name>
+              <ToolId value="2" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>Only used to change formula. User cannot see or change this.</Description>
+              <Name>Text Box (40)</Name>
+              <ToolId value="40" />
+              <Default>datetimeparse</Default>
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="True" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="True" />
+      <MacroCustomHelpLink>https://help.alteryx.com/current/index.htm#Reference/DateTimeFunctions.htm</MacroCustomHelpLink>
+      <MacroDynamicOutputFields value="True" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="2" Selected="True" />
+        <Tool ToolId="8" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

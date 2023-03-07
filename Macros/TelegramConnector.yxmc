@@ -1,0 +1,3077 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.3">
+  <Nodes>
+    <Node ToolID="114">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="43" y="1110" width="516" height="432" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text />
+          <Font name="Arial" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="462" y="990" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="TELEGRAM_CHAT_ID" />
+            <Field name="TELEGRAM_BOT_TOKEN" />
+            <Field name="TELEGRAM_MESSAGE" />
+            <Field name="TELEGRAM_PARSE_MODE" />
+            <Field name="TELEGRAM_DISABLE_NOTIFICATION" />
+          </Fields>
+          <Data>
+            <r>
+              <c>123456789</c>
+              <c>123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11</c>
+              <c>This is a sample message</c>
+              <c>none</c>
+              <c>False</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+            <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Link.Link">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="18" y="30" width="264" height="40" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text><![CDATA[@author: David Stanitzki
+@version: 1.0
+@date: 2021-11-08
+]]></Text>
+          <Font name="Arial" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="32">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="2238" y="1206" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>getUpdate</Name>
+          <Abbrev>U</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Output getUpdate results</AnnotationText>
+          <DefaultAnnotationText>U Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="44">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Link.Link">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="45">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="103" y="1182" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Input45</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="True" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="__TELEGRAM_CHAT_ID__" />
+                <Field name="__TELEGRAM_BOT_TOKEN__" />
+                <Field name="__TELEGRAM_MESSAGE__" />
+                <Field name="__TELEGRAM_PARSE_MODE__" />
+                <Field name="__TELEGRAM_DISABLE_NOTIFICATION__" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>123456789</c>
+                  <c>123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11</c>
+                  <c>This is a sample message</c>
+                  <c>none</c>
+                  <c>False</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="__TELEGRAM_CHAT_ID__" source="TextInput:" type="Int32" />
+            <Field name="__TELEGRAM_BOT_TOKEN__" size="41" source="TextInput:" type="String" />
+            <Field name="__TELEGRAM_MESSAGE__" size="24" source="TextInput:" type="String" />
+            <Field name="__TELEGRAM_PARSE_MODE__" size="4" source="TextInput:" type="String" />
+            <Field name="__TELEGRAM_DISABLE_NOTIFICATION__" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="55">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="979" y="822" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Ignore</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+            <Field name="TELEGRAM_CHAT_ID2" source="TextInput:" type="Int32" />
+            <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="59">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1075" y="822" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TELEGRAM_CHAT_ID" selected="True" />
+            <SelectField field="TELEGRAM_BOT_TOKEN" selected="True" />
+            <SelectField field="TELEGRAM_MESSAGE" selected="True" />
+            <SelectField field="TELEGRAM_PARSE_MODE" selected="True" />
+            <SelectField field="TELEGRAM_DISABLE_NOTIFICATION" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+            <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="76">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicSelect.DynamicSelect">
+        <Position x="247" y="1182" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Formula</Mode>
+          <Expression>[Name] = "__TELEGRAM_CHAT_ID__"
+OR [Name] = "__TELEGRAM_BOT_TOKEN__"
+OR [Name] = "__TELEGRAM_MESSAGE__"
+OR [Name] = "__TELEGRAM_PARSE_MODE__"
+OR [Name] = "__TELEGRAM_DISABLE_NOTIFICATION__"</Expression>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="__TELEGRAM_CHAT_ID__" source="TextInput:" type="Int32" />
+            <Field name="__TELEGRAM_BOT_TOKEN__" size="41" source="TextInput:" type="String" />
+            <Field name="__TELEGRAM_MESSAGE__" size="24" source="TextInput:" type="String" />
+            <Field name="__TELEGRAM_PARSE_MODE__" size="4" source="TextInput:" type="String" />
+            <Field name="__TELEGRAM_DISABLE_NOTIFICATION__" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicSelect" />
+    </Node>
+    <Node ToolID="86">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+        <Position x="379" y="1194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <RenameMode>Formula</RenameMode>
+          <Fields orderChanged="False">
+            <Field name="__TELEGRAM_CHAT_ID__" />
+            <Field name="__TELEGRAM_BOT_TOKEN__" />
+            <Field name="__TELEGRAM_MESSAGE__" />
+            <Field name="__TELEGRAM_PARSE_MODE__" />
+            <Field name="__TELEGRAM_DISABLE_NOTIFICATION__" />
+            <Field name="*Unknown" />
+          </Fields>
+          <Expression><![CDATA[IF [_CurrentField_] = "__TELEGRAM_CHAT_ID__" THEN "TELEGRAM_CHAT_ID"
+ELSEIF [_CurrentField_] = "__TELEGRAM_BOT_TOKEN__" THEN "TELEGRAM_BOT_TOKEN"
+ELSEIF [_CurrentField_] = "__TELEGRAM_MESSAGE__" THEN "TELEGRAM_MESSAGE"
+ELSEIF [_CurrentField_] = "__TELEGRAM_PARSE_MODE__" THEN "TELEGRAM_PARSE_MODE"
+ELSEIF [_CurrentField_] = "__TELEGRAM_DISABLE_NOTIFICATION__" THEN "TELEGRAM_DISABLE_NOTIFICATION"
+ELSE "__"
+ENDIF
+
+]]></Expression>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+            <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+            <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+    </Node>
+    <Node ToolID="98">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+        <Position x="475" y="1206" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <RenameMode>RightInputRows</RenameMode>
+          <Fields orderChanged="False">
+            <Field name="TELEGRAM_CHAT_ID" />
+            <Field name="TELEGRAM_BOT_TOKEN" />
+            <Field name="TELEGRAM_MESSAGE" />
+            <Field name="TELEGRAM_PARSE_MODE" />
+            <Field name="TELEGRAM_DISABLE_NOTIFICATION" />
+            <Field name="*Unknown" />
+          </Fields>
+          <Expression />
+          <NamesFromRows>
+            <OnError>Warn</OnError>
+            <InputMode>Mapped</InputMode>
+            <OldName>Name</OldName>
+            <NewName>NewName</NewName>
+          </NamesFromRows>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+            <Field name="REMOVE_TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+            <Field name="REMOVE_TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+            <Field name="REMOVE_TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+            <Field name="REMOVE_TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+    </Node>
+    <Node ToolID="101">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="271" y="1386" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="5" />
+          <Fields>
+            <Field name="Name" />
+            <Field name="Keep" />
+          </Fields>
+          <Data>
+            <r>
+              <c>TELEGRAM_CHAT_ID</c>
+              <c>True</c>
+            </r>
+            <r>
+              <c>TELEGRAM_BOT_TOKEN</c>
+              <c>False</c>
+            </r>
+            <r>
+              <c>TELEGRAM_MESSAGE</c>
+              <c>False</c>
+            </r>
+            <r>
+              <c>TELEGRAM_PARSE_MODE</c>
+              <c>False</c>
+            </r>
+            <r>
+              <c>TELEGRAM_DISABLE_NOTIFICATION</c>
+              <c>False</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Check which Settings should use a dynamic Input</AnnotationText>
+          <DefaultAnnotationText>Check which Settings should use a dynamic Input</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="29" source="TextInput:" type="V_String" />
+            <Field name="Keep" source="TextInput:" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="102">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="391" y="1386" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF [Keep] THEN [Name] ELSE &quot;REMOVE_&quot;+[Name] ENDIF" field="NewName" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[NewName = IF [Keep] THEN [Name] ELSE "REMOVE_"+[Name] ENDIF
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="29" source="TextInput:" type="V_String" />
+            <Field name="Keep" source="TextInput:" type="Bool" />
+            <Field name="NewName" size="1073741823" source="Formula: IF [Keep] THEN [Name] ELSE &quot;REMOVE_&quot;+[Name] ENDIF" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="112">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Label.Label">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="115">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="43" y="1110" width="516" height="40" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Dynamic Column Config</Text>
+          <Font name="Arial" size="15.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="116">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="40" y="100" width="1628" height="637" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Interface</Caption>
+          <Style TextColor="#314c4a" FillColor="#cce6ff" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="17">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="594" y="162" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Drop Down (17)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="18">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="606" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="20">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="750" y="161" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (20)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="21">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="762" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="36">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="269" y="173" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Text Box (36)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="37">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="282" y="281" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="38">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="449" y="162" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Text Box (38)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="39">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="462" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="62">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="113" y="174" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Text Box (36)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="63">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="126" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="64">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="1026" y="149" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Radio Button (64)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="66">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="1098" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="70">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Error.Error">
+            <Position x="1314" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Check if Chat ID is set when sending a Message</AnnotationText>
+              <DefaultAnnotationText><![CDATA[IsEmpty([#1])
+You have to enter a ]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="69">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Error.Error">
+            <Position x="66" y="474" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[IsEmpty([#1])
+You have to enter a ]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="71">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Error.Error">
+            <Position x="1494" y="282" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Check if Chat ID is set when sending a Message</AnnotationText>
+              <DefaultAnnotationText><![CDATA[IsEmpty([#1])
+You have to enter a ]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="50">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="66" y="546" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (50)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="58">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="258" y="654" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="78" y="653" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="65">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+            <Position x="1194" y="150" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Radio Button (65)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="67">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="1026" y="642" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="113">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="65" y="1985" width="1014" height="541" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Dynamic Input Control</Caption>
+          <Style TextColor="#314c4a" FillColor="#cce6ff" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="94">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="90" y="2034" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (94)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="99">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="90" y="2214" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="103">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="126" y="2082" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (94)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="104">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="138" y="2250" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="105">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="162" y="2130" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (94)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="106">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="186" y="2274" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="107">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="209" y="2166" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (94)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="108">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="234" y="2322" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="109">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+            <Position x="258" y="2202" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check Box (94)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="110">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="294" y="2358" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="72">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="546" y="2058" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Drop Down (72)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="73">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="558" y="2274" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="78">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="606" y="2094" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Drop Down (78)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="79">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="618" y="2358" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="80">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="666" y="2130" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Drop Down (80)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="81">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="726" y="2442" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="82">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="726" y="2166" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Drop Down (82)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="83">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="858" y="2394" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="84">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+            <Position x="786" y="2202" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Drop Down (84)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="85">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="846" y="2298" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="87">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="498" y="2274" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="88">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="558" y="2358" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="89">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="654" y="2442" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="90">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="786" y="2394" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="91">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="918" y="2298" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="53">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="581" y="1157" width="301" height="157" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>use dynamic Input data</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="52">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+            <Position x="702" y="1218" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <CartesianMode>Allow</CartesianMode>
+              <SelectConfiguration>
+                <Configuration outputConnection="Output">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Source_TELEGRAM_CHAT_ID" selected="True" rename="Source_TELEGRAM_CHAT_ID" input="Source_" />
+                    <SelectField field="Source_TELEGRAM_BOT_TOKEN" selected="True" rename="Source_TELEGRAM_BOT_TOKEN" input="Source_" />
+                    <SelectField field="Source_TELEGRAM_MESSAGE" selected="True" rename="Source_TELEGRAM_MESSAGE" input="Source_" />
+                    <SelectField field="Source_TELEGRAM_PARSE_MODE" selected="True" rename="Source_TELEGRAM_PARSE_MODE" input="Source_" />
+                    <SelectField field="Source_TELEGRAM_DISABLE_NOTIFICATION" selected="True" rename="Source_TELEGRAM_DISABLE_NOTIFICATION" input="Source_" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+                <Field name="Source_TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+                <Field name="Source_TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="Source_TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+                <Field name="Source_TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+                <Field name="Source_TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+        </Node>
+        <Node ToolID="61">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+            <Position x="798" y="1230" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <RenameMode>Formula</RenameMode>
+              <Fields orderChanged="False">
+                <Field name="TELEGRAM_CHAT_ID" />
+                <Field name="Source_TELEGRAM_CHAT_ID" />
+                <Field name="Source_TELEGRAM_BOT_TOKEN" />
+                <Field name="Source_TELEGRAM_MESSAGE" />
+                <Field name="Source_TELEGRAM_PARSE_MODE" />
+                <Field name="Source_TELEGRAM_DISABLE_NOTIFICATION" />
+                <Field name="*Unknown" />
+              </Fields>
+              <Expression>Replace([_CurrentField_], "Source_", "")</Expression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_CHAT_ID2" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+        </Node>
+        <Node ToolID="111">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicSelect.DynamicSelect">
+            <Position x="606" y="1206" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Formula</Mode>
+              <Expression>!StartsWith([Name], "REMOVE_")</Expression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicSelect" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1145" y="761" width="530" height="245" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>sendMessage</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="3">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1170" y="822" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="&quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" field="url" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[url = "https://api.telegram.org/bot"+[TELEGRAM_BOT_TOKEN]+"/sendMessage"
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="4">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1254" y="822" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="TELEGRAM_CHAT_ID" selected="True" rename="chat_id" />
+                <SelectField field="TELEGRAM_MESSAGE" selected="True" rename="text" type="V_WString" size="4048" />
+                <SelectField field="TELEGRAM_PARSE_MODE" selected="True" rename="parse_mode" />
+                <SelectField field="TELEGRAM_DISABLE_NOTIFICATION" selected="True" rename="disable_notification" type="Bool" forced="True" size="1" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="chat_id" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="text" size="4048" source="TextInput:" type="V_WString" />
+                <Field name="parse_mode" size="4" source="TextInput:" type="String" />
+                <Field name="disable_notification" source="TextInput:" type="Bool" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="2">
+          <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+            <Position x="1350" y="822" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Password />
+              <URLField>url</URLField>
+              <OutputMode>String</OutputMode>
+              <CodePage>65001</CodePage>
+              <EncodeURLs value="True" />
+              <Headers>
+                <NameValues>
+                  <Item name="Content-Type" value="application/json" />
+                </NameValues>
+                <Fields orderChanged="False">
+                  <Field name="chat_id" selected="False" />
+                  <Field name="TELEGRAM_BOT_TOKEN" selected="False" />
+                  <Field name="text" selected="False" />
+                  <Field name="parse_mode" selected="False" />
+                  <Field name="disable_notification" selected="False" />
+                  <Field name="url" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </Fields>
+              </Headers>
+              <Payload>
+                <HTTPAction>GET</HTTPAction>
+                <QueryStringBodyMode>Compose</QueryStringBodyMode>
+                <ComposeNameValues />
+                <ComposeFields orderChanged="False">
+                  <Field name="chat_id" />
+                  <Field name="text" />
+                  <Field name="parse_mode" />
+                  <Field name="disable_notification" />
+                  <Field name="TELEGRAM_BOT_TOKEN" selected="False" />
+                  <Field name="url" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </ComposeFields>
+              </Payload>
+              <UserName />
+              <numConnections>2</numConnections>
+              <Timeout>600</Timeout>
+              <EnableRPM value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="chat_id" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="text" size="4048" source="TextInput:" type="V_WString" />
+                <Field name="parse_mode" size="4" source="TextInput:" type="String" />
+                <Field name="disable_notification" source="TextInput:" type="Bool" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+        </Node>
+        <Node ToolID="11">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="1554" y="810" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\ProgramData\Alteryx\Engine\Engine_19604_48c64d3938bd47bc92029d3502c30aa2_\Engine_10976_da36c728d7924158be34281d42575ee2_.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="40">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1434" y="822" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>Contains</Operator>
+                <Field>DownloadHeaders</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2021-11-08 07:49:41</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>200 OK</Operand>
+                  <StartDate>2021-11-08 07:49:41</StartDate>
+                  <EndDate>2021-11-08 07:49:41</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Contains([DownloadHeaders],"200 OK")</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="chat_id" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="text" size="4048" source="TextInput:" type="V_WString" />
+                <Field name="parse_mode" size="4" source="TextInput:" type="String" />
+                <Field name="disable_notification" source="TextInput:" type="Bool" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="chat_id" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="text" size="4048" source="TextInput:" type="V_WString" />
+                <Field name="parse_mode" size="4" source="TextInput:" type="String" />
+                <Field name="disable_notification" source="TextInput:" type="Bool" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="41">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Message.Message">
+            <Position x="1554" y="906" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <When>Last</When>
+              <Filter />
+              <Type>Error</Type>
+              <Priority>High</Priority>
+              <Transient>False</Transient>
+              <MessageExpression>"sendMessage API call was not processed correctly."</MessageExpression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>getUpdate Error</AnnotationText>
+              <DefaultAnnotationText>getUpdate Error</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="chat_id" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="text" size="4048" source="TextInput:" type="V_WString" />
+                <Field name="parse_mode" size="4" source="TextInput:" type="String" />
+                <Field name="disable_notification" source="TextInput:" type="Bool" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/sendMessage&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMessage" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="68">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1145" y="1025" width="1069" height="269" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>getUpdates</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="60">
+          <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+            <Position x="1170" y="1098" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="TELEGRAM_BOT_TOKEN" action="GroupBy" rename="TELEGRAM_BOT_TOKEN" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+              </RecordInfo>
+              <SortInfo>
+                <Field field="TELEGRAM_BOT_TOKEN" order="Asc" />
+              </SortInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+        </Node>
+        <Node ToolID="35">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Message.Message">
+            <Position x="1554" y="1194" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <When>Last</When>
+              <Filter />
+              <Type>Error</Type>
+              <Priority>High</Priority>
+              <Transient>False</Transient>
+              <MessageExpression>"getUpdates API call was not processed correctly."</MessageExpression>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>getUpdate Error</AnnotationText>
+              <DefaultAnnotationText>getUpdate Error</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMessage" />
+        </Node>
+        <Node ToolID="34">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1458" y="1098" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>Contains</Operator>
+                <Field>DownloadHeaders</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2021-11-08 07:37:28</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>200 OK</Operand>
+                  <StartDate>2021-11-08 07:37:28</StartDate>
+                  <EndDate>2021-11-08 07:37:28</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Contains([DownloadHeaders],"200 OK")</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1938" y="1074" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="[offset]+1" field="offset" size="8" type="Int64" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[offset = [offset]+1
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="offset" source="Formula: [offset]+1" type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="30">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1842" y="1074" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="parse_mode" selected="False" />
+                <SelectField field="DownloadHeaders" selected="False" />
+                <SelectField field="JSON_Name" selected="False" />
+                <SelectField field="JSON_ValueString" selected="True" rename="offset" type="Int64" size="8" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="offset" source="JSONParse: " type="Int64" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="29">
+          <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+            <Position x="2034" y="1074" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Password />
+              <URLField>url</URLField>
+              <OutputMode>String</OutputMode>
+              <CodePage>65001</CodePage>
+              <EncodeURLs value="True" />
+              <Headers>
+                <NameValues>
+                  <Item name="Content-Type" value="application/json" />
+                </NameValues>
+                <Fields orderChanged="False">
+                  <Field name="TELEGRAM_CHAT_ID" selected="False" />
+                  <Field name="TELEGRAM_BOT_TOKEN" selected="False" />
+                  <Field name="TELEGRAM_MESSAGE" selected="False" />
+                  <Field name="url" selected="False" />
+                  <Field name="offset" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </Fields>
+              </Headers>
+              <Payload>
+                <HTTPAction>GET</HTTPAction>
+                <QueryStringBodyMode>Compose</QueryStringBodyMode>
+                <ComposeNameValues />
+                <ComposeFields orderChanged="False">
+                  <Field name="offset" />
+                  <Field name="TELEGRAM_CHAT_ID" selected="False" />
+                  <Field name="TELEGRAM_BOT_TOKEN" selected="False" />
+                  <Field name="TELEGRAM_MESSAGE" selected="False" />
+                  <Field name="url" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </ComposeFields>
+              </Payload>
+              <UserName />
+              <numConnections>2</numConnections>
+              <Timeout>600</Timeout>
+              <EnableRPM value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>refresh getUpdate offset</AnnotationText>
+              <DefaultAnnotationText>Update offset</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="offset" source="Formula: [offset]+1" type="Int64" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+        </Node>
+        <Node ToolID="28">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+            <Position x="1746" y="1074" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Last</Mode>
+              <N>1</N>
+              <GroupFields orderChanged="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Last 1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+                <Field name="JSON_Name" size="1073741823" source="JSONParse: " type="V_WString" />
+                <Field name="JSON_ValueString" size="1073741823" source="JSONParse: " type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+        </Node>
+        <Node ToolID="27">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1650" y="1086" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>Contains</Operator>
+                <Field>JSON_Name</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2021-11-08 07:27:20</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>update_id</Operand>
+                  <StartDate>2021-11-08 07:27:20</StartDate>
+                  <EndDate>2021-11-08 07:27:20</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Contains([JSON_Name],"update_id")</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+                <Field name="JSON_Name" size="1073741823" source="JSONParse: " type="V_WString" />
+                <Field name="JSON_ValueString" size="1073741823" source="JSONParse: " type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+                <Field name="JSON_Name" size="1073741823" source="JSONParse: " type="V_WString" />
+                <Field name="JSON_ValueString" size="1073741823" source="JSONParse: " type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="25">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.JSONParse.JSONParse">
+            <Position x="1554" y="1086" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JSON_Field>DownloadData</JSON_Field>
+              <IncludeInOutput value="False" />
+              <SingleField value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+                <Field name="JSON_Name" size="1073741823" source="JSONParse: " type="V_WString" />
+                <Field name="JSON_ValueString" size="1073741823" source="JSONParse: " type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJSONParse" />
+        </Node>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="2130" y="1074" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\ProgramData\Alteryx\Engine\Engine_11844_bc2450a68d9343bf95e0f82f6dcffe13_\Engine_13216_5ea10580928342aaa4a2fbdf626bb3e2_.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1266" y="1098" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="&quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" field="url" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText><![CDATA[url = "https://api.telegram.org/bot"+[TELEGRAM_BOT_TOKEN]+"/getUpdates"
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+              </RecordInfo>
+              <SortInfo>
+                <Field field="TELEGRAM_BOT_TOKEN" order="Asc" />
+              </SortInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="5">
+          <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+            <Position x="1362" y="1098" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Password />
+              <URLField>url</URLField>
+              <OutputMode>String</OutputMode>
+              <CodePage>65001</CodePage>
+              <EncodeURLs value="True" />
+              <Headers>
+                <NameValues>
+                  <Item name="Content-Type" value="application/json" />
+                </NameValues>
+                <Fields orderChanged="False">
+                  <Field name="TELEGRAM_BOT_TOKEN" selected="False" />
+                  <Field name="url" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </Fields>
+              </Headers>
+              <Payload>
+                <HTTPAction>GET</HTTPAction>
+                <QueryStringBodyMode>Compose</QueryStringBodyMode>
+                <ComposeNameValues />
+                <ComposeFields orderChanged="False">
+                  <Field name="TELEGRAM_BOT_TOKEN" selected="False" />
+                  <Field name="url" selected="False" />
+                  <Field name="*Unknown" selected="False" />
+                </ComposeFields>
+              </Payload>
+              <UserName />
+              <numConnections>2</numConnections>
+              <Timeout>600</Timeout>
+              <EnableRPM value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="Summarize: GroupBy - TELEGRAM_BOT_TOKEN" type="String" />
+                <Field name="url" size="1073741823" source="Formula: &quot;https://api.telegram.org/bot&quot;+[TELEGRAM_BOT_TOKEN]+&quot;/getUpdates&quot;" type="V_WString" />
+                <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+                <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+        </Node>
+        <Node ToolID="33">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1950" y="1206" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="DownloadData" selected="True" rename="Updates" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Updates" size="1073741823" source="Download" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="57">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="653" y="773" width="160" height="133" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>use static data</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="56">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="678" y="822" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="TELEGRAM_CHAT_ID" source="TextInput:" type="Int32" />
+                <Field name="TELEGRAM_BOT_TOKEN" size="41" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_MESSAGE" size="24" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_PARSE_MODE" size="4" source="TextInput:" type="String" />
+                <Field name="TELEGRAM_DISABLE_NOTIFICATION" source="TextInput:" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="52" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="111" Connection="Output" />
+      <Destination ToolID="52" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="56" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="45" Connection="Question" />
+      <Destination ToolID="72" Connection="Question Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="45" Connection="Output" />
+      <Destination ToolID="76" Connection="Input" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="73" Connection="Action" />
+      <Destination ToolID="76" Connection="Action" />
+    </Connection>
+    <Connection name="#3" Wireless="True">
+      <Origin ToolID="79" Connection="Action" />
+      <Destination ToolID="76" Connection="Action" />
+    </Connection>
+    <Connection name="#4" Wireless="True">
+      <Origin ToolID="81" Connection="Action" />
+      <Destination ToolID="76" Connection="Action" />
+    </Connection>
+    <Connection name="#5" Wireless="True">
+      <Origin ToolID="83" Connection="Action" />
+      <Destination ToolID="76" Connection="Action" />
+    </Connection>
+    <Connection name="#6" Wireless="True">
+      <Origin ToolID="85" Connection="Action" />
+      <Destination ToolID="76" Connection="Action" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="45" Connection="Question" />
+      <Destination ToolID="78" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="45" Connection="Question" />
+      <Destination ToolID="80" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="45" Connection="Question" />
+      <Destination ToolID="82" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="45" Connection="Question" />
+      <Destination ToolID="84" Connection="Question Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="55" Connection="Output" />
+      <Destination ToolID="59" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="59" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="59" Connection="Output" />
+      <Destination ToolID="60" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="76" Connection="Output" />
+      <Destination ToolID="86" Connection="Targets" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="87" Connection="Action" />
+      <Destination ToolID="86" Connection="Action" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="88" Connection="Action" />
+      <Destination ToolID="86" Connection="Action" />
+    </Connection>
+    <Connection name="#3" Wireless="True">
+      <Origin ToolID="89" Connection="Action" />
+      <Destination ToolID="86" Connection="Action" />
+    </Connection>
+    <Connection name="#4" Wireless="True">
+      <Origin ToolID="90" Connection="Action" />
+      <Destination ToolID="86" Connection="Action" />
+    </Connection>
+    <Connection name="#5" Wireless="True">
+      <Origin ToolID="91" Connection="Action" />
+      <Destination ToolID="86" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="86" Connection="Output" />
+      <Destination ToolID="98" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="102" Connection="Output" />
+      <Destination ToolID="98" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="98" Connection="Output" />
+      <Destination ToolID="111" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="101" Connection="Output" />
+      <Destination ToolID="102" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="17" Connection="Question" />
+      <Destination ToolID="18" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="18" Connection="Action" />
+      <Destination ToolID="1" Connection="Action" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="21" Connection="Action" />
+      <Destination ToolID="1" Connection="Action" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="37" Connection="Action" />
+      <Destination ToolID="1" Connection="Action" />
+    </Connection>
+    <Connection name="#4">
+      <Origin ToolID="39" Connection="Action" />
+      <Destination ToolID="1" Connection="Action" />
+    </Connection>
+    <Connection name="#6">
+      <Origin ToolID="63" Connection="Action" />
+      <Destination ToolID="1" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="20" Connection="Question" />
+      <Destination ToolID="21" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="36" Connection="Question" />
+      <Destination ToolID="37" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="36" Connection="Question" />
+      <Destination ToolID="70" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="64" Connection="Question" />
+      <Destination ToolID="70" Connection="Question" />
+    </Connection>
+    <Connection name="#3" Wireless="True">
+      <Origin ToolID="50" Connection="Question" />
+      <Destination ToolID="70" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="36" Connection="Question" />
+      <Destination ToolID="71" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="64" Connection="Question" />
+      <Destination ToolID="71" Connection="Question" />
+    </Connection>
+    <Connection name="#3" Wireless="True">
+      <Origin ToolID="50" Connection="Question" />
+      <Destination ToolID="71" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="38" Connection="Question" />
+      <Destination ToolID="39" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="62" Connection="Question" />
+      <Destination ToolID="63" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="62" Connection="Question" />
+      <Destination ToolID="69" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="64" Connection="Question" />
+      <Destination ToolID="66" Connection="Question" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="66" Connection="Action" />
+      <Destination ToolID="8" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="50" Connection="Question" />
+      <Destination ToolID="54" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="50" Connection="Question" />
+      <Destination ToolID="58" Connection="Question" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="58" Connection="Action" />
+      <Destination ToolID="57" Connection="Action" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="54" Connection="Action" />
+      <Destination ToolID="53" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="65" Connection="Question" />
+      <Destination ToolID="67" Connection="Question" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="67" Connection="Action" />
+      <Destination ToolID="68" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="94" Connection="Question" />
+      <Destination ToolID="99" Connection="Question" />
+    </Connection>
+    <Connection name="#1" Wireless="True">
+      <Origin ToolID="99" Connection="Action" />
+      <Destination ToolID="101" Connection="Action" />
+    </Connection>
+    <Connection name="#3" Wireless="True">
+      <Origin ToolID="104" Connection="Action" />
+      <Destination ToolID="101" Connection="Action" />
+    </Connection>
+    <Connection name="#4" Wireless="True">
+      <Origin ToolID="106" Connection="Action" />
+      <Destination ToolID="101" Connection="Action" />
+    </Connection>
+    <Connection name="#5" Wireless="True">
+      <Origin ToolID="108" Connection="Action" />
+      <Destination ToolID="101" Connection="Action" />
+    </Connection>
+    <Connection name="#6" Wireless="True">
+      <Origin ToolID="110" Connection="Action" />
+      <Destination ToolID="101" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="103" Connection="Question" />
+      <Destination ToolID="104" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="105" Connection="Question" />
+      <Destination ToolID="106" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="107" Connection="Question" />
+      <Destination ToolID="108" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="109" Connection="Question" />
+      <Destination ToolID="110" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="72" Connection="Question" />
+      <Destination ToolID="73" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="72" Connection="Question" />
+      <Destination ToolID="87" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="78" Connection="Question" />
+      <Destination ToolID="79" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="78" Connection="Question" />
+      <Destination ToolID="88" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="80" Connection="Question" />
+      <Destination ToolID="81" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="80" Connection="Question" />
+      <Destination ToolID="89" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="82" Connection="Question" />
+      <Destination ToolID="83" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="82" Connection="Question" />
+      <Destination ToolID="90" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="84" Connection="Question" />
+      <Destination ToolID="85" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="84" Connection="Question" />
+      <Destination ToolID="91" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="52" Connection="Output" />
+      <Destination ToolID="61" Connection="Targets" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="61" Connection="Output" />
+      <Destination ToolID="55" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="56" Connection="Output" />
+      <Destination ToolID="55" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="40" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="40" Connection="True" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="40" Connection="False" />
+      <Destination ToolID="41" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="60" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="34" Connection="False" />
+      <Destination ToolID="35" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="34" Connection="True" />
+      <Destination ToolID="33" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="34" Connection="True" />
+      <Destination ToolID="25" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="29" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Output" />
+      <Destination ToolID="31" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="29" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="28" Connection="Output" />
+      <Destination ToolID="30" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="27" Connection="True" />
+      <Destination ToolID="28" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="25" Connection="Output" />
+      <Destination ToolID="27" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="34" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="33" Connection="Output" />
+      <Destination ToolID="32" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (62)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (36)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (38)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (17)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (20)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Radio Button (64)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Radio Button (65)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (50)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (72)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (78)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (80)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (82)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Drop Down (84)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (94)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (103)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (105)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (107)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Check Box (109)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="False" />
+      <Name>TelegramConnector</Name>
+      <Description>This Macro can send text messages to Telegram chats.</Description>
+      <RootToolName>Telegram Bot</RootToolName>
+      <ToolVersion>1.0</ToolVersion>
+      <ToolInDb value="False" />
+      <CategoryName>Connectors</CategoryName>
+      <SearchTags>Telegram, Messanger, Chat, Bot</SearchTags>
+      <Author>David Stanitzki</Author>
+      <Company>Alteryx</Company>
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="53419974-0482-4825-a013-c196872ad5f7" />
+      <Telemetry>
+        <PreviousWorkflowId value="46950049-86f7-439f-9610-a4eefa2584c5" />
+        <OriginWorkflowId value="8fcfc9cd-138b-4f52-8718-1c526863649a" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="18" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>1/Data/r[1]/c[4]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	4</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="21" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>1/Data/r/c[5]</Destination>
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="37" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>1/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="39" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>1/Data/r[1]/c[3]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	3</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>UpdateValueFormula</Type>
+              <Description />
+              <ToolId value="54" />
+              <Expression>if [#1] THEN "False" else "True" endif</Expression>
+              <Destination>53/Disabled/@value</Destination>
+              <Mode>Expression</Mode>
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="58" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>57/Disabled/@value</Destination>
+              <Mapping>Enable/Disable Container from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="63" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>1/Data/r[1]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>UpdateValueFormula</Type>
+              <Description />
+              <ToolId value="66" />
+              <Expression>IIF([#1], "False", "True")</Expression>
+              <Destination>8/Disabled/@value</Destination>
+              <Mode>Expression</Mode>
+            </Action>
+            <Action>
+              <Type>UpdateValueFormula</Type>
+              <Description />
+              <ToolId value="67" />
+              <Expression>IIF([#1], "False", "True")</Expression>
+              <Destination>68/Disabled/@value</Destination>
+              <Mode>Expression</Mode>
+            </Action>
+            <Action>
+              <Type>Error</Type>
+              <Description>Please enter a Bot Token</Description>
+              <ToolId value="69" />
+              <Expression>IsEmpty([#1])</Expression>
+            </Action>
+            <Action>
+              <Type>Error</Type>
+              <Description>Please enter a Chat ID, use a random number when connecting incoming stream</Description>
+              <ToolId value="70" />
+              <Expression>IsEmpty([#1]) AND [#2] AND [#3]</Expression>
+            </Action>
+            <Action>
+              <Type>Error</Type>
+              <Description>Please enter a Chat ID</Description>
+              <ToolId value="71" />
+              <Expression>IsEmpty([#1]) AND [#2] AND NOT [#3]</Expression>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="73" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_CHAT_ID__</ReplaceText>
+              <Destination>76/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="79" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_BOT_TOKEN__</ReplaceText>
+              <Destination>76/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="81" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_MESSAGE__</ReplaceText>
+              <Destination>76/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="83" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_PARSE_MODE__</ReplaceText>
+              <Destination>76/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="85" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_DISABLE_NOTIFICATION__</ReplaceText>
+              <Destination>76/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="87" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_CHAT_ID__</ReplaceText>
+              <Destination>86/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="88" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_BOT_TOKEN__</ReplaceText>
+              <Destination>86/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="89" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_MESSAGE__</ReplaceText>
+              <Destination>86/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="90" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_PARSE_MODE__</ReplaceText>
+              <Destination>86/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="91" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="True" />
+              <ReplaceText>__TELEGRAM_DISABLE_NOTIFICATION__</ReplaceText>
+              <Destination>86/Expression</Destination>
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="99" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>101/Data/r[1]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="104" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>101/Data/r[2]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	2
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="106" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>101/Data/r[3]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	3
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="108" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>101/Data/r[4]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	4
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="110" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>101/Data/r[5]/c[2]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	5
+column	2</DynamicConfiguration>
+              <DefaultConfiguration value="False" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (16)</Name>
+          <ToolId value="16" />
+          <Questions>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>Bot Token</Description>
+              <Name>Text Box (62)</Name>
+              <ToolId value="62" />
+              <Default />
+              <Password value="True" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>RadioGroup</Type>
+              <Description>Send Message</Description>
+              <Name>Radio Button (64)</Name>
+              <ToolId value="64" />
+              <Questions>
+                <Question>
+                  <Type>TextBox</Type>
+                  <Description>Chat ID</Description>
+                  <Name>Text Box (36)</Name>
+                  <ToolId value="36" />
+                  <Default>0</Default>
+                  <Password value="False" />
+                  <Multiline value="False" />
+                  <Hidden value="False" />
+                </Question>
+                <Question>
+                  <Type>TextBox</Type>
+                  <Description>Text Message</Description>
+                  <Name>Text Box (38)</Name>
+                  <ToolId value="38" />
+                  <Default>Please type here your Message</Default>
+                  <Password value="False" />
+                  <Multiline value="True" />
+                  <Hidden value="False" />
+                </Question>
+                <Question>
+                  <Type>ListBox</Type>
+                  <Description>Parse Mode for Formatting Messages</Description>
+                  <Name>Drop Down (17)</Name>
+                  <ToolId value="17" />
+                  <Multiple value="False" />
+                  <Default />
+                  <Mode>Manual</Mode>
+                  <Manual_Values><![CDATA[None5419541n5148905f1n0941f5809none
+Markdown
+MarkdownV2
+HTML
+]]></Manual_Values>
+                </Question>
+                <Question>
+                  <Type>Link</Type>
+                  <Description>Learn more about formatting options in Telegram</Description>
+                  <Name>Link (19)</Name>
+                  <ToolId value="19" />
+                  <LinkDest>https://core.telegram.org/bots/api#formatting-options</LinkDest>
+                </Question>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Disable Message Notifications</Description>
+                  <Name>Check Box (20)</Name>
+                  <ToolId value="20" />
+                  <Questions />
+                  <Default value="False" />
+                  <Collapsable value="False" />
+                </Question>
+              </Questions>
+              <Default value="True" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>RadioGroup</Type>
+              <Description>Get Bot Updates</Description>
+              <Name>Radio Button (65)</Name>
+              <ToolId value="65" />
+              <Questions />
+              <Default value="False" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>BooleanGroup</Type>
+              <Description>Use incoming connection for dynamic values</Description>
+              <Name>Check Box (50)</Name>
+              <ToolId value="50" />
+              <Questions>
+                <Question>
+                  <Type>Label</Type>
+                  <Description>Not selected values will be statics values from above.</Description>
+                  <Name>Label (112)</Name>
+                  <ToolId value="112" />
+                </Question>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Use Chat ID from column</Description>
+                  <Name>Check Box (94)</Name>
+                  <ToolId value="94" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Telegram Chat ID</Description>
+                      <Name>Drop Down (72)</Name>
+                      <ToolId value="72" />
+                      <Multiple value="False" />
+                      <Default />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="45" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>Int16,Int32,Int64,FixedDecimal,Float,Double</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Use Bot Token from column</Description>
+                  <Name>Check Box (103)</Name>
+                  <ToolId value="103" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Bot Token</Description>
+                      <Name>Drop Down (78)</Name>
+                      <ToolId value="78" />
+                      <Multiple value="False" />
+                      <Default />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="45" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Use Message from column</Description>
+                  <Name>Check Box (105)</Name>
+                  <ToolId value="105" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Message</Description>
+                      <Name>Drop Down (80)</Name>
+                      <ToolId value="80" />
+                      <Multiple value="False" />
+                      <Default />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="45" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Use Parse Mode from column</Description>
+                  <Name>Check Box (107)</Name>
+                  <ToolId value="107" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Parse Mode</Description>
+                      <Name>Drop Down (82)</Name>
+                      <ToolId value="82" />
+                      <Multiple value="False" />
+                      <Default />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="45" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Use Disable Notification from column</Description>
+                  <Name>Check Box (109)</Name>
+                  <ToolId value="109" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Disable Notification</Description>
+                      <Name>Drop Down (84)</Name>
+                      <ToolId value="84" />
+                      <Multiple value="False" />
+                      <Default />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="45" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>Bool</MacroField_FilterTypes>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+              <Default value="False" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>Link</Type>
+              <Description>Learn how to create your Telegram Bot</Description>
+              <Name>Link (44)</Name>
+              <ToolId value="44" />
+              <LinkDest>https://core.telegram.org/bots#6-botfather</LinkDest>
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (45)</Name>
+              <ToolId value="45" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (32)</Description>
+              <Name>Macro Output (32)</Name>
+              <ToolId value="32" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="32" Selected="True" />
+        <Tool ToolId="45" Selected="True" />
+        <Tool ToolId="11" Selected="False" />
+        <Tool ToolId="7" Selected="False" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
