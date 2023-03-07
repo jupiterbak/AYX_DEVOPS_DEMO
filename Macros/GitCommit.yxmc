@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<AlteryxDocument yxmdVer="2022.1">
+<AlteryxDocument yxmdVer="2022.3">
   <Nodes>
     <Node ToolID="41">
       <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
@@ -177,9 +177,9 @@
       <Properties>
         <Configuration>
           <UseFileInput value="False" />
-          <Name>Input129</Name>
-          <Abbrev />
-          <ShowFieldMap value="False" />
+          <Name>Input</Name>
+          <Abbrev>I</Abbrev>
+          <ShowFieldMap value="True" />
           <Optional value="False" />
           <TextInput>
             <Configuration>
@@ -345,6 +345,19 @@
         </Annotation>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="256">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
     </Node>
     <Node ToolID="218">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
@@ -4259,6 +4272,14 @@ column	3</DynamicConfiguration>
               <Default value="False" />
               <Collapsable value="False" />
             </Question>
+          </Questions>
+        </Question>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Map Fields</Description>
+          <Name>Tab (256)</Name>
+          <ToolId value="256" />
+          <Questions>
             <Question>
               <Type>MacroInput</Type>
               <Description />
