@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <AlteryxDocument yxmdVer="2022.3">
   <Nodes>
-    <Node ToolID="15">
+    <Node ToolID="25">
       <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-        <Position x="114" y="366" />
+        <Position x="174" y="582" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -25,36 +25,202 @@
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
     </Node>
-    <Node ToolID="16">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="198" y="366" />
+    <Node ToolID="26">
+      <GuiSettings>
+        <Position x="294" y="582" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <FormulaFields>
-            <FormulaField expression="[Engine.WorkflowDirectory]  + [Engine.WorkflowFileName]" field="source file" size="1073741823" type="V_WString" />
-            <FormulaField expression="IIF(EndsWith([target GIT directory], &quot;/&quot;) or EndsWith([target GIT directory], &quot;\&quot;), TrimRight([target GIT directory],&quot;/\&quot;), [target GIT directory])" field="target GIT directory" size="2147483647" type="V_String" />
-            <FormulaField expression="[target GIT directory]+ &quot;/&quot;" field="target GIT directory" size="2147483647" type="V_String" />
-            <FormulaField expression="[target GIT directory]+ [Engine.WorkflowFileName]" field="target file" size="1073741823" type="V_WString" />
-          </FormulaFields>
+          <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+          <Value name="Text Box (220)">Jupiter</Value>
+          <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+          <Value name="Text Box (41)">https://api.github.com/</Value>
+          <Value name="Text Box (43)">jupiterbak</Value>
+          <Value name="Text Box (44)" />
+          <Value name="Text Box (118)">434CCFF131791BAC7FD813B31269A45FC1DCA034A8124C5A1EA8DEDDB02280A9CB174CBE24B5AF4C2B550403261F4AD19FA4EE1E9797CAD0D49FC67FACFEA77DD7F7BB94BE748ADFC396576FD0C32B328340E7CA54CD0EE0A50EC7544F8B4C0C9A286D70C1203BDE72D0537BA0D57125F97354549B5C6B79D662820001EE0AF0256A0163C873EAE00F6953879ACDD8BF0337226944453EC74244C570E6EF83C0AB464A7E5A23720F75AE054C0DDB85047DBCE8FBE13AE3CF8CD056A3F95D7BA82F678A61AD19055D6E55D0FEAB8ECE7F8C3FD79B2D63FAF3337478AA42BAFC5D7E36BE3D32A87D257BA3E3E9094785B28A1751E7299A786DFCBB2DEB3A7FA2B36D576A1AE5ED8F3ED43C15BB755FD01F92F66E4D153536126E5F33DA0213DF52BE7AB2A6BD2F3788FF4F8588C8AF28EEFAE8330E591445CA8807875CA7420E9D37A8705EF368396D03CE2597450351A6A3C2B1A0A034E</Value>
+          <Value name="Text Box (120)">main</Value>
+          <Value name="Check Box (123)">False</Value>
+          <Value name="Input.Input"><![CDATA[target GIT directory=target GIT directory
+]]></Value>
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
-          <AnnotationText>Prepare source file and target file</AnnotationText>
-          <DefaultAnnotationText>source file = [Engine.WorkflowDirectory]  + [Engine.WorkflowFileName]
-target GIT...</DefaultAnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings Macro="GitCommit-Self.yxmc" />
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="390" y="582" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
           <Left value="False" />
         </Annotation>
       </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
     </Node>
-    <Node ToolID="17">
+    <Node ToolID="21">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="293" y="28" width="577" height="285" />
+        <Position x="113" y="353" width="541" height="165" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <Caption>Container 17</Caption>
+          <Caption>Commit current workflow</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="True" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="15">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="138" y="402" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="target GIT directory" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>Workflows</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="16">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="282" y="402" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="[Engine.WorkflowDirectory]  + [Engine.WorkflowFileName]" field="source file" size="1073741823" type="V_WString" />
+                <FormulaField expression="IIF(EndsWith([target GIT directory], &quot;/&quot;) or EndsWith([target GIT directory], &quot;\&quot;), TrimRight([target GIT directory],&quot;/\&quot;), [target GIT directory])" field="target GIT directory" size="2147483647" type="V_String" />
+                <FormulaField expression="[target GIT directory]+ &quot;/&quot;" field="target GIT directory" size="2147483647" type="V_String" />
+                <FormulaField expression="[target GIT directory]+ [Engine.WorkflowFileName]" field="target file" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Prepare source file and target file</AnnotationText>
+              <DefaultAnnotationText>source file = [Engine.WorkflowDirectory]  + [Engine.WorkflowFileName]
+target GIT...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="19">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="570" y="402" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\ProgramData\Alteryx\Engine\Engine_11284_0944431682e444459f71cc0abcc0e555_\Engine_11284_faaf08e6a245964e995a4ad3d8d54170~.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="20">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="378" y="402" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="target GIT directory" selected="False" />
+                <SelectField field="source file" selected="True" rename="file path" />
+                <SelectField field="target file" selected="True" rename="target path" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="22">
+          <GuiSettings>
+            <Position x="474" y="402" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+              <Value name="Text Box (220)">Jupiter</Value>
+              <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+              <Value name="Text Box (41)">https://api.github.com/</Value>
+              <Value name="Text Box (43)">jupiterbak</Value>
+              <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
+              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+              <Value name="Text Box (120)">main</Value>
+              <Value name="Check Box (123)">False</Value>
+              <Value name="Input.Input"><![CDATA[file path=file path
+target path=target path
+]]></Value>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>GitCommit (18)</Name>
+              <AnnotationText>GitHub Commit</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings Macro="GitCommit.yxmc" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="113" y="40" width="577" height="285" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Commit a directory</Caption>
           <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
           <Disabled value="True" />
           <Folded value="False" />
@@ -68,7 +234,7 @@ target GIT...</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="7">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Directory.Directory">
-            <Position x="318" y="77" />
+            <Position x="138" y="89" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -86,7 +252,7 @@ target GIT...</DefaultAnnotationText>
         </Node>
         <Node ToolID="9">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="426" y="78" />
+            <Position x="246" y="89" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -109,7 +275,7 @@ target GIT...</DefaultAnnotationText>
         </Node>
         <Node ToolID="10">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="522" y="78" />
+            <Position x="342" y="90" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -126,40 +292,9 @@ target GIT...</DefaultAnnotationText>
           </Properties>
           <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
         </Node>
-        <Node ToolID="12">
-          <GuiSettings>
-            <Position x="690" y="78" />
-          </GuiSettings>
-          <Properties>
-            <Configuration>
-              <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
-              <Value name="Text Box (220)">Jupiter</Value>
-              <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
-              <Value name="Text Box (41)">https://api.github.com/</Value>
-              <Value name="Text Box (43)">jupiterbak</Value>
-              <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
-              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
-              <Value name="Text Box (120)">main</Value>
-              <Value name="Check Box (123)">False</Value>
-              <Value name="Input.Input"><![CDATA[file path=file path
-target path=target path
-]]></Value>
-            </Configuration>
-            <Annotation DisplayMode="0">
-              <Name>GitCommit (11)</Name>
-              <AnnotationText>GitHub Commit</AnnotationText>
-              <DefaultAnnotationText />
-              <Left value="False" />
-            </Annotation>
-            <Dependencies>
-              <Implicit />
-            </Dependencies>
-          </Properties>
-          <EngineSettings Macro="GitCommit.yxmc" />
-        </Node>
         <Node ToolID="14">
           <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-            <Position x="786" y="78" />
+            <Position x="606" y="90" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -184,6 +319,34 @@ target path=target path
             </Annotation>
           </Properties>
           <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="24">
+          <GuiSettings>
+            <Position x="510" y="90" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+              <Value name="Text Box (220)">Jupiter</Value>
+              <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+              <Value name="Text Box (41)">https://api.github.com/</Value>
+              <Value name="Text Box (43)">jupiterbak</Value>
+              <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
+              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+              <Value name="Text Box (120)">main</Value>
+              <Value name="Check Box (123)">False</Value>
+              <Value name="Input.Input"><![CDATA[file path=file path
+target path=target path
+]]></Value>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>GitCommit (11)</Name>
+              <AnnotationText>GitHub Commit</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings Macro="GitCommit.yxmc" />
         </Node>
       </ChildNodes>
     </Node>
@@ -226,35 +389,6 @@ target path=target path
           </Properties>
           <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
         </Node>
-        <Node ToolID="13">
-          <GuiSettings>
-            <Position x="1254" y="150" />
-          </GuiSettings>
-          <Properties>
-            <Configuration>
-              <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
-              <Value name="Text Box (220)">Jupiter</Value>
-              <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
-              <Value name="Text Box (41)">https://api.github.com/</Value>
-              <Value name="Text Box (43)">jupiterbak</Value>
-              <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
-              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
-              <Value name="Text Box (120)">main</Value>
-              <Value name="Check Box (123)">False</Value>
-              <Value name="Input.Input" />
-            </Configuration>
-            <Annotation DisplayMode="0">
-              <Name>GitCommit (2)</Name>
-              <AnnotationText>GitHub Commit</AnnotationText>
-              <DefaultAnnotationText />
-              <Left value="False" />
-            </Annotation>
-            <Dependencies>
-              <Implicit />
-            </Dependencies>
-          </Properties>
-          <EngineSettings Macro="GitCommit.yxmc" />
-        </Node>
         <Node ToolID="3">
           <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
             <Position x="1002" y="150" />
@@ -281,13 +415,59 @@ target path=target path
           </Properties>
           <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
         </Node>
+        <Node ToolID="23">
+          <GuiSettings>
+            <Position x="1254" y="150" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+              <Value name="Text Box (220)">Jupiter</Value>
+              <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+              <Value name="Text Box (41)">https://api.github.com/</Value>
+              <Value name="Text Box (43)">jupiterbak</Value>
+              <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
+              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+              <Value name="Text Box (120)">main</Value>
+              <Value name="Check Box (123)">False</Value>
+              <Value name="Input.Input" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>GitCommit (2)</Name>
+              <AnnotationText>GitHub Commit</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings Macro="GitCommit.yxmc" />
+        </Node>
       </ChildNodes>
     </Node>
   </Nodes>
   <Connections>
     <Connection>
+      <Origin ToolID="25" Connection="Output" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output254" />
+      <Destination ToolID="27" Connection="Input" />
+    </Connection>
+    <Connection>
       <Origin ToolID="15" Connection="Output" />
       <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="20" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Output254" />
+      <Destination ToolID="19" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="7" Connection="Output" />
@@ -299,15 +479,15 @@ target path=target path
     </Connection>
     <Connection>
       <Origin ToolID="10" Connection="Output" />
-      <Destination ToolID="12" Connection="Input" />
+      <Destination ToolID="24" Connection="Input" />
     </Connection>
     <Connection>
-      <Origin ToolID="12" Connection="Output254" />
+      <Origin ToolID="24" Connection="Output254" />
       <Destination ToolID="14" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="4" Connection="Output" />
-      <Destination ToolID="13" Connection="Input" />
+      <Destination ToolID="23" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="3" Connection="Output" />
