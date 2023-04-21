@@ -1,0 +1,4084 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Detour.Detour">
+        <Position x="198" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <DetourRight value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Left">
+          <RecordInfo>
+            <Field name="Sepal.Length" source="TextInput:" type="Double" />
+            <Field name="Sepal.Width" source="TextInput:" type="Double" />
+            <Field name="Petal.Length" source="TextInput:" type="Double" />
+            <Field name="Petal.Width" source="TextInput:" type="Double" />
+            <Field name="Species" size="10" source="TextInput:" type="String" />
+            <Field name="Stuff" size="1" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Right">
+          <RecordInfo>
+            <Field name="Sepal.Length" source="TextInput:" type="Double" />
+            <Field name="Sepal.Width" source="TextInput:" type="Double" />
+            <Field name="Petal.Length" source="TextInput:" type="Double" />
+            <Field name="Petal.Width" source="TextInput:" type="Double" />
+            <Field name="Species" size="10" source="TextInput:" type="String" />
+            <Field name="Stuff" size="1" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetour" />
+    </Node>
+    <Node ToolID="29">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Input29</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="151" />
+              <Fields>
+                <Field name="Sepal.Length" />
+                <Field name="Sepal.Width" />
+                <Field name="Petal.Length" />
+                <Field name="Petal.Width" />
+                <Field name="Species" />
+                <Field name="Stuff" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>5.1</c>
+                  <c>3.5</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.9</c>
+                  <c>3</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.7</c>
+                  <c>3.2</c>
+                  <c>1.3</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.6</c>
+                  <c>3.1</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.6</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.4</c>
+                  <c>3.9</c>
+                  <c>1.7</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>4.6</c>
+                  <c>3.4</c>
+                  <c>1.4</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.4</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>4.4</c>
+                  <c>2.9</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.9</c>
+                  <c>3.1</c>
+                  <c>1.5</c>
+                  <c>0.1</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.4</c>
+                  <c>3.7</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.8</c>
+                  <c>3.4</c>
+                  <c>1.6</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.8</c>
+                  <c>3</c>
+                  <c>1.4</c>
+                  <c>0.1</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.3</c>
+                  <c>3</c>
+                  <c>1.1</c>
+                  <c>0.1</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>4</c>
+                  <c>1.2</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>4.4</c>
+                  <c>1.5</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.4</c>
+                  <c>3.9</c>
+                  <c>1.3</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.5</c>
+                  <c>1.4</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>3.8</c>
+                  <c>1.7</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.8</c>
+                  <c>1.5</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.4</c>
+                  <c>3.4</c>
+                  <c>1.7</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.7</c>
+                  <c>1.5</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>4.6</c>
+                  <c>3.6</c>
+                  <c>1</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.3</c>
+                  <c>1.7</c>
+                  <c>0.5</c>
+                  <c>setosa</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>4.8</c>
+                  <c>3.4</c>
+                  <c>1.9</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3</c>
+                  <c>1.6</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.4</c>
+                  <c>1.6</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.2</c>
+                  <c>3.5</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.2</c>
+                  <c>3.4</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.7</c>
+                  <c>3.2</c>
+                  <c>1.6</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.8</c>
+                  <c>3.1</c>
+                  <c>1.6</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.4</c>
+                  <c>3.4</c>
+                  <c>1.5</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.2</c>
+                  <c>4.1</c>
+                  <c>1.5</c>
+                  <c>0.1</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>4.2</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.9</c>
+                  <c>3.1</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.2</c>
+                  <c>1.2</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>3.5</c>
+                  <c>1.3</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>4.9</c>
+                  <c>3.6</c>
+                  <c>1.4</c>
+                  <c>0.1</c>
+                  <c>setosa</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>4.4</c>
+                  <c>3</c>
+                  <c>1.3</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.4</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.5</c>
+                  <c>1.3</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.5</c>
+                  <c>2.3</c>
+                  <c>1.3</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.4</c>
+                  <c>3.2</c>
+                  <c>1.3</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.5</c>
+                  <c>1.6</c>
+                  <c>0.6</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.8</c>
+                  <c>1.9</c>
+                  <c>0.4</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.8</c>
+                  <c>3</c>
+                  <c>1.4</c>
+                  <c>0.3</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>3.8</c>
+                  <c>1.6</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.6</c>
+                  <c>3.2</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.3</c>
+                  <c>3.7</c>
+                  <c>1.5</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>3.3</c>
+                  <c>1.4</c>
+                  <c>0.2</c>
+                  <c>setosa</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>7</c>
+                  <c>3.2</c>
+                  <c>4.7</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>3.2</c>
+                  <c>4.5</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.9</c>
+                  <c>3.1</c>
+                  <c>4.9</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>2.3</c>
+                  <c>4</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.5</c>
+                  <c>2.8</c>
+                  <c>4.6</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>2.8</c>
+                  <c>4.5</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>3.3</c>
+                  <c>4.7</c>
+                  <c>1.6</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>4.9</c>
+                  <c>2.4</c>
+                  <c>3.3</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.6</c>
+                  <c>2.9</c>
+                  <c>4.6</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.2</c>
+                  <c>2.7</c>
+                  <c>3.9</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>2</c>
+                  <c>3.5</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.9</c>
+                  <c>3</c>
+                  <c>4.2</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>2.2</c>
+                  <c>4</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.1</c>
+                  <c>2.9</c>
+                  <c>4.7</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.6</c>
+                  <c>2.9</c>
+                  <c>3.6</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3.1</c>
+                  <c>4.4</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.6</c>
+                  <c>3</c>
+                  <c>4.5</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>2.7</c>
+                  <c>4.1</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.2</c>
+                  <c>2.2</c>
+                  <c>4.5</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.6</c>
+                  <c>2.5</c>
+                  <c>3.9</c>
+                  <c>1.1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.9</c>
+                  <c>3.2</c>
+                  <c>4.8</c>
+                  <c>1.8</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.1</c>
+                  <c>2.8</c>
+                  <c>4</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>2.5</c>
+                  <c>4.9</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>6.1</c>
+                  <c>2.8</c>
+                  <c>4.7</c>
+                  <c>1.2</c>
+                  <c>versicolor</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>2.9</c>
+                  <c>4.3</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>6.6</c>
+                  <c>3</c>
+                  <c>4.4</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.8</c>
+                  <c>2.8</c>
+                  <c>4.8</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3</c>
+                  <c>5</c>
+                  <c>1.7</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>2.9</c>
+                  <c>4.5</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>2.6</c>
+                  <c>3.5</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>2.4</c>
+                  <c>3.8</c>
+                  <c>1.1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>2.4</c>
+                  <c>3.7</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>2.7</c>
+                  <c>3.9</c>
+                  <c>1.2</c>
+                  <c>versicolor</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>2.7</c>
+                  <c>5.1</c>
+                  <c>1.6</c>
+                  <c>versicolor</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>5.4</c>
+                  <c>3</c>
+                  <c>4.5</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>3.4</c>
+                  <c>4.5</c>
+                  <c>1.6</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3.1</c>
+                  <c>4.7</c>
+                  <c>1.5</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>2.3</c>
+                  <c>4.4</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.6</c>
+                  <c>3</c>
+                  <c>4.1</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>2.5</c>
+                  <c>4</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.5</c>
+                  <c>2.6</c>
+                  <c>4.4</c>
+                  <c>1.2</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.1</c>
+                  <c>3</c>
+                  <c>4.6</c>
+                  <c>1.4</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>2.6</c>
+                  <c>4</c>
+                  <c>1.2</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5</c>
+                  <c>2.3</c>
+                  <c>3.3</c>
+                  <c>1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.6</c>
+                  <c>2.7</c>
+                  <c>4.2</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>3</c>
+                  <c>4.2</c>
+                  <c>1.2</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>2.9</c>
+                  <c>4.2</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.2</c>
+                  <c>2.9</c>
+                  <c>4.3</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.1</c>
+                  <c>2.5</c>
+                  <c>3</c>
+                  <c>1.1</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>2.8</c>
+                  <c>4.1</c>
+                  <c>1.3</c>
+                  <c>versicolor</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>3.3</c>
+                  <c>6</c>
+                  <c>2.5</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>2.7</c>
+                  <c>5.1</c>
+                  <c>1.9</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>7.1</c>
+                  <c>3</c>
+                  <c>5.9</c>
+                  <c>2.1</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>2.9</c>
+                  <c>5.6</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.5</c>
+                  <c>3</c>
+                  <c>5.8</c>
+                  <c>2.2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>7.6</c>
+                  <c>3</c>
+                  <c>6.6</c>
+                  <c>2.1</c>
+                  <c>virginica</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>4.9</c>
+                  <c>2.5</c>
+                  <c>4.5</c>
+                  <c>1.7</c>
+                  <c>virginica</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>7.3</c>
+                  <c>2.9</c>
+                  <c>6.3</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>2.5</c>
+                  <c>5.8</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>7.2</c>
+                  <c>3.6</c>
+                  <c>6.1</c>
+                  <c>2.5</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.5</c>
+                  <c>3.2</c>
+                  <c>5.1</c>
+                  <c>2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>2.7</c>
+                  <c>5.3</c>
+                  <c>1.9</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.8</c>
+                  <c>3</c>
+                  <c>5.5</c>
+                  <c>2.1</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.7</c>
+                  <c>2.5</c>
+                  <c>5</c>
+                  <c>2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>2.8</c>
+                  <c>5.1</c>
+                  <c>2.4</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>3.2</c>
+                  <c>5.3</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.5</c>
+                  <c>3</c>
+                  <c>5.5</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>7.7</c>
+                  <c>3.8</c>
+                  <c>6.7</c>
+                  <c>2.2</c>
+                  <c>virginica</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>7.7</c>
+                  <c>2.6</c>
+                  <c>6.9</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>2.2</c>
+                  <c>5</c>
+                  <c>1.5</c>
+                  <c>virginica</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>6.9</c>
+                  <c>3.2</c>
+                  <c>5.7</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.6</c>
+                  <c>2.8</c>
+                  <c>4.9</c>
+                  <c>2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>7.7</c>
+                  <c>2.8</c>
+                  <c>6.7</c>
+                  <c>2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>2.7</c>
+                  <c>4.9</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3.3</c>
+                  <c>5.7</c>
+                  <c>2.1</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>7.2</c>
+                  <c>3.2</c>
+                  <c>6</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.2</c>
+                  <c>2.8</c>
+                  <c>4.8</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.1</c>
+                  <c>3</c>
+                  <c>4.9</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>2.8</c>
+                  <c>5.6</c>
+                  <c>2.1</c>
+                  <c>virginica</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>7.2</c>
+                  <c>3</c>
+                  <c>5.8</c>
+                  <c>1.6</c>
+                  <c>virginica</c>
+                  <c>A</c>
+                </r>
+                <r>
+                  <c>7.4</c>
+                  <c>2.8</c>
+                  <c>6.1</c>
+                  <c>1.9</c>
+                  <c>virginica</c>
+                  <c>B</c>
+                </r>
+                <r>
+                  <c>7.9</c>
+                  <c>3.8</c>
+                  <c>6.4</c>
+                  <c>2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>2.8</c>
+                  <c>5.6</c>
+                  <c>2.2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>2.8</c>
+                  <c>5.1</c>
+                  <c>1.5</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.1</c>
+                  <c>2.6</c>
+                  <c>5.6</c>
+                  <c>1.4</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>7.7</c>
+                  <c>3</c>
+                  <c>6.1</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>3.4</c>
+                  <c>5.6</c>
+                  <c>2.4</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.4</c>
+                  <c>3.1</c>
+                  <c>5.5</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6</c>
+                  <c>3</c>
+                  <c>4.8</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.9</c>
+                  <c>3.1</c>
+                  <c>5.4</c>
+                  <c>2.1</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3.1</c>
+                  <c>5.6</c>
+                  <c>2.4</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.9</c>
+                  <c>3.1</c>
+                  <c>5.1</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.8</c>
+                  <c>2.7</c>
+                  <c>5.1</c>
+                  <c>1.9</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.8</c>
+                  <c>3.2</c>
+                  <c>5.9</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3.3</c>
+                  <c>5.7</c>
+                  <c>2.5</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.7</c>
+                  <c>3</c>
+                  <c>5.2</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.3</c>
+                  <c>2.5</c>
+                  <c>5</c>
+                  <c>1.9</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.5</c>
+                  <c>3</c>
+                  <c>5.2</c>
+                  <c>2</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>6.2</c>
+                  <c>3.4</c>
+                  <c>5.4</c>
+                  <c>2.3</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+                <r>
+                  <c>5.9</c>
+                  <c>3</c>
+                  <c>5.1</c>
+                  <c>1.8</c>
+                  <c>virginica</c>
+                  <c>C</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>Input</Name>
+          <DefaultAnnotationText />
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Sepal.Length" source="TextInput:" type="Double" />
+            <Field name="Sepal.Width" source="TextInput:" type="Double" />
+            <Field name="Petal.Length" source="TextInput:" type="Double" />
+            <Field name="Petal.Width" source="TextInput:" type="Double" />
+            <Field name="Species" size="10" source="TextInput:" type="String" />
+            <Field name="Stuff" size="1" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+        <Position x="918" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Sepal.Length" source="TextInput:" type="Double" />
+            <Field name="Sepal.Width" source="TextInput:" type="Double" />
+            <Field name="Petal.Length" source="TextInput:" type="Double" />
+            <Field name="Petal.Width" source="TextInput:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="40">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="41">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="56">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="57">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="62">
+      <GuiSettings Plugin="AlteryxRPluginGui.R">
+        <Position x="1050" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <RScript><![CDATA[######
+# Helper function
+
+# The function conditionalMeanCorrelation calulates the correlation between the
+# actual target and the condional mean of the target given a categorical
+# predictor field
+conditionalMeanCorrelation <- function(formula, data) {
+  form_char_vec <- as.character(formula)
+  if (length(form_char_vec) != 3) {
+    stop("A target variable was not provided")
+  }
+  the_target <- form_char_vec[2]
+  if (class(data[[the_target]]) != "numeric" && class(data[[the_target]]) != "integer") {
+    stop("The provided target variable is not numeric or integer")
+  }
+  the_preds <- if (form_char_vec[3] == ".") {
+    names(data)[names(data) != the_target]
+  } else {
+    unlist(strsplit(form_char_vec[3], " \\+ "))
+  }
+  new_preds <- the_preds[sapply(data[, the_preds, drop = FALSE], class) == "factor"]
+  if(length(new_preds) == 0) {
+    stop("None of the predictors are factors")
+  }
+  if (length(new_preds) < length(the_preds)) {
+    missing_preds <- the_preds[!(the_preds %in% the_preds)]
+    warning(paste("The continuous predictors", paste(missing_preds, collapse = ", "),"have been removed"))
+  }
+  target_data <- data[[the_target]]
+  data <- data[, new_preds, drop = FALSE]
+  the_func <- function(this_pred) {
+    cond_means <- tapply(target_data, data[[this_pred]], mean)
+    means_df <- data.frame(catvar = names(cond_means), cm = cond_means)
+    cat_df <- data.frame(catvar = data[[this_pred]], actual = target_data)
+    means_df <- merge(cat_df, means_df, by = "catvar")
+    cor(means_df[["actual"]], means_df[["cm"]])
+  }
+  the_correlations <- sapply(new_preds, the_func)
+  out_df <- data.frame(CMC = the_correlations)
+  row.names(out_df) <- names(the_correlations)
+  out_df
+}
+
+unitInterval <- function(data) {
+	var_names <- if (is.factor(data[[1]])) {
+			names(data)[-1]
+		} else {
+			names(data)
+		}
+	mins <- sapply(data[, var_names], min)
+	difs <- mins - sapply(data[, var_names], max)
+	scaled_mat <- t(apply(t(apply(data[, var_names], 1, function(x) x - mins)), 1, function(z) z/difs))
+	new_data <- if (is.factor(data[[1]])) {
+			cbind(data.frame(tar__get = data[[1]]), as.data.frame(scaled_mat))
+		} else {
+			as.data.frame(scaled_mat)
+		}
+	names(new_data) <- names(data)
+	new_data
+}	
+
+######
+# The main macro script
+
+# Set the memory available to the Java heap
+if ('%Question.increase.java.heap%' == "True") {
+	request <- %Question.java.heap%
+	max_allow <- floor(0.0007*memory.limit())
+	if (request > max_allow) {
+		request <- max_allow
+		AlteryxMessage(paste0("The requested memory exceeded the maximum allowed, ", max_allow, "GB of memory was allocated instead."), iType = 2, iPriority = 3) 
+	}
+	heap_option <- paste0("-Xmx", '%Question.java.heap%', "g")
+	options(java.parameters = heap_option)
+}
+
+# Determine if FSelector and its dependencies are installed, and install them if they are not
+needed <-  c("entropy", "digest", "rJava", "RWeka", "FSelector") %in% row.names(installed.packages())
+if (!all(needed)) {
+	if (!needed[1]) {
+		install.packages("entropy", repos = "https://cran.rstudio.com")
+	}
+	if (!needed[2]) {
+  	install.packages("digest", repos = "https://cran.rstudio.com")
+  }
+	if (!needed[3]) {
+		install.packages("rJava", repos = "https://cran.rstudio.com")
+	}
+	if (!needed[4]) {
+		install.packages("RWeka", repos = "https://cran.rstudio.com")
+	}
+	if (!needed[5]) {
+		install.packages("FSelector", repos = "https://cran.rstudio.com")
+	}
+}
+
+# Set the seed of the random number generator
+set.seed(1)
+
+# Load the FSelector package
+suppressWarnings(library(FSelector))
+
+# Read the data and figure out the classes of the target and predictors
+the_data <- read.Alteryx("#1")
+# Make sure the user selected some possible predictors
+if (ncol(the_data) == 1) {
+	stop.Alteryx("No potential predictors were selected")
+}
+the_target <- names(the_data)[1]
+the_preds <- names(the_data)[-1]
+# Remove the target field if it is present in the set of predictors
+right_target <- paste("Right", the_target, sep = "_")
+the_preds <- the_preds[the_preds != right_target]
+# Determine the class of the target and the predictors
+cat_target <- class(the_data[[1]]) == "factor"
+cat_preds <- class(the_data[[2]]) == "factor"
+
+
+
+# Setup the formula and initialize the output dataframe and the column names
+the_form <- as.formula(paste(the_target, paste(the_preds, collapse = " + "), sep = " ~ "))
+the_output <- data.frame(Field = the_preds)
+col_names <- "Field"
+
+# Calculate the actual measures, begining with a continuous target
+if (!cat_target) {
+  if (!cat_preds) { # continuous target, continuous predictors
+    if ('%Question.pearson%' == "True") {
+    	out <- linear.correlation(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Pearson Correlation")
+    }
+    if ('%Question.spearman%' == "True") {
+    	out <- rank.correlation(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Spearman Correlation")
+    }
+    if ('%Question.c.c.relief%' == "True") {
+			new_data <- unitInterval(the_data)
+    	out <- relief(the_form, new_data)
+    	the_output <- cbind(the_output, as.vector(out[[1]]))
+    	col_names <- c(col_names, "Relief")
+    }
+  } else { # continuous target, categorical predictors
+    if ('%Question.conditional.mean.correlation%' == "True") {
+    	out <- conditionalMeanCorrelation(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Conditional Mean Correlation")
+    }
+    if ('%Question.c.d.relief%' == "True") {
+    	out <- relief(the_form, the_data)
+    	the_output <- cbind(the_output, as.vector(out[[1]]))
+    	col_names <- c(col_names, "Relief")
+    }
+  }
+} else {
+  if (!cat_preds) { # categorical target, continuous predictors
+    if ('%Question.information.gain%' == "True") {
+    	out <- information.gain(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Information Gain")
+    }
+    if ('%Question.gain.ratio%' == "True") {
+    	out <- gain.ratio(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Gain Ratio")
+    }
+    if ('%Question.symmetrical.uncertainty%' == "True") {
+    	out <- symmetrical.uncertainty(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Symmetrical Uncertainty")
+    }
+    if ('%Question.d.c.relief%' == "True") {
+			new_data <- unitInterval(the_data)
+			out <- relief(the_form, new_data)
+			the_output <- cbind(the_output, as.vector(out[[1]]))
+    	col_names <- c(col_names, "Relief")
+		}
+  } else { # categorical target, categorical predictors
+    if ('%Question.chi.square%' == "True") {
+    	out <- chi.squared(the_form, the_data)
+    	the_output <- cbind(the_output, out[[1]])
+    	col_names <- c(col_names, "Cramer's V")
+    }
+    if ('%Question.d.d.relief%' == "True") {
+    	out <- relief(the_form, the_data)
+    	the_output <- cbind(the_output, as.vector(out[[1]]))
+    	col_names <- c(col_names, "Relief")
+    }
+  }
+}
+
+# Issue a warning that no measures were selected
+if(ncol(the_output) == 1) {
+	AlteryxMessage("No importance weight measures were selected", iType = 2, iPriority = 3)
+}
+
+# Prepare the raw weights for output
+names(the_output) <- col_names
+write.Alteryx(the_output)
+
+## Create a grp-out key-value pairt table for creating a report
+## using Alteryx's reporting tools
+# The grp (key) field
+grp <- c("target field", "target type", "predictor type")
+# The out (value) field
+# The out (value) field
+pred_type <- "Continuous"
+if (cat_preds) {
+	pred_type <- "Categorical"
+}
+target_type <- "Continuous"
+if (cat_target) {
+	target_type <- "Categorical"
+}
+out <- c(the_target, target_type, pred_type)
+grp_out <- data.frame(grp, out)
+write.Alteryx(grp_out, nOutput = 2)
+]]></RScript>
+          <UseFullUpdate value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output1">
+          <RecordInfo>
+            <Field name="Field" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Pearson Correlation" source="R-DATA:" type="Double" />
+            <Field name="Spearman Correlation" source="R-DATA:" type="Double" />
+            <Field name="Relief" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Output2">
+          <RecordInfo>
+            <Field name="grp" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="out" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxRPluginEngine.dll" EngineDllEntryPoint="AlteryxR" />
+    </Node>
+    <Node ToolID="84">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1194" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="grp" selected="True" />
+            <SelectField field="out" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="grp" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="out" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="85">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+        <Position x="1278" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <GroupFields />
+          <HeaderField field="grp" />
+          <DataField field="out" />
+          <Methods>
+            <Method method="Concat" />
+            <Separator>,</Separator>
+            <FieldSize value="2048" />
+          </Methods>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="predictor_type" size="2048" source="CrossTab:Header:grp:predictor type:Concat:" type="V_WString" />
+            <Field name="target_field" size="2048" source="CrossTab:Header:grp:target field:Concat:" type="V_WString" />
+            <Field name="target_type" size="2048" source="CrossTab:Header:grp:target type:Concat:" type="V_WString" />
+          </RecordInfo>
+          <SortInfo>
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+    </Node>
+    <Node ToolID="86">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerText.PortfolioComposerText">
+        <Position x="1374" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Images />
+          <Output>Text</Output>
+          <HeaderMode value="False" />
+          <RawMode value="False" />
+          <ValidatePCXML value="True" />
+          <Message />
+          <RichTextMode value="True" />
+          <RichTextString><![CDATA[{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Verdana;}}
+\viewkind4\uc1\pard\qc\b\f0\fs24 [target_type:A] Target and [predictor_type:A] Predictors Variable Importance Weight Analysis for [target_field:A]\par
+}
+]]></RichTextString>
+          <Styles>
+            <Style Name="TextStyle" />
+          </Styles>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[target_type:A] Target and [pr...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="predictor_type" size="2048" source="CrossTab:Header:grp:predictor type:Concat:" type="V_WString" />
+            <Field name="target_field" size="2048" source="CrossTab:Header:grp:target field:Concat:" type="V_WString" />
+            <Field name="target_type" size="2048" source="CrossTab:Header:grp:target type:Concat:" type="V_WString" />
+            <Field name="Text" size="2147483647" source="Report:Text:" type="V_String" />
+          </RecordInfo>
+          <SortInfo>
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTextPlugin" />
+    </Node>
+    <Node ToolID="88">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1470" y="966" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Text" selected="True" rename="Report" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Report" size="2147483647" source="Report:Text:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="89">
+      <GuiSettings Plugin="PortfolioPluginsGui.ComposerTable.PortfolioComposerTable">
+        <Position x="1146" y="858" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TableMode>Basic</TableMode>
+          <GroupingFields orderChanged="False" />
+          <Width>100%</Width>
+          <ShowHeader value="True" />
+          <ShowBarGraph value="False" />
+          <TableFields orderChanged="True">
+            <Field name="Field" selected="True" Alignment="Left" />
+            <Field name="Pearson Correlation" selected="True" Alignment="Right" Places="4" />
+            <Field name="Spearman Correlation" selected="True" Alignment="Right" Places="4" />
+            <Field name="*Unknown" selected="True" Alignment="Right" Places="4" Width="" />
+            <Field name="Relief" selected="True" Alignment="Right" Places="4" Width="" />
+          </TableFields>
+          <TableStyles>
+            <Style Name="Data" Font="--Verdana" Size="10" TextColor="#000000" BackColor="#ffffff" AltColor="#f0f0f0" RowGroup="1" />
+            <Style Name="Header" Font="--Verdana" Size="11" TextColor="#000000" BackColor="#dbdbdb" />
+            <Style Name="Borders" Width="1" DataColor="#000000" HeaderColor="#000000" RowBorder="None" BasicColBorder="Default (Use Per Column Setting)" />
+            <Style Name="Table" CellPadding="0" ColumnPadding="0" TableBorder="true" Width="1" BorderColor="#000000" />
+          </TableStyles>
+          <StyleRules />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Basic Table</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Table" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="AlteryxPortfolioComposerTablePlugin" />
+    </Node>
+    <Node ToolID="90">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="1554" y="846" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Warning</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="True" />
+          <OutputOrder>
+            <Connection>#1</Connection>
+            <Connection>#2</Connection>
+          </OutputOrder>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Report" size="2147483647" source="Report: (Multiple Sources)" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="92">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1266" y="846" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Table" selected="True" rename="Report" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Report" size="2147483647" source="Report:Table:Basic:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="93">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1146" y="738" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Data</Name>
+          <Abbrev>D</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="94">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1650" y="846" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Report</Name>
+          <Abbrev>R</Abbrev>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="106">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="90" y="54" width="528" height="96" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Alteryx Macro:
+Importance Weights</Text>
+          <Font name="Microsoft Sans Serif" size="18" style="0" />
+          <TextColor name="White" />
+          <FillColor r="95" g="152" b="171" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="114">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.LabelGroup.LabelGroup">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="110">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="504" y="110" width="141" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Tools Used</Caption>
+          <Style TextColor="#2f4f4f" FillColor="#ffffff" BorderColor="#2f4f4f" Transparency="10" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="True" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="109">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="514" y="139" width="180" height="229" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text><![CDATA[TOOLS USED:
+Macro Input
+Macro Output
+Detour
+Detour End
+Select
+Join
+R
+Table
+Cross Tab
+Report Text
+Union
+Text Comment
+Tool Container
+]]></Text>
+              <Font name="Microsoft Sans Serif" size="9.75" style="0" />
+              <TextColor name="Black" />
+              <FillColor r="255" g="243" b="196" />
+              <Shape shape="0" />
+              <Justification Justification="2" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="108">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="464" y="74" width="190" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Module Description</Caption>
+          <Style TextColor="#2f4f4f" FillColor="#ffffff" BorderColor="#2f4f4f" Transparency="10" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="True" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="107">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="474" y="103" width="103" height="230" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>The Importance Weight tool provides methods for selecting a set of variables to use in a predictive model  based on how strongly related each possible predictor is to the target variable.</Text>
+              <Font name="Microsoft Sans Serif" size="9.75" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="0" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="105">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="66" y="170" width="3594" height="380" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Interface Tools</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="60" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="104">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="1614" y="255" width="1731" height="235" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Categorical Target</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="23">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                <Position x="1624" y="294" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>categorical.target</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="24">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                <Position x="1624" y="378" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="42">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+                <Position x="1720" y="295" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>the.discrete.target</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="43">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                <Position x="1720" y="378" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="103">
+              <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+                <Position x="2716" y="289" width="619" height="190" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Caption>Categorical Predictors</Caption>
+                  <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+                  <Disabled value="False" />
+                  <Folded value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <ChildNodes>
+                <Node ToolID="52">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+                    <Position x="2834" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>discrete.select.discrete</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="53">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                    <Position x="2834" y="410" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name />
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="54">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="2942" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>chi.square</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="55">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="3050" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>d.d.relief</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="61">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                    <Position x="2726" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>discrete.discrete</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="82">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="3170" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>d.d.neighbors</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="83">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="3266" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>d.d.sample.size</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="98">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                    <Position x="2726" y="409" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name />
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+              </ChildNodes>
+            </Node>
+            <Node ToolID="102">
+              <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+                <Position x="1828" y="289" width="835" height="191" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Caption>Continuous Predictors</Caption>
+                  <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+                  <Disabled value="False" />
+                  <Folded value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <ChildNodes>
+                <Node ToolID="45">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+                    <Position x="1946" y="324" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>discrete.select.continuous</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="46">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                    <Position x="1946" y="411" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name />
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="47">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="2066" y="324" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>information.gain</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="48">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="2174" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>gain.ratio</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="49">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="2282" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>symmetrical.uncertainty</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="50">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="2390" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>d.c.relief</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="60">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                    <Position x="1838" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>discrete.continuous</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="80">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="2498" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>d.c.neighbors</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="81">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="2594" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>d.c.sample.size</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+              </ChildNodes>
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="101">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="126" y="254" width="1433" height="234" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Continuous Target</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="25">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                <Position x="136" y="330" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>continuous.target</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="99">
+              <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+                <Position x="304" y="290" width="631" height="188" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Caption>Continuous Predictors</Caption>
+                  <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+                  <Disabled value="False" />
+                  <Folded value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <ChildNodes>
+                <Node ToolID="58">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                    <Position x="314" y="326" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>continuous.continuous</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="30">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+                    <Position x="398" y="329" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>continuous.select.continuous</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="31">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                    <Position x="402" y="409" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name />
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="32">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="494" y="325" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>pearson</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="33">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="674" y="326" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>c.c.relief</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="34">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="578" y="326" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>spearman</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="76">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="770" y="326" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>c.c.neighbors</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="77">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="866" y="324" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>c.c.sample.size</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+              </ChildNodes>
+            </Node>
+            <Node ToolID="100">
+              <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+                <Position x="978" y="288" width="571" height="188" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Caption>Categorical Predictors</Caption>
+                  <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+                  <Disabled value="False" />
+                  <Folded value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <ChildNodes>
+                <Node ToolID="36">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.ListBox">
+                    <Position x="1096" y="322" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>continuous.select.discrete</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="37">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                    <Position x="1096" y="407" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name />
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="38">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="1192" y="322" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>conditional.mean.correlation</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="39">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                    <Position x="1300" y="322" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>c.d.relief</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="59">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.RadioButtonGroup.RadioButtonGroup">
+                    <Position x="988" y="323" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>continuous.discrete</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="65">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                    <Position x="988" y="407" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name />
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="78">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="1408" y="322" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>c.d.neighbors</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+                <Node ToolID="79">
+                  <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                    <Position x="1480" y="322" width="59" height="59" />
+                  </GuiSettings>
+                  <Properties>
+                    <Configuration />
+                    <Annotation DisplayMode="0">
+                      <Name>c.d.sample.size</Name>
+                      <DefaultAnnotationText />
+                      <Left value="False" />
+                    </Annotation>
+                  </Properties>
+                </Node>
+              </ChildNodes>
+            </Node>
+            <Node ToolID="28">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+                <Position x="222" y="409" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="27">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.DropDownListBox.DropDown">
+                <Position x="222" y="325" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>the.continuous.target</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="111">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="3378" y="265" width="222" height="104" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Java Heap Space Memory</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="113">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.CheckBoxGroup.CheckBoxGroup">
+                <Position x="3388" y="299" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>increase.java.heap</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+            <Node ToolID="112">
+              <GuiSettings Plugin="AlteryxGuiToolkit.Questions.NumericUpDown.NumericUpDown">
+                <Position x="3462" y="300" width="59" height="59" />
+              </GuiSettings>
+              <Properties>
+                <Configuration />
+                <Annotation DisplayMode="0">
+                  <Name>java.heap</Name>
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+            </Node>
+          </ChildNodes>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="390" y="1057" width="396" height="329" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Categorical Target Input</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="3">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="415" y="1106" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Species" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Categorical Target</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="68">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Detour.Detour">
+            <Position x="415" y="1250" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <DetourRight value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Left">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+                <Field name="Stuff" size="1" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="Right">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+                <Field name="Stuff" size="1" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetour" />
+        </Node>
+        <Node ToolID="4">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="511" y="1202" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Sepal.Length" selected="True" />
+                <SelectField field="Sepal.Width" selected="True" />
+                <SelectField field="Petal.Length" selected="True" />
+                <SelectField field="Petal.Width" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Continuous Predictors</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="11">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="510" y="1302" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Categorical Predictors</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="69">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+            <Position x="642" y="1254" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+        </Node>
+        <Node ToolID="70">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="702" y="1170" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="True">
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="False" />
+                  <SelectFields>
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Left">
+              <RecordInfo>
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="Join">
+              <RecordInfo>
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="Right">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="390" y="601" width="396" height="349" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Continuous Target Input</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="415" y="650" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Sepal.Length" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Continuous Target</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="64">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Detour.Detour">
+            <Position x="415" y="818" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <DetourRight value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Left">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+                <Field name="Stuff" size="1" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="Right">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+                <Field name="Species" size="10" source="TextInput:" type="String" />
+                <Field name="Stuff" size="1" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetour" />
+        </Node>
+        <Node ToolID="13">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="511" y="770" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Sepal.Width" selected="True" />
+                <SelectField field="Petal.Length" selected="True" />
+                <SelectField field="Petal.Width" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Continuous Predictors</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="511" y="866" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Categorical Predictors</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="66">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DetourEnd.DetourEnd">
+            <Position x="606" y="810" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDetourEnd" />
+        </Node>
+        <Node ToolID="67">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="702" y="738" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="True">
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="False" />
+                  <SelectFields>
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Left">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="Join">
+              <RecordInfo>
+                <Field name="Sepal.Length" source="TextInput:" type="Double" />
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="Right">
+              <RecordInfo>
+                <Field name="Sepal.Width" source="TextInput:" type="Double" />
+                <Field name="Petal.Length" source="TextInput:" type="Double" />
+                <Field name="Petal.Width" source="TextInput:" type="Double" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Left" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="28" Connection="Action" />
+      <Destination ToolID="6" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Right" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="43" Connection="Action" />
+      <Destination ToolID="3" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Left" />
+      <Destination ToolID="64" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="65" Connection="Action" />
+      <Destination ToolID="64" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Right" />
+      <Destination ToolID="68" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="98" Connection="Action" />
+      <Destination ToolID="68" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="29" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="24" Connection="Action" />
+      <Destination ToolID="2" Connection="Action" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="27" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="30" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="36" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="42" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="45" Connection="Question Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="29" Connection="Question" />
+      <Destination ToolID="52" Connection="Question Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="20" Connection="Output" />
+      <Destination ToolID="62" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="62" Connection="Output2" />
+      <Destination ToolID="84" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="62" Connection="Output1" />
+      <Destination ToolID="89" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="62" Connection="Output1" />
+      <Destination ToolID="93" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="84" Connection="Output" />
+      <Destination ToolID="85" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="85" Connection="Output" />
+      <Destination ToolID="86" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="86" Connection="Output" />
+      <Destination ToolID="88" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="88" Connection="Output" />
+      <Destination ToolID="90" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="92" Connection="Output" />
+      <Destination ToolID="90" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="89" Connection="Output" />
+      <Destination ToolID="92" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="90" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="23" Connection="Question" />
+      <Destination ToolID="24" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="42" Connection="Question" />
+      <Destination ToolID="43" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="52" Connection="Question" />
+      <Destination ToolID="53" Connection="Question" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="53" Connection="Action" />
+      <Destination ToolID="11" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="68" Connection="Right" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="61" Connection="Question" />
+      <Destination ToolID="98" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="45" Connection="Question" />
+      <Destination ToolID="46" Connection="Question" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="46" Connection="Action" />
+      <Destination ToolID="4" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="68" Connection="Left" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="30" Connection="Question" />
+      <Destination ToolID="31" Connection="Question" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="31" Connection="Action" />
+      <Destination ToolID="13" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="64" Connection="Left" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="36" Connection="Question" />
+      <Destination ToolID="37" Connection="Question" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="37" Connection="Action" />
+      <Destination ToolID="14" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="64" Connection="Right" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="59" Connection="Question" />
+      <Destination ToolID="65" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="27" Connection="Question" />
+      <Destination ToolID="28" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="70" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="Output" />
+      <Destination ToolID="70" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="69" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="11" Connection="Output" />
+      <Destination ToolID="69" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="70" Connection="Join" />
+      <Destination ToolID="20" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="67" Connection="Join" />
+      <Destination ToolID="20" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="67" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="66" Connection="Output" />
+      <Destination ToolID="67" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="66" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="66" Connection="Right" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="False" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>the.continuous.target</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>continuous.select.continuous</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>pearson</Name>
+        <Value>True</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>spearman</Name>
+        <Value>True</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>c.c.neighbors</Name>
+        <Value>5</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>c.c.sample.size</Name>
+        <Value>10</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>c.c.relief</Name>
+        <Value>True</Value>
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>continuous.continuous</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>continuous.select.discrete</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>conditional.mean.correlation</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>c.d.neighbors</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>c.d.sample.size</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>c.d.relief</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>continuous.discrete</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>continuous.target</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>the.discrete.target</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>discrete.select.continuous</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>information.gain</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>gain.ratio</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>symmetrical.uncertainty</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>d.c.neighbors</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>d.c.sample.size</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>d.c.relief</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>discrete.continuous</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>discrete.select.discrete</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>chi.square</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>d.d.neighbors</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>d.d.sample.size</Name>
+        <Value />
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>d.d.relief</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>discrete.discrete</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>categorical.target</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>java.heap</Name>
+        <Value>1</Value>
+        <IsNumeric value="True" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>increase.java.heap</Name>
+        <Value>False</Value>
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="False" />
+      <Name>Importance Weights</Name>
+      <Description><![CDATA[This Macro is part of the Predictive District
+
+The Importance Weight tool provides methods for selecting a set of variables to use in a predictive model  based on how strongly related each possible predictor is to the target variable.
+
+To use this macro, several additional R packages need to be installed: entropy, digest, RWeka, and FSelection. The link below provides instructions on how to install R packages that can be accessed by Alteryx. In addition, some of the tools make use of Java programs, as a result, Java 7 (not Java 8) also needs to be installed. The macro will attempt to install the needed R packages if they are not already installed, but this may be prevented by certain firewalls or proxy servers.
+
+]]></Description>
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName>Data Investigation</CategoryName>
+      <SearchTags>predictive,target,statistical,model,predictor,pearson,spearman,entropy,importance</SearchTags>
+      <Author>Alteryx Innovation (Dan Putler)</Author>
+      <Company>Alteryx, Inc.</Company>
+      <Copyright>2016 Alteryx, Inc.</Copyright>
+      <DescriptionLink actual="http://community.alteryx.com/t5/Alteryx-Knowledge-Base/Using-Additional-R-Packages-Times-Series-Clustering-Example/ta-p/4411" displayed="Using additional R packages" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="3a307b41-621b-4e67-89ef-95c16b8846a6" />
+      <Telemetry>
+        <PreviousWorkflowId value="8358b66c-6ba2-4e2c-b518-091a39564495" />
+        <OriginWorkflowId value="8358b66c-6ba2-4e2c-b518-091a39564495" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="24" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>2/DetourRight/@value</Destination>
+              <Mapping>Update Detour Direction from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="28" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>6/SelectFields/SelectField[@field='Sepal.Length']/@field</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateSelect</Type>
+              <Description />
+              <ToolId value="31" />
+              <Variable />
+              <SelectTool value="-1" />
+            </Action>
+            <Action>
+              <Type>UpdateSelect</Type>
+              <Description />
+              <ToolId value="37" />
+              <Variable />
+              <SelectTool value="-1" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="43" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>3/SelectFields/SelectField[@field='Species']/@field</Destination>
+            </Action>
+            <Action>
+              <Type>UpdateSelect</Type>
+              <Description />
+              <ToolId value="46" />
+              <Variable />
+              <SelectTool value="-1" />
+            </Action>
+            <Action>
+              <Type>UpdateSelect</Type>
+              <Description />
+              <ToolId value="53" />
+              <Variable />
+              <SelectTool value="-1" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="65" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>64/DetourRight/@value</Destination>
+              <Mapping>Update Detour Direction from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="98" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>68/DetourRight/@value</Destination>
+              <Mapping>Update Detour Direction from Question</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration />
+              <DefaultConfiguration value="True" />
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Importance Weights - Configuration</Description>
+          <Name>Tab (22)</Name>
+          <ToolId value="22" />
+          <Questions>
+            <Question>
+              <Type>RadioGroup</Type>
+              <Description>Continuous target</Description>
+              <Name>continuous.target</Name>
+              <ToolId value="25" />
+              <Questions>
+                <Question>
+                  <Type>ListBox</Type>
+                  <Description>Select the target field</Description>
+                  <Name>the.continuous.target</Name>
+                  <ToolId value="27" />
+                  <Multiple value="False" />
+                  <Default />
+                  <Mode>MacroField</Mode>
+                  <MacroField_InputTool value="0" />
+                  <Field_IncludeNone value="False" />
+                  <MacroField_FilterTypes>Byte,Int16,Int32,Int64,FixedDecimal,Float,Double</MacroField_FilterTypes>
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Examine continuous predictors</Description>
+                  <Name>continuous.continuous</Name>
+                  <ToolId value="58" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the continuous predictors</Description>
+                      <Name>continuous.select.continuous</Name>
+                      <ToolId value="30" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="False" />
+                      <Multiple_Default value="False" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="True" />
+                      <MacroField_FilterTypes>Byte,Int16,Int32,Int64,FixedDecimal,Float,Double</MacroField_FilterTypes>
+                    </Question>
+                    <Question>
+                      <Type>LabelGroup</Type>
+                      <Description>Measures to compute</Description>
+                      <Name>LabelGroup (40)</Name>
+                      <ToolId value="40" />
+                      <Questions>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Pearson correlation</Description>
+                          <Name>pearson</Name>
+                          <ToolId value="32" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Spearmen rank-order correlation</Description>
+                          <Name>spearman</Name>
+                          <ToolId value="34" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Relief</Description>
+                          <Name>c.c.relief</Name>
+                          <ToolId value="33" />
+                          <Questions>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Neighbors count</Description>
+                              <Name>c.c.neighbors</Name>
+                              <ToolId value="76" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="5" />
+                              <Decimals value="0" />
+                            </Question>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Sample size</Description>
+                              <Name>c.c.sample.size</Name>
+                              <ToolId value="77" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="10" />
+                              <Decimals value="0" />
+                            </Question>
+                          </Questions>
+                          <Default value="False" />
+                          <Collapsable value="True" />
+                        </Question>
+                      </Questions>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Examine categorical predictors</Description>
+                  <Name>continuous.discrete</Name>
+                  <ToolId value="59" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the categorical predictors</Description>
+                      <Name>continuous.select.discrete</Name>
+                      <ToolId value="36" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="False" />
+                      <Multiple_Default value="False" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="True" />
+                      <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                    <Question>
+                      <Type>LabelGroup</Type>
+                      <Description>Measures to compute</Description>
+                      <Name>LabelGroup (41)</Name>
+                      <ToolId value="41" />
+                      <Questions>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Conditional mean (Pearson) correlation</Description>
+                          <Name>conditional.mean.correlation</Name>
+                          <ToolId value="38" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Relief</Description>
+                          <Name>c.d.relief</Name>
+                          <ToolId value="39" />
+                          <Questions>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Neighbors count</Description>
+                              <Name>c.d.neighbors</Name>
+                              <ToolId value="78" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="5" />
+                              <Decimals value="0" />
+                            </Question>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Sample size</Description>
+                              <Name>c.d.sample.size</Name>
+                              <ToolId value="79" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="10" />
+                              <Decimals value="0" />
+                            </Question>
+                          </Questions>
+                          <Default value="False" />
+                          <Collapsable value="True" />
+                        </Question>
+                      </Questions>
+                    </Question>
+                  </Questions>
+                  <Default value="True" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+              <Default value="True" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>RadioGroup</Type>
+              <Description>Categorical target</Description>
+              <Name>categorical.target</Name>
+              <ToolId value="23" />
+              <Questions>
+                <Question>
+                  <Type>ListBox</Type>
+                  <Description>Select the target field</Description>
+                  <Name>the.discrete.target</Name>
+                  <ToolId value="42" />
+                  <Multiple value="False" />
+                  <Default />
+                  <Mode>MacroField</Mode>
+                  <MacroField_InputTool value="0" />
+                  <Field_IncludeNone value="False" />
+                  <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Examine continuous predictors</Description>
+                  <Name>discrete.continuous</Name>
+                  <ToolId value="60" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the continuous predictors</Description>
+                      <Name>discrete.select.continuous</Name>
+                      <ToolId value="45" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="False" />
+                      <Multiple_Default value="False" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>Byte,Int16,Int32,Int64,FixedDecimal,Float,Double</MacroField_FilterTypes>
+                    </Question>
+                    <Question>
+                      <Type>LabelGroup</Type>
+                      <Description>Measures to compute</Description>
+                      <Name>LabelGroup (56)</Name>
+                      <ToolId value="56" />
+                      <Questions>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Entropy information gain</Description>
+                          <Name>information.gain</Name>
+                          <ToolId value="47" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Entropy gain ratio</Description>
+                          <Name>gain.ratio</Name>
+                          <ToolId value="48" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Entropy symmetrical uncertainty</Description>
+                          <Name>symmetrical.uncertainty</Name>
+                          <ToolId value="49" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Relief</Description>
+                          <Name>d.c.relief</Name>
+                          <ToolId value="50" />
+                          <Questions>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Neighbors count</Description>
+                              <Name>d.c.neighbors</Name>
+                              <ToolId value="80" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="5" />
+                              <Decimals value="0" />
+                            </Question>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Sample size</Description>
+                              <Name>d.c.sample.size</Name>
+                              <ToolId value="81" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="10" />
+                              <Decimals value="0" />
+                            </Question>
+                          </Questions>
+                          <Default value="False" />
+                          <Collapsable value="True" />
+                        </Question>
+                      </Questions>
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+                <Question>
+                  <Type>RadioGroup</Type>
+                  <Description>Examine categorical predictors</Description>
+                  <Name>discrete.discrete</Name>
+                  <ToolId value="61" />
+                  <Questions>
+                    <Question>
+                      <Type>ListBox</Type>
+                      <Description>Select the categorical predictors</Description>
+                      <Name>discrete.select.discrete</Name>
+                      <ToolId value="52" />
+                      <Multiple value="True" />
+                      <Multiple_Custom value="False" />
+                      <Multiple_Default value="False" />
+                      <Mode>MacroField</Mode>
+                      <MacroField_InputTool value="0" />
+                      <Field_IncludeNone value="False" />
+                      <MacroField_FilterTypes>String,WString,V_String,V_WString</MacroField_FilterTypes>
+                    </Question>
+                    <Question>
+                      <Type>LabelGroup</Type>
+                      <Description>Measures to compute</Description>
+                      <Name>LabelGroup (57)</Name>
+                      <ToolId value="57" />
+                      <Questions>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Cramer's V (chi-squared)</Description>
+                          <Name>chi.square</Name>
+                          <ToolId value="54" />
+                          <Questions />
+                          <Default value="False" />
+                          <Collapsable value="False" />
+                        </Question>
+                        <Question>
+                          <Type>BooleanGroup</Type>
+                          <Description>Relief</Description>
+                          <Name>d.d.relief</Name>
+                          <ToolId value="55" />
+                          <Questions>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Neighbors count</Description>
+                              <Name>d.d.neighbors</Name>
+                              <ToolId value="82" />
+                              <Minimum value="1" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="5" />
+                              <Decimals value="0" />
+                            </Question>
+                            <Question>
+                              <Type>NumericUpDown</Type>
+                              <Description>Sample size</Description>
+                              <Name>d.d.sample.size</Name>
+                              <ToolId value="83" />
+                              <Minimum value="0" />
+                              <Maximum value="10000" />
+                              <Increment value="1" />
+                              <Default value="10" />
+                              <Decimals value="0" />
+                            </Question>
+                          </Questions>
+                          <Default value="False" />
+                          <Collapsable value="True" />
+                        </Question>
+                      </Questions>
+                    </Question>
+                  </Questions>
+                  <Default value="True" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+              <Default value="False" />
+              <Collapsable value="True" />
+            </Question>
+            <Question>
+              <Type>LabelGroup</Type>
+              <Description>Java Heap Space Options</Description>
+              <Name>LabelGroup (114)</Name>
+              <ToolId value="114" />
+              <Questions>
+                <Question>
+                  <Type>BooleanGroup</Type>
+                  <Description>Increase the Java heap from the default 512MB</Description>
+                  <Name>increase.java.heap</Name>
+                  <ToolId value="113" />
+                  <Questions>
+                    <Question>
+                      <Type>NumericUpDown</Type>
+                      <Description>The the size of the Java heap in gigabytes</Description>
+                      <Name>java.heap</Name>
+                      <ToolId value="112" />
+                      <Minimum value="1" />
+                      <Maximum value="30" />
+                      <Increment value="1" />
+                      <Default value="1" />
+                      <Decimals value="0" />
+                    </Question>
+                  </Questions>
+                  <Default value="False" />
+                  <Collapsable value="True" />
+                </Question>
+              </Questions>
+            </Question>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Input</Description>
+              <Name>Input</Name>
+              <ToolId value="29" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (93)</Description>
+              <Name>Macro Output (93)</Name>
+              <ToolId value="93" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (94)</Description>
+              <Name>Macro Output (94)</Name>
+              <ToolId value="94" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="True" />
+      <MacroCustomHelpLink>http://help.alteryx.com/current/index.htm#Macro-ImportanceWeights.htm</MacroCustomHelpLink>
+      <MacroDynamicOutputFields value="False" />
+      <MacroImage>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</MacroImage>
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="29" Selected="True" />
+        <Tool ToolId="93" Selected="True" />
+        <Tool ToolId="94" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
