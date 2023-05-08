@@ -3,7 +3,7 @@
   <Nodes>
     <Node ToolID="52">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="834" y="522" width="480" height="312" />
+        <Position x="822" y="498" width="480" height="312" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -23,7 +23,7 @@
     </Node>
     <Node ToolID="31">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="66" y="78" width="1692" height="204" />
+        <Position x="54" y="54" width="1692" height="204" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -43,7 +43,7 @@
     </Node>
     <Node ToolID="32">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="774" y="90" width="840" height="186" />
+        <Position x="762" y="66" width="840" height="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -63,7 +63,7 @@
     </Node>
     <Node ToolID="34">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="66" y="90" width="216" height="180" />
+        <Position x="54" y="66" width="216" height="180" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -84,7 +84,7 @@
     </Node>
     <Node ToolID="35">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="306" y="234" width="408" height="36" />
+        <Position x="294" y="210" width="408" height="36" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -104,7 +104,7 @@
     </Node>
     <Node ToolID="36">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="66" y="294" width="900" height="24" />
+        <Position x="54" y="270" width="900" height="24" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -124,7 +124,7 @@
     </Node>
     <Node ToolID="37">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="966" y="294" width="792" height="24" />
+        <Position x="954" y="270" width="792" height="24" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -144,7 +144,7 @@
     </Node>
     <Node ToolID="38">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="66" y="318" width="1692" height="24" />
+        <Position x="54" y="294" width="1692" height="24" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -164,7 +164,7 @@
     </Node>
     <Node ToolID="39">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="306" y="90" width="432" height="132" />
+        <Position x="294" y="66" width="432" height="132" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -184,7 +184,7 @@
     </Node>
     <Node ToolID="40">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="66" y="390" width="324" height="108" />
+        <Position x="54" y="366" width="324" height="108" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -205,7 +205,7 @@
     </Node>
     <Node ToolID="41">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="354" y="426" width="288" height="60" />
+        <Position x="342" y="402" width="288" height="60" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -225,7 +225,7 @@
     </Node>
     <Node ToolID="42">
       <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-        <Position x="954" y="594" />
+        <Position x="942" y="570" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -249,7 +249,7 @@
     </Node>
     <Node ToolID="43">
       <GuiSettings>
-        <Position x="1074" y="594" />
+        <Position x="1062" y="570" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -259,7 +259,7 @@
           <Value name="Text Box (41)">https://api.github.com/</Value>
           <Value name="Text Box (43)">jupiterbak</Value>
           <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
-          <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+          <Value name="Text Box (118)">44CEC2767C6B07ED218960635F608782C93F1CFF4D07B567BD177FF1D2CFE8C9DD8900172ACE2BC28FAA4F5FABA5744516AB9B6DF13E7578573F0CAFA7FF9664F9AEAB78E66C520951CFEF5C760786F8BD09ED54B59C8D1AEDCF2F8C5E776A86739F7E23E89F4F3C9DBAC042DD0D19810BC5AB304A2E55AD068477233A62094D11F9F78AFB3B879EE4278C571B5895D8DD3C753C1B615E74BF80C2A5D74256A3A80D76D76865D29371ED9AEA56AC481A010AF0AC9F80B05831FB9FFF7D60E27E3EF313279FD420C89B81CB08ECED877CE202DC556330F84E1963198A5220331383F6D4D1D56008A27E7828C82655DBB80BC11A11D67944B4107CDB54DF92F449D2D0FD76250905A7984F6443D4BB7F07AE64DE9D9BC892AD34138A4EB1CC7CE70EE290B7C1FF984C5FA94835925D911EA0CAF3BB3DE92CB8C321E349930E75C1FBD637867B9B6639D25008DAD8EA2272134A32B997E92</Value>
           <Value name="Text Box (120)">main</Value>
           <Value name="Check Box (123)">False</Value>
           <Value name="Input.Input"><![CDATA[target GIT directory=target GIT directory
@@ -276,12 +276,11 @@
     </Node>
     <Node ToolID="44">
       <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-        <Position x="1170" y="594" />
+        <Position x="1158" y="570" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>
-          </TempFile>
+          <TempFile>C:\ProgramData\Alteryx\Engine\Engine_31248_e23759eb3ce48e498d1c6c3464c1e93d_\Engine_31248_417503d52fccca478473ed01526cd495~.yxdb</TempFile>
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
@@ -293,7 +292,7 @@
     </Node>
     <Node ToolID="51">
       <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
-        <Position x="66" y="522" width="732" height="312" />
+        <Position x="54" y="498" width="732" height="312" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -313,7 +312,7 @@
     </Node>
     <Node ToolID="53">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="185" y="593" width="541" height="165" />
+        <Position x="173" y="569" width="541" height="165" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -331,7 +330,7 @@
       <ChildNodes>
         <Node ToolID="47">
           <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-            <Position x="642" y="642" />
+            <Position x="630" y="618" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -359,7 +358,7 @@
         </Node>
         <Node ToolID="49">
           <GuiSettings>
-            <Position x="546" y="642" />
+            <Position x="534" y="618" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -369,12 +368,10 @@
               <Value name="Text Box (41)">https://api.github.com/</Value>
               <Value name="Text Box (43)">jupiterbak</Value>
               <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
-              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+              <Value name="Text Box (118)">4285C761C68EBCF139413A417998A8B22DCBB400A68DDBA7AE2A469557C0D07572020AD5DF2718491057CDC961368731F9079DA0270DF87DAFB6E76CD72A54EC2386706373C3672B685AADD1F2208AFA9335F7EA253DECBC324D24A8A21319F0ACCE2FF87D7D763CB989E339C8FF9BB4AA16F9D044EB8F724B2CA436FCDB628D6BF9482BF3619B75E14F4F2EF695F53781F04C562AC44DBA7EA3ED2859AA6FF310782C0450687840E51D5972C804FF11BFE8BC33958E185B7628D129E3856867435B248E9169B559A1EBA7ABD4277CC62A341A8F91A403CA93BA5F8C6D9BB30255AC2B98E06E6756BB0C382AFF6D84DF4440D685FAE45A0FCF1D8861BB5D877CA4DDAAB725F8A4E91A010E2C568C4AC71E8B8EFCE96E74ABE38FC1C5DDD446AEC510ECACB27ADCE65F033E00F058C804D3FEFDE30FC2D37E41587020543E3624C7297FA193F8DC64D1149D7B122B5AF912D2FF76208340AFB453E55CAAE65E66828CD7CA4864AFB003FBC9722BC8FD1CE22ED76124C94E6D3B961B985816AD58CE660BE92CC27C713CE75E6AF4A4A3EA3B5F0D60DDAE918A53907AAEB5CC2F605BB6526451CAF5111FBEA00C55D176E4E1F51D2270583F84B0A59542F78FC0E70482CA6D8A9FB98D06EDAF7516BB301E8F7E19D7CC8C9B138058E043D62886A5CBBE84E8ADD07741599698C211D333962BC5DFE57C88B64BAA1FDB0F056D501DF81281A30B551239C40C5650997E97ED7F62F70C238CBDAA614722A53C2EAD0CA24B84A8ACB55AEBD0E3D344423D6BCBB4D8CE314943C0D989EB29B62A6439079801A5F5CFBCD567AE5EB821D0A0A11A955C390B05045C381D3CF0727E653EEA2918C3C6F50A1B82EDE7C98472950F7F87EA0F8E2445D24EDC59992552F940D30E9C8B9C6CA292B59586A23D6CD946510C42AC0B30C8BEBBCBE2CA928C58082CD706971A9024B2C0904A44EB5F40818C8542861B4298D6F5A7434BC258E6077C6AB008522DD12576959CA1B9F57EBC6036D55297F07EF0549B74FC55792420052809F233CFC8FF30BBD3BE64E2D46EDA446E67D3E83FB937BEDDB78AD72AA624239EA6457FE9E712DB9A32E5186628C57306CF3B5B4E8DBE03E3F9F8A53FA488310247A67167279B88A468DF840EC1A91204C532E671F11DBCC031C75F64A754137FBB5E033E7</Value>
               <Value name="Text Box (120)">main</Value>
               <Value name="Check Box (123)">False</Value>
-              <Value name="Input.Input"><![CDATA[file path=file path
-target path=target path
-]]></Value>
+              <Value name="Input.Input" />
             </Configuration>
             <Annotation DisplayMode="0">
               <Name />
@@ -382,15 +379,12 @@ target path=target path
               <DefaultAnnotationText />
               <Left value="False" />
             </Annotation>
-            <Dependencies>
-              <Implicit />
-            </Dependencies>
           </Properties>
           <EngineSettings Macro="GitCommit.yxmc" />
         </Node>
         <Node ToolID="48">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="450" y="642" />
+            <Position x="438" y="618" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -413,7 +407,7 @@ target path=target path
         </Node>
         <Node ToolID="46">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="354" y="642" />
+            <Position x="342" y="618" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -436,7 +430,7 @@ target GIT...</DefaultAnnotationText>
         </Node>
         <Node ToolID="45">
           <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-            <Position x="210" y="642" />
+            <Position x="198" y="618" />
           </GuiSettings>
           <Properties>
             <Configuration>
