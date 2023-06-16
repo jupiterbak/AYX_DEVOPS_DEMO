@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <AlteryxDocument yxmdVer="2022.3">
   <Nodes>
     <Node ToolID="52">
@@ -244,11 +244,6 @@
           <DefaultAnnotationText />
           <Left value="False" />
         </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="target GIT directory" size="2147483647" source="TextInput:" type="V_String" />
-          </RecordInfo>
-        </MetaInfo>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
     </Node>
@@ -258,9 +253,9 @@
       </GuiSettings>
       <Properties>
         <Configuration>
-          <Value name="Text Box (219)">Commit from Self Macro - DEMO ALTERYX</Value>
-          <Value name="Text Box (220)">Jupiter</Value>
-          <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+          <Value name="Text Box (219)">Commit from Self Macro - DEMO ALTERYX Nacho Vilaplana</Value>
+          <Value name="Text Box (220)">Ignacio Vilaplana</Value>
+          <Value name="Text Box (221)">ignacio.vilaplana@alteryx.com</Value>
           <Value name="Text Box (41)">https://api.github.com/</Value>
           <Value name="Text Box (43)">jupiterbak</Value>
           <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
@@ -276,17 +271,6 @@
           <DefaultAnnotationText />
           <Left value="False" />
         </Annotation>
-        <Dependencies>
-          <Implicit>
-            <Dependency Path="_externals\1\GitCommit-Self.yxmc" Package="True" IsMacro="True" IsOutput="False" IsAlias="False" />
-          </Implicit>
-        </Dependencies>
-        <MetaInfo connection="Output254">
-          <RecordInfo>
-            <Field name="ref" size="2048" source="CrossTab:Header:JSON_Name:ref:Concat:" type="V_WString" />
-            <Field name="url" size="2048" source="CrossTab:Header:JSON_Name:url:Concat:" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
       </Properties>
       <EngineSettings Macro="_externals\1\GitCommit-Self.yxmc" />
     </Node>
@@ -296,7 +280,19 @@
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>C:\ProgramData\Alteryx\Engine\Engine_31248_e23759eb3ce48e498d1c6c3464c1e93d_\Engine_31248_417503d52fccca478473ed01526cd495~.yxdb</TempFile>
+          <TempFile>C:\temp\Engine_9336_3b81355145afd74b96e10f8b8972819e_\Engine_9336_9cea0347efaf434dab32d8c20cf24c51~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
@@ -398,9 +394,7 @@ target path=target path
               <Left value="False" />
             </Annotation>
             <Dependencies>
-              <Implicit>
-                <Dependency Path="_externals\1\GitCommit.yxmc" Package="True" IsMacro="True" IsOutput="False" IsAlias="False" />
-              </Implicit>
+              <Implicit />
             </Dependencies>
           </Properties>
           <EngineSettings Macro="_externals\1\GitCommit.yxmc" />
