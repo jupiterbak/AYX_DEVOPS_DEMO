@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="966" y="150" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="file path" />
+            <Field name="target path" />
+          </Fields>
+          <Data>
+            <r>
+              <c>C:\DATA\00_Workspace\Github\AYX_DEVOPS_DEMO\TEST_DEMO\mytest.yxzp</c>
+              <c>TEST_DEMO/mytest.yxzp</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Directory.Directory">
+        <Position x="90" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Directory>C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\02_Special_Projects\03_DevOps_DEMO\Workflows\Macros</Directory>
+          <FileSpec>*.*</FileSpec>
+          <IncludeSubDirs value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>dir C:\Users\jupiter.bakakeu\OneDrive - alteryx.com\Documents\05_Workspace\02_Special_Projects\03_DevOps_DEMO\Workflows\Macros\*.*</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDirectory" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="198" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="FullPath" selected="True" rename="file path" />
+            <SelectField field="Directory" selected="True" />
+            <SelectField field="FileName" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="294" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="&quot;Macros/&quot; + [FileName]" field="target path" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[target path = "Macros/" + [FileName]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings>
+        <Position x="462" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+          <Value name="Text Box (220)">Jupiter</Value>
+          <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+          <Value name="Text Box (41)">https://api.github.com/</Value>
+          <Value name="Text Box (43)">jupiterbak</Value>
+          <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
+          <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+          <Value name="Text Box (120)">main</Value>
+          <Value name="Check Box (123)">False</Value>
+          <Value name="Input.Input"><![CDATA[file path=file path
+target path=target path
+]]></Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>GitCommit (11)</Name>
+          <AnnotationText>GitHub Commit</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings Macro="GitCommit.yxmc" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="558" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\ProgramData\Alteryx\Engine\Engine_21176_1911849e7eb1134ea23831ed54b6a00b_\Engine_21176_3f235a37b4e94941845a2590eea65cb8~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1097" y="101" width="276" height="149" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Container 8</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="True" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="4">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1122" y="150" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="   *   target path" selected="True" rename="target path" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="13">
+          <GuiSettings>
+            <Position x="1254" y="150" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+              <Value name="Text Box (220)">Jupiter</Value>
+              <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+              <Value name="Text Box (41)">https://api.github.com/</Value>
+              <Value name="Text Box (43)">jupiterbak</Value>
+              <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
+              <Value name="Text Box (118)">431C3E967A0523D6D130E9F74AAC7A13035CE60ABECFE3428DB0FBEC8B68018B232226084DF0E60A6950E0EA2BCEE1F2AB3EC31E84D5871A32A8B3166C498F5BE5A03E49CA599672A00FA82C72FDE94FE706595B8DAB221A40BF5009185A9013E1D132972BD871A161FBF2DA65FFFC95620443549E17692F52A1D5D6E945756932BB729205F25C8FF29331F80FEEE85055EFF1F5063F05B100886F3E81878434C6917A88E946951034ACC2CB0DEBD257661C397C6C5392C2E5CA0581740C2F88F848CBFBC231EE58EE85D5E4C23C7514277130C43E8869F27093A8DE2E2CF13D005293B672B8B94B007E56A234A444C1E7B126892ADD8597AFE5D4953F9A1D973316E940B16BD6D7B91280B4EB540278095BE2AEC8CE5EDA82EE6F443F2D2CF0FFD54D26434D2E846685BDCBD8A31F14B32819DA6AE98A682705528DABAC17F6AEBB715B154796079CC303F0D7E2695FDD346B04B21CA</Value>
+              <Value name="Text Box (120)">main</Value>
+              <Value name="Check Box (123)">False</Value>
+              <Value name="Input.Input" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>GitCommit (2)</Name>
+              <AnnotationText>GitHub Commit</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <Dependencies>
+              <Implicit />
+            </Dependencies>
+          </Properties>
+          <EngineSettings Macro="GitCommit.yxmc" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output254" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Commit-Self-File</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="a38539ac-456a-457a-acd3-314d15ca4e12" />
+      <Telemetry>
+        <PreviousWorkflowId value="8538b1df-54b4-4faf-ab2f-383677505f70" />
+        <OriginWorkflowId value="0d2fc5ed-dc1d-4112-85f8-71b5cf667799" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

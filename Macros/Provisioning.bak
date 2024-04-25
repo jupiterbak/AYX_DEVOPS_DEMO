@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.1">
+  <Nodes>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="258" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="1" />
+          <Fields>
+            <Field name="file path" />
+            <Field name="target path" />
+          </Fields>
+          <Data>
+            <r>
+              <c>C:\DATA\00_Workspace\Github\AYX_DEVOPS_DEMO\TAX\Indirect Tax.yxzp</c>
+              <c>TEST_DEMO_LIVE/mytest.yxzp</c>
+            </r>
+          </Data>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="414" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="   *   target path" selected="True" rename="target path" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings>
+        <Position x="546" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Text Box (219)">Commit from Data Ingestion - DEMO ALTERYX</Value>
+          <Value name="Text Box (220)">Jupiter</Value>
+          <Value name="Text Box (221)">Jupiter.bakakeu@gmail.com</Value>
+          <Value name="Text Box (41)">https://api.github.com/</Value>
+          <Value name="Text Box (43)">jupiterbak</Value>
+          <Value name="Text Box (44)">AYX_DEVOPS_DEMO</Value>
+          <Value name="Text Box (118)">4EF531E3938087438FB344769934608322D1873E3638CBC6762B64BC5BC8F720EB37195299ED38B71479880ABEB372BDF851D07499354858B868D4720B3F73E84E582B5A369E004E27B84A839EC8BC681073AD99A6A853A7E58D4EE2E8806CC9ECE3C75244F351A74B76FF68F8CEC200C1D521E3530CC15E865B086BFEBB0E97DDC1A43C17609C42B157C360AA1D296D841340D645245681E0802C55428EF4D254EB4B85E41A11209B70A937EF96A83E5B3D92491AD5B1561B17598C88EF65903A702749C66E34321CBEBDF68142D00D1726AC8CE5C288977C8E4C2CAB38612DD7A2696BA4977C7965A801A2B4A13D01D5BF018B15EAA7A1C7FFD11329BD7267D996354E54387EE1AB02103F805692D803958AF7F75315EEE6D27756818C778279D316C3C0ED1825B913786151D334CC68F733B76C3BDCC41B7C7573D9165A9570AAB78936D4132E92F6E5B9185028AB09F6C68E15FB0</Value>
+          <Value name="Text Box (120)">main</Value>
+          <Value name="Check Box (123)">False</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>GitCommit (2)</Name>
+          <AnnotationText>GitHub Commit</AnnotationText>
+          <DefaultAnnotationText>GitHub Commit</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="GitCommit.yxmc" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input129" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Provisioning</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="2f32f514-93df-4e67-a157-780c854f405c" />
+      <Telemetry>
+        <PreviousWorkflowId value="0d2fc5ed-dc1d-4112-85f8-71b5cf667799" />
+        <OriginWorkflowId value="0d2fc5ed-dc1d-4112-85f8-71b5cf667799" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
