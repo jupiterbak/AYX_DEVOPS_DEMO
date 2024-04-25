@@ -24,3 +24,37 @@ jobs:
             path: |
               *.tgz
               server-sync-results.json
+  Test-results: # with the data configuration execute all alteryx tests
+    needs: move-to-sandbox
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Data
+        uses: actions/checkout@v2.4.2
+        with:
+          ref: 'main'
+      - name: Read Data Configuration
+        uses: juliangruber/read-file-action@v1.1.4
+        id: package
+        with:
+          path: './Report.json'
+      - name: Execute Alteryx Tests
+        uses: jupiterbak/ayx-test-reporter@v1.0.2
+        with:
+          ayx-server-api-url: 'http://ec2-3-67-26-231.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DBB320E27953C5bc4d8dc2feb00ebf59c1e5a0e1b84442581723ad92686750d3bf5f91ca860bf9'
+          ayx-server-client-secret: '31ddb8375e186f963770bf81abc53ccfde934fadeda589ed7a77f41111589451'
+          collection-to-test: '00_Data_Ingestion'
+          args: "${{ steps.package.outputs.content }}"
+      - name: Upload the Test Results
+        uses: actions/upload-artifact@v2.2.3
+        with:
+            path: |
+              *.tgz
+              results.json
+      - name: Generate a Mocha Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    
+        with:
+          name: Data Ingestion Test Results            
+          path: results.json            
+          reporter: mocha-json
