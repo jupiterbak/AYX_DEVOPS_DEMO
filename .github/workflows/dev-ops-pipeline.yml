@@ -54,7 +54,7 @@ jobs:
               *.tgz
               results.json
       - name: Generate a Mocha Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         if: success() || failure()    
         with:
           name: Data Ingestion Test Results            
