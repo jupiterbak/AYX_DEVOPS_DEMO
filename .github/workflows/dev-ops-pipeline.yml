@@ -19,7 +19,7 @@ jobs:
           ayx-user-mail: 'jupiter.bakakeu@gmail.com'
           folder-to-sync: './'
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
             path: |
               *.tgz
@@ -46,7 +46,7 @@ jobs:
           collection-to-test: '00_Data_Ingestion'
           args: "${{ steps.package.outputs.content }}"
       - name: Upload the Test Results
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
             path: |
               *.tgz
