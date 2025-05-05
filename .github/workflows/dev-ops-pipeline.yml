@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: jupiterbak/ayx-server-deploy@v4
         with:
-          ayx-server-api-url: 'http://ec2-3-67-26-231.eu-central-1.compute.amazonaws.com/webapi/'
-          ayx-server-client-id: '8DBB320E27953C5bc4d8dc2feb00ebf59c1e5a0e1b84442581723ad92686750d3bf5f91ca860bf9'
-          ayx-server-client-secret: '31ddb8375e186f963770bf81abc53ccfde934fadeda589ed7a77f41111589451'
-          ayx-user-mail: 'jupiter.bakakeu@alteryx.com'
+          ayx-server-api-url: 'http://ec2-18-184-0-23.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DD8BBF92DAD13469d0e6fa6b5c4e8c1d1f980e130842b7718b95a4f17664860816fffabe5860de'
+          ayx-server-client-secret: '4d2571855980947fee7917480a2903dba8fb4bcdd3500fb95c85013549888e1e'
+          ayx-user-mail: 'jupiter.bakakeu@gmail.com'
           folder-to-sync: './'
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
@@ -40,9 +40,9 @@ jobs:
       - name: Execute Alteryx Tests
         uses: jupiterbak/ayx-test-reporter@v1.0.2
         with:
-          ayx-server-api-url: 'http://ec2-3-67-26-231.eu-central-1.compute.amazonaws.com/webapi/'
-          ayx-server-client-id: '8DBB320E27953C5bc4d8dc2feb00ebf59c1e5a0e1b84442581723ad92686750d3bf5f91ca860bf9'
-          ayx-server-client-secret: '31ddb8375e186f963770bf81abc53ccfde934fadeda589ed7a77f41111589451'
+          ayx-server-api-url: 'http://ec2-18-184-0-23.eu-central-1.compute.amazonaws.com/webapi/'
+          ayx-server-client-id: '8DD8BBF92DAD13469d0e6fa6b5c4e8c1d1f980e130842b7718b95a4f17664860816fffabe5860de'
+          ayx-server-client-secret: '4d2571855980947fee7917480a2903dba8fb4bcdd3500fb95c85013549888e1e'
           collection-to-test: '00_Data_Ingestion'
           args: "${{ steps.package.outputs.content }}"
       - name: Upload the Test Results
