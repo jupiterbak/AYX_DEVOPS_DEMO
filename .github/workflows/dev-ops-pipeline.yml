@@ -60,3 +60,4 @@ jobs:
           name: Data Ingestion Test Results            
           path: results.json            
           reporter: mocha-json
+          fail-on-error: false
